@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shahida Maqsood - Physics & Mathematics Instructor</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 48px;
+            color: white;
+            font-weight: bold;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        .subtitle {
+            color: #667eea;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #555;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-item:hover {
+            color: #667eea;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .about-text {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .experience-item, .education-item {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .job-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .company-date {
+            color: #667eea;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .job-description ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .job-description li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .job-description li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-category {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .skill-category h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .skill-tag {
+            background: #667eea;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+        }
+
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .cert-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .cert-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .cert-issuer {
+            color: #667eea;
+            font-size: 0.9em;
+        }
+
+        .achievements-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .achievements-list li {
+            margin-bottom: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .languages {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .language {
+            background: #667eea;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 25px;
+            font-weight: 500;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            padding: 15px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            color: #555;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .nav-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .tab-btn {
+                width: 200px;
+            }
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, transparent 0%, transparent 40%, #667eea 40%, #667eea 60%, transparent 60%);
+            background-size: 200% 100%;
+            animation: highlight 2s ease-in-out;
+        }
+
+        @keyframes highlight {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="profile-img">SM</div>
+            <h1>SHAHIDA MAQSOOD</h1>
+            <p class="subtitle">Physics & Mathematics Instructor | PhD Candidate | Educational Leader</p>
+            <div class="contact-info">
+                <a href="mailto:shahida.maqsood@actvet.gov.ae" class="contact-item">
+                    📧 shahida.maqsood@actvet.gov.ae
+                </a>
+                <span class="contact-item">
+                    🎓 PhD Candidate - UAEU
+                </span>
+                <a href="https://www.linkedin.com/in/s-m-092a7641" class="contact-item" target="_blank">
+                    🔗 LinkedIn Profile
+                </a>
+                <span class="contact-item">📍 Al Ain, UAE</span>
+            </div>
+        </header>
+
+        <nav class="nav-tabs">
+            <button class="tab-btn active" onclick="showTab('about')">About</button>
+            <button class="tab-btn" onclick="showTab('research')">Research</button>
+            <button class="tab-btn" onclick="showTab('experience')">Experience</button>
+            <button class="tab-btn" onclick="showTab('education')">Education</button>
+            <button class="tab-btn" onclick="showTab('blog')">Blog</button>
+            <button class="tab-btn" onclick="showTab('publications')">Publications</button>
+            <button class="tab-btn" onclick="showTab('skills')">Skills</button>
+            <button class="tab-btn" onclick="showTab('certifications')">Certifications</button>
+            <button class="tab-btn" onclick="showTab('achievements')">Achievements</button>
+        </nav>
+
+        <div id="about" class="tab-content active">
+            <div class="section">
+                <h2>Research & Academic Focus</h2>
+                
+                <div class="research-area">
+                    <h3 style="color: #667eea; margin-bottom: 15px;">Current PhD Research</h3>
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; border-left: 4px solid #667eea;">
+                        <h4 style="color: #2c3e50; margin-bottom: 10px;">Advanced Physics Applications in Nano Materials</h4>
+                        <p style="margin-bottom: 10px;"><strong>Institution:</strong> United Arab Emirates University (UAEU)</p>
+                        <p style="margin-bottom: 10px;"><strong>Duration:</strong> August 2023 - Present</p>
+                        <p style="line-height: 1.6;">Conducting cutting-edge research in nanomaterials physics, focusing on the fundamental properties and applications of nano-scale materials. This research contributes to advancing our understanding of material behavior at the nanoscale level and its practical applications in modern technology.</p>
+                    </div>
+                </div>
+
+                <div class="research-area" style="margin-top: 25px;">
+                    <h3 style="color: #667eea; margin-bottom: 15px;">Master's Research Achievement</h3>
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; border-left: 4px solid #667eea;">
+                        <h4 style="color: #2c3e50; margin-bottom: 10px;">Band Gap Tuning of MoSe₂ and WSe₂ Monolayers</h4>
+                        <p style="margin-bottom: 10px;"><strong>Research Method:</strong> Ab initio computational study</p>
+                        <p style="margin-bottom: 10px;"><strong>Focus Area:</strong> Two-dimensional materials and their electronic properties</p>
+                        <p style="line-height: 1.6;">Investigated the manipulation of electronic band gaps through alloying and substitution techniques in transition metal dichalcogenide monolayers, contributing valuable insights to the field of 2D materials science and their potential applications in electronic devices.</p>
+                    </div>
+                </div>
+
+                <div class="research-interests" style="margin-top: 25px;">
+                    <h3 style="color: #667eea; margin-bottom: 15px;">Research Interests</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                        <div style="background: #e8f2ff; padding: 15px; border-radius: 8px; text-align: center;">
+                            <strong>Nanomaterials Physics</strong>
+                        </div>
+                        <div style="background: #e8f2ff; padding: 15px; border-radius: 8px; text-align: center;">
+                            <strong>2D Materials</strong>
+                        </div>
+                        <div style="background: #e8f2ff; padding: 15px; border-radius: 8px; text-align: center;">
+                            <strong>Electronic Properties</strong>
+                        </div>
+                        <div style="background: #e8f2ff; padding: 15px; border-radius: 8px; text-align: center;">
+                            <strong>Materials Science</strong>
+                        </div>
+                        <div style="background: #e8f2ff; padding: 15px; border-radius: 8px; text-align: center;">
+                            <strong>Computational Physics</strong>
+                        </div>
+                        <div style="background: #e8f2ff; padding: 15px; border-radius: 8px; text-align: center;">
+                            <strong>Ab initio Methods</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="publications" class="tab-content">
+            <div class="section">
+                <h2>Publications & Academic Contributions</h2>
+                
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+                    <h3 style="color: #2c3e50; margin-bottom: 15px;">Master's Thesis</h3>
+                    <div style="background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #667eea;">
+                        <p style="font-weight: bold; color: #2c3e50; margin-bottom: 8px;">
+                            "Band gap tuning of MoSe₂ and WSe₂ monolayers through alloying and Substitution: An Ab initio study"
+                        </p>
+                        <p style="color: #666; margin-bottom: 5px;"><strong>Institution:</strong> United Arab Emirates University</p>
+                        <p style="color: #666; margin-bottom: 5px;"><strong>Year:</strong> 2022</p>
+                        <p style="color: #666;"><strong>Field:</strong> Materials Science & Computational Physics</p>
+                    </div>
+                </div>
+
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+                    <h3 style="color: #2c3e50; margin-bottom: 15px;">Ongoing PhD Research</h3>
+                    <div style="background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #667eea;">
+                        <p style="font-weight: bold; color: #2c3e50; margin-bottom: 8px;">
+                            Advanced Physics Applications in Nano Materials
+                        </p>
+                        <p style="color: #666; margin-bottom: 5px;"><strong>Status:</strong> In Progress (Expected completion 2026-2027)</p>
+                        <p style="color: #666; margin-bottom: 5px;"><strong>Institution:</strong> United Arab Emirates University</p>
+                        <p style="color: #666;">Expected to contribute significant findings to the field of nanomaterials physics and their practical applications.</p>
+                    </div>
+                </div>
+
+                <div style="background: #fff3cd; padding: 20px; border-radius: 10px; border-left: 4px solid #ffc107;">
+                    <h3 style="color: #856404; margin-bottom: 10px;">📝 Future Publications</h3>
+                    <p style="color: #856404; line-height: 1.6;">
+                        Research publications from ongoing PhD work are anticipated to be submitted to peer-reviewed journals in physics and materials science. Stay tuned for upcoming contributions to the scientific community.
+                    </p>
+                </div>
+            </div>
+        </div>
+            <div class="section">
+                <h2>About Me</h2>
+                <p class="about-text">
+                    Dynamic and accomplished Physics and Mathematics instructor with over <strong>two decades</strong> of progressive teaching experience in higher education. Currently pursuing a PhD in Physics at UAEU while maintaining exceptional teaching standards at Abu Dhabi Polytechnic, Al Ain.
+                </p>
+                <br>
+                <p class="about-text">
+                    I bring proven expertise in delivering quality undergraduate education with a strong commitment to student success and academic excellence. My specialization in advanced physics applications, particularly in nano materials research, combined with extensive practical teaching experience, enables me to bridge theoretical knowledge with real-world applications.
+                </p>
+                <br>
+                <p class="about-text">
+                    I am passionate about developing innovative curricula, mentoring students, and contributing to institutional growth through effective teamwork and leadership. My experience spans across multiple educational systems and cultures, providing me with a unique perspective on diverse learning approaches. I actively organize student participation in professional development activities, including aviation air shows and Women in Aviation conferences, demonstrating my commitment to holistic student development.
+                </p>
+                <br>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px;">
+                    <div style="text-align: center; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+                        <div style="font-size: 2em; color: #667eea; margin-bottom: 10px;">20+</div>
+                        <div style="font-weight: bold; color: #2c3e50;">Years Experience</div>
+                    </div>
+                    <div style="text-align: center; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+                        <div style="font-size: 2em; color: #667eea; margin-bottom: 10px;">6+</div>
+                        <div style="font-weight: bold; color: #2c3e50;">Certifications</div>
+                    </div>
+                    <div style="text-align: center; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+                        <div style="font-size: 2em; color: #667eea; margin-bottom: 10px;">PhD</div>
+                        <div style="font-weight: bold; color: #2c3e50;">In Progress</div>
+                    </div>
+                    <div style="text-align: center; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+                        <div style="font-size: 2em; color: #667eea; margin-bottom: 10px;">3.5</div>
+                        <div style="font-weight: bold; color: #2c3e50;">Master's GPA</div>
+                    </div>
+                </div>
+                </p>
+            </div>
+        </div>
+
+        <div id="experience" class="tab-content">
+            <div class="section">
+                <h2>Professional Experience</h2>
+                
+                <div class="experience-item">
+                    <div class="job-title">Instructor - Abu Dhabi Polytechnic, Al Ain</div>
+                    <div class="company-date">August 2016 – Present</div>
+                    <div class="job-description">
+                        <ul>
+                            <li><strong>Curriculum Delivery:</strong> Teach advanced Mathematics and Physics (Modules 1 & 2) to aviation students within the CAR Part 147 certification framework</li>
+                            <li><strong>Laboratory Management:</strong> Design and conduct comprehensive laboratory sessions for degree-level courses, ensuring hands-on learning experiences</li>
+                            <li><strong>Assessment Development:</strong> Create, administer, and evaluate quizzes, examinations, and tutorials to measure student competency and progress</li>
+                            <li><strong>Curriculum Innovation:</strong> Collaborate in designing new courses and instructional materials aligned with industry standards and regulatory requirements</li>
+                            <li><strong>Academic Mentoring:</strong> Provide comprehensive personal and academic support to students, fostering their professional development</li>
+                            <li><strong>Interactive Learning:</strong> Facilitate engaging classroom discussions and encourage critical thinking through structured debates and collaborative learning</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="job-title">Adjunct Lecturer - Higher Colleges of Technology, Sharjah</div>
+                    <div class="company-date">February 2015 – May 2016</div>
+                    <div class="job-description">
+                        <ul>
+                            <li><strong>Undergraduate Instruction:</strong> Delivered comprehensive teaching and instruction at the undergraduate level with a focus on physics and mathematics</li>
+                            <li><strong>Practical Education:</strong> Conducted laboratory sessions for degree-level courses, integrating theoretical knowledge with practical applications</li>
+                            <li><strong>Academic Administration:</strong> Organized and managed quizzes, examinations, and tutorial sessions to enhance student learning outcomes</li>
+                            <li><strong>Performance Evaluation:</strong> Systematically assessed student coursework and conducted examination setup with accurate marking and feedback</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="job-title">Lecturer - I.M.C.G (PG) College for Women, Islamabad</div>
+                    <div class="company-date">January 2003 – December 2014</div>
+                    <div class="job-description">
+                        <ul>
+                            <li><strong>Advanced Instruction:</strong> Delivered high-quality lectures to diverse student groups using innovative teaching methodologies</li>
+                            <li><strong>Program Management:</strong> Organized, implemented, and monitored comprehensive academic programs and assessment frameworks</li>
+                            <li><strong>Course Material Development:</strong> Prepared extensive learning materials and designed relevant practical activities</li>
+                            <li><strong>Institutional Committees:</strong> Served on Admission, Audit, and Transport committees, contributing to institutional governance</li>
+                            <li><strong>Student Recruitment:</strong> Participated in interviewing prospective students, ensuring quality admissions aligned with institutional standards</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="blog" class="tab-content">
+            <div class="section">
+                <h2>Professional Blog</h2>
+                
+                <article style="background: #f8f9fa; padding: 30px; border-radius: 15px; margin-bottom: 25px;">
+                    <div style="text-align: center; margin-bottom: 25px;">
+                        <h3 style="color: #2c3e50; font-size: 1.8em; margin-bottom: 10px;">
+                            Teaching Aviation Physics: Bridging Theory and Practice in the Cockpit
+                        </h3>
+                        <div style="color: #667eea; font-size: 0.9em; margin-bottom: 15px;">
+                            📅 Published: December 2024 | 👨‍🏫 By: Shahida Maqsood | 🏷️ Aviation Education, Physics, CAR Part 147
+                        </div>
+                        <div style="width: 60px; height: 3px; background: #667eea; margin: 0 auto;"></div>
+                    </div>
+
+                    <div style="line-height: 1.8; color: #555;">
+                        <p style="font-size: 1.1em; font-weight: 500; color: #2c3e50; margin-bottom: 20px;">
+                            After years of teaching physics to aviation students within the CAR Part 147 framework, I've discovered that the key to success lies not just in understanding formulas, but in helping students visualize how physics governs every aspect of flight.
+                        </p>
+
+                        <h4 style="color: #667eea; margin-top: 25px; margin-bottom: 15px;">The Challenge: Making Physics Relevant</h4>
+                        <p style="margin-bottom: 15px;">
+                            One of the greatest challenges in aviation physics education is bridging the gap between abstract mathematical concepts and their real-world applications in aircraft systems. Students often struggle to see how Newton's laws translate into lift generation, or how thermodynamics principles govern jet engine performance.
+                        </p>
+
+                        <p style="margin-bottom: 20px;">
+                            In my classroom at Abu Dhabi Polytechnic, I've developed innovative approaches that transform these abstract concepts into tangible, understandable principles that students can immediately relate to their future careers in aviation maintenance and engineering.
+                        </p>
+
+                        <h4 style="color: #667eea; margin-top: 25px; margin-bottom: 15px;">Practical Teaching Strategies</h4>
+                        
+                        <div style="background: white; padding: 20px; border-radius: 10px; margin: 20px 0; border-left: 4px solid #667eea;">
+                            <h5 style="color: #2c3e50; margin-bottom: 10px;">⚡ Hands-on Laboratory Sessions</h5>
+                            <p style="margin-bottom: 0;">
+                                Our laboratory work includes experiments with wind tunnels, pressure measurement devices, and electrical circuit analysis that directly mirrors aircraft systems. Students measure, calculate, and verify theoretical predictions with real data.
+                            </p>
+                        </div>
+
+                        <h4 style="color: #667eea; margin-top: 25px; margin-bottom: 15px;">Key Physics Concepts in Aviation</h4>
+                        <p style="margin-bottom: 15px;">
+                            The CAR Part 147 curriculum covers essential physics domains that every aviation maintenance engineer must master:
+                        </p>
+
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin: 20px 0;">
+                            <div style="background: #e8f2ff; padding: 15px; border-radius: 8px; text-align: center;">
+                                <strong style="color: #2c3e50;">Fluid Dynamics</strong>
+                                <p style="margin: 10px 0 0 0; font-size: 0.9em; color: #666;">Airflow, lift generation, drag forces</p>
+                            </div>
+                            <div style="background: #e8f2ff; padding: 15px; border-radius: 8px; text-align: center;">
+                                <strong style="color: #2c3e50;">Thermodynamics</strong>
+                                <p style="margin: 10px 0 0 0; font-size: 0.9em; color: #666;">Engine cycles, heat transfer, efficiency</p>
+                            </div>
+                            <div style="background: #e8f2ff; padding: 15px; border-radius: 8px; text-align: center;">
+                                <strong style="color: #2c3e50;">Mechanics</strong>
+                                <p style="margin: 10px 0 0 0; font-size: 0.9em; color: #666;">Forces, moments, structural loads</p>
+                            </div>
+                            <div style="background: #e8f2ff; padding: 15px; border-radius: 8px; text-align: center;">
+                                <strong style="color: #2c3e50;">Electromagnetism</strong>
+                                <p style="margin: 10px 0 0 0; font-size: 0.9em; color: #666;">Avionics, navigation, communication systems</p>
+                            </div>
+                        </div>
+
+                        <h4 style="color: #667eea; margin-top: 25px; margin-bottom: 15px;">Student Success Stories</h4>
+                        <p style="margin-bottom: 15px;">
+                            The most rewarding aspect of my teaching approach is witnessing the "aha!" moments when students suddenly understand how the physics they're learning directly applies to aircraft systems. I've seen students who initially struggled with basic mechanics concepts become confident in analyzing complex aircraft structural problems.
+                        </p>
+
+                        <p style="margin-bottom: 20px;">
+                            Many of my former students now work as licensed aircraft maintenance engineers across the UAE and have reported that the strong physics foundation helped them excel in their professional certifications and daily troubleshooting tasks.
+                        </p>
+
+                        <h4 style="color: #667eea; margin-top: 25px; margin-bottom: 15px;">Looking Forward: Innovation in Aviation Education</h4>
+                        <p style="margin-bottom: 15px;">
+                            As aviation technology evolves with electric aircraft, advanced materials, and digital systems, our physics education must evolve too. I'm currently developing new curriculum modules that address emerging technologies while maintaining the strong fundamental physics foundation that remains crucial.
+                        </p>
+
+                        <p style="margin-bottom: 20px;">
+                            The integration of AI and digital twins in aviation maintenance also opens exciting new possibilities for physics education, allowing students to experiment with virtual aircraft systems and see immediate results from their calculations.
+                        </p>
+
+                        <div style="background: #667eea; color: white; padding: 20px; border-radius: 10px; margin: 25px 0; text-align: center;">
+                            <p style="margin: 0; font-size: 1.1em; font-weight: 500;">
+                                "Teaching aviation physics isn't just about formulas and calculations – it's about preparing the next generation of aviation professionals to keep aircraft safe in the sky through deep understanding of the physical principles that make flight possible."
+                            </p>
+                            <p style="margin: 10px 0 0 0; font-size: 0.9em; opacity: 0.9;">
+                                - Shahida Maqsood
+                            </p>
+                        </div>
+
+                        <div style="border-top: 2px solid #eee; padding-top: 20px; margin-top: 30px;">
+                            <p style="font-size: 0.9em; color: #666; text-align: center;">
+                                <strong>About the Author:</strong> Shahida Maqsood is a Physics and Mathematics Instructor at Abu Dhabi Polytechnic with over 20 years of teaching experience and specialized expertise in CAR Part 147 aviation education. She is currently pursuing her PhD in Physics at UAEU, focusing on nanomaterials research.
+                            </p>
+                        </div>
+                    </div>
+                </article>
+
+                <div style="text-align: center; margin-top: 30px;">
+                    <div style="background: rgba(255, 255, 255, 0.8); padding: 20px; border-radius: 10px; border: 2px dashed #667eea;">
+                        <h4 style="color: #667eea; margin-bottom: 10px;">📝 More Blog Posts Coming Soon</h4>
+                        <p style="color: #666; margin: 0;">
+                            Stay tuned for upcoming posts on nanomaterials research, innovative teaching methodologies, and the future of aviation education.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="education" class="tab-content">
+            <div class="section">
+                <h2>Education</h2>
+                
+                <div class="education-item">
+                    <div class="job-title">PhD in Physics (In Progress)</div>
+                    <div class="company-date">United Arab Emirates University (UAEU) | August 2023 – Present</div>
+                    <p><strong>Research Focus:</strong> Advanced Physics Applications (Nano Materials)</p>
+                </div>
+
+                <div class="education-item">
+                    <div class="job-title">Master of Science in Physics</div>
+                    <div class="company-date">United Arab Emirates University (UAEU) | June 2022</div>
+                    <p><strong>GPA:</strong> 3.5/4.0</p>
+                    <p><strong>Dissertation:</strong> "Band gap tuning of MoSe₂ and WSe₂ monolayers through alloying and Substitution: An Ab initio study"</p>
+                    <p><strong>Specialization:</strong> Materials Science</p>
+                </div>
+
+                <div class="education-item">
+                    <div class="job-title">Bachelor of Science in Physics</div>
+                    <div class="company-date">Quaid-e-Azam University | January 2000</div>
+                    <p><strong>Specialization:</strong> Plasma Physics</p>
+                    <p><strong>Additional Coursework:</strong> Advanced Physics modules with comprehensive theoretical and practical components</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="skills" class="tab-content">
+            <div class="section">
+                <h2>Skills & Competencies</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Teaching & Education</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Curriculum Development</span>
+                            <span class="skill-tag">Laboratory Management</span>
+                            <span class="skill-tag">Assessment Design</span>
+                            <span class="skill-tag">Student Mentoring</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3>Technical Skills</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Physics</span>
+                            <span class="skill-tag">Mathematics</span>
+                            <span class="skill-tag">Nano Materials</span>
+                            <span class="skill-tag">Materials Science</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3>Professional Skills</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Leadership</span>
+                            <span class="skill-tag">Communication</span>
+                            <span class="skill-tag">Team Player</span>
+                            <span class="skill-tag">Adaptability</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3>Aviation & Industry</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">CAR Part 147</span>
+                            <span class="skill-tag">EASA Regulations</span>
+                            <span class="skill-tag">Aviation Mathematics</span>
+                            <span class="skill-tag">Aviation Physics</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3>Research Skills</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Ab initio Methods</span>
+                            <span class="skill-tag">Computational Physics</span>
+                            <span class="skill-tag">2D Materials</span>
+                            <span class="skill-tag">Band Gap Engineering</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3>Technology</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">AI Fundamentals</span>
+                            <span class="skill-tag">Learning Management Systems</span>
+                            <span class="skill-tag">Digital Assessment</span>
+                            <span class="skill-tag">Educational Technology</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="certifications" class="tab-content">
+            <div class="section">
+                <h2>Professional Certifications & Training</h2>
+                <div class="certifications-grid">
+                    <div class="cert-item">
+                        <div class="cert-title">Internal Verifier (NQA)</div>
+                        <div class="cert-issuer">2025</div>
+                    </div>
+                    
+                    <div class="cert-item">
+                        <div class="cert-title">Artificial Intelligence Fundamentals</div>
+                        <div class="cert-issuer">IBM | 2024</div>
+                    </div>
+                    
+                    <div class="cert-item">
+                        <div class="cert-title">PART/CAR 66 Foundation</div>
+                        <div class="cert-issuer">Abu Dhabi Polytechnic | 2021</div>
+                    </div>
+                    
+                    <div class="cert-item">
+                        <div class="cert-title">EASA/GCAA CAR/PART147 Regulatory Training</div>
+                        <div class="cert-issuer">Abu Dhabi Polytechnic | 2021</div>
+                    </div>
+                    
+                    <div class="cert-item">
+                        <div class="cert-title">Leading High-Performance Team</div>
+                        <div class="cert-issuer">UQL | 2018</div>
+                    </div>
+                    
+                    <div class="cert-item">
+                        <div class="cert-title">Train The Trainer</div>
+                        <div class="cert-issuer">Glans Training Centre, UAE | 2017</div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 30px;">
+                    <h3 style="color: #2c3e50; margin-bottom: 15px;">Professional Memberships</h3>
+                    <div class="cert-item">
+                        <div class="cert-title">Australian Institute of Physics (AIP)</div>
+                        <div class="cert-issuer">Active Member</div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 30px;">
+                    <h3 style="color: #2c3e50; margin-bottom: 15px;">Additional Training & Workshops</h3>
+                    <div class="certifications-grid">
+                        <div class="cert-item">
+                            <div class="cert-title">GCAA Voluntary Reporting Service (VORSY)</div>
+                            <div class="cert-issuer">Based on AMC-57 | Abu Dhabi Polytechnic | 2021</div>
+                        </div>
+                        
+                        <div class="cert-item">
+                            <div class="cert-title">MTO, LMS/BB, Invigilation</div>
+                            <div class="cert-issuer">Abu Dhabi Polytechnic, Al Ain</div>
+                        </div>
+                        
+                        <div class="cert-item">
+                            <div class="cert-title">Teaching of Mathematics and Physics</div>
+                            <div class="cert-issuer">Professional Certification</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="achievements" class="tab-content">
+            <div class="section">
+                <h2>Achievements & Recognition</h2>
+                <ul class="achievements-list">
+                    <li><strong>Academic Excellence:</strong> Achieved 3.5 GPA in Master of Science in Physics from UAEU</li>
+                    <li><strong>IELTS Academic Score: 7.5</strong> - Demonstrates advanced English proficiency for international academic collaboration (2013)</li>
+                    <li><strong>ICT Certification</strong> - Advanced technology training in South Korea (2006)</li>
+                    <li><strong>IC3 Certification</strong> - Certified in computer literacy and digital skills (2017)</li>
+                    <li><strong>20+ Years Teaching Excellence</strong> - Maintained active involvement in academia with consistent professional development and student success focus</li>
+                    <li><strong>Cross-Cultural Teaching Experience</strong> - Successfully adapted teaching methodologies across different educational systems (Pakistan, UAE)</li>
+                    <li><strong>Research Leadership</strong> - Currently conducting cutting-edge PhD research in nanomaterials physics at UAEU</li>
+                    <li><strong>Professional Development Leadership</strong> - Organized student participation in aviation air shows and Women in Aviation conferences</li>
+                    <li><strong>Committee Leadership</strong> - Served on multiple institutional committees including Admission, Audit, and Transport committees</li>
+                    <li><strong>Regulatory Expertise</strong> - Specialized training in aviation industry standards (CAR Part 147, EASA regulations)</li>
+                </ul>
+
+                <div style="margin-top: 30px;">
+                    <h3 style="color: #2c3e50; margin-bottom: 15px;">Professional Activities</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; border-left: 4px solid #667eea;">
+                            <h4 style="color: #667eea; margin-bottom: 10px;">🎓 Student Development</h4>
+                            <p>Comprehensive mentoring and academic advising to support career development and academic excellence across diverse student populations.</p>
+                        </div>
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; border-left: 4px solid #667eea;">
+                            <h4 style="color: #667eea; margin-bottom: 10px;">✈️ Industry Engagement</h4>
+                            <p>Active participation in aviation industry events and conferences, connecting students with real-world professional opportunities.</p>
+                        </div>
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; border-left: 4px solid #667eea;">
+                            <h4 style="color: #667eea; margin-bottom: 10px;">🔬 Research Contribution</h4>
+                            <p>Contributing to advancing knowledge in nanomaterials physics through ongoing doctoral research at UAEU.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 30px;">
+                    <h3 style="color: #2c3e50; margin-bottom: 15px;">Languages</h3>
+                    <div class="languages">
+                        <span class="language">English</span>
+                        <span class="language">Urdu</span>
+                        <span class="language">Arabic</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            // Hide all tab contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+            
+            // Add highlight animation to the content
+            const activeContent = document.getElementById(tabName);
+            activeContent.classList.add('highlight');
+            setTimeout(() => {
+                activeContent.classList.remove('highlight');
+            }, 2000);
+        }
+
+        // Add smooth scrolling and initial animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate sections on scroll
+            const sections = document.querySelectorAll('.section');
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(section);
+            });
+
+            // Initial animation for header
+            const header = document.querySelector('header');
+            header.style.opacity = '0';
+            header.style.transform = 'translateY(-20px)';
+            header.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            
+            setTimeout(() => {
+                header.style.opacity = '1';
+                header.style.transform = 'translateY(0)';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
