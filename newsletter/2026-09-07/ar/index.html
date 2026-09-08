@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>لوحة أخبار الطيران والصيانة — 7 سبتمبر 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" media="print" onload="this.media='all'"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&family=Noto+Kufi+Arabic:wght@400;700&display=swap">
+<noscript><link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&family=Noto+Kufi+Arabic:wght@400;700&display=swap"></noscript>
+<style>
+  @page { size: A3 portrait; margin: 0; }
+
+  :root{
+    --ink:#111820;
+    --ink-soft:#3e4e5d;
+    --line:#c9d2da;
+    --paper:#f7f8f6;
+    --navy:#12314f;
+    --navy-deep:#0b2135;
+    --accent:#b4532a;
+    --accent-soft:#f1e4db;
+    --chip:#edf0f2;
+    --ar: "Noto Sans Arabic", "Noto Naskh Arabic", sans-serif;
+    --ar-display: "Noto Kufi Arabic", "Noto Sans Arabic", sans-serif;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ background:#5b6670; }
+
+  body{
+    margin:0;
+    font-family:var(--ar);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+    padding:24px 12px;
+  }
+
+  .ltr{ direction:ltr; unicode-bidi:isolate; }
+
+  .sheet{
+    width:297mm;
+    height:420mm;
+    margin:0 auto;
+    background:var(--paper);
+    padding:13mm 14mm 9mm;
+    display:flex;
+    flex-direction:column;
+    box-shadow:0 10px 40px rgba(0,0,0,.35);
+    overflow:hidden;
+  }
+
+  .masthead{
+    border-bottom:2.5pt solid var(--navy);
+    padding-bottom:4mm;
+    display:grid;
+    grid-template-columns:1fr auto;
+    align-items:flex-end;
+    gap:0 10mm;
+  }
+  .kicker{
+    font-family:var(--ar-display);
+    font-size:9pt;
+    color:var(--accent);
+    font-weight:700;
+    margin:0 0 3mm;
+  }
+  .masthead h1{
+    font-family:var(--ar-display);
+    font-size:24pt;
+    line-height:1.24;
+    margin:0;
+    color:var(--navy-deep);
+    font-weight:700;
+  }
+  .masthead h1 .thin{ font-weight:400; color:var(--ink-soft); }
+
+  .meta{
+    text-align:end;
+    font-size:9pt;
+    line-height:1.85;
+    color:var(--ink-soft);
+    white-space:nowrap;
+  }
+  .meta b{ color:var(--navy-deep); font-weight:700; }
+
+  .standfirst{
+    margin:4mm 0 4.5mm;
+    font-size:10pt;
+    line-height:1.7;
+    color:var(--ink-soft);
+    max-width:215mm;
+  }
+
+  .posts{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:0 7mm;
+    flex:1;
+    min-height:0;
+  }
+
+  .post{
+    border-top:1.5pt solid var(--navy);
+    padding-top:3.5mm;
+    display:flex;
+    flex-direction:column;
+  }
+  .post + .post{
+    border-inline-start:.75pt solid var(--line);
+    padding-inline-start:7mm;
+    margin-inline-start:-3.5mm;
+  }
+
+  .rail{ display:flex; align-items:baseline; gap:0 3mm; margin-bottom:2.5mm; }
+  .num{
+    font-family:"Helvetica Neue", Arial, sans-serif;
+    font-size:19pt; font-weight:800; line-height:1;
+    color:var(--line); letter-spacing:-.04em;
+  }
+  .tag{ font-family:var(--ar-display); font-size:7.6pt; font-weight:700; color:var(--accent); }
+
+  .post h2{
+    font-family:var(--ar-display);
+    margin:0 0 3mm;
+    font-size:12.5pt;
+    line-height:1.36;
+    color:var(--navy-deep);
+    font-weight:700;
+  }
+
+  .body p{ margin:0 0 2.4mm; font-size:9.2pt; line-height:1.62; text-align:justify; }
+  .term{ font-weight:700; color:var(--navy); }
+
+  .figure{
+    margin-top:auto;
+    padding-top:3.5mm;
+    border-top:.75pt solid var(--line);
+    margin-bottom:3.5mm;
+  }
+  /* SVG must not inherit the page's RTL direction: it inverts text-anchor
+     and pushes every end-anchored label off the canvas. Arabic strings
+     still shape and order correctly via bidi inside each text run. */
+  .figure svg{ display:block; width:100%; height:auto; direction:ltr; }
+  .figure svg text{ direction:ltr; }
+  .figcap{
+    margin-top:2mm;
+    font-size:7.4pt;
+    line-height:1.55;
+    color:var(--ink-soft);
+  }
+  .figcap b{ color:var(--navy-deep); }
+
+  .matters{
+    background:var(--accent-soft);
+    border-inline-start:2.5pt solid var(--accent);
+    padding:2.8mm 3.4mm;
+    font-size:8.7pt;
+    line-height:1.58;
+  }
+  .matters b{
+    font-family:var(--ar-display);
+    display:block; font-size:7.8pt; color:var(--accent);
+    margin-bottom:1.6mm; font-weight:700;
+  }
+
+  .sources{
+    margin-top:2.6mm;
+    min-height:13mm;
+    font-size:7.1pt;
+    line-height:1.5;
+    color:#6a7784;
+    padding-top:2.2mm;
+    border-top:.75pt dotted var(--line);
+  }
+  .sources b{
+    font-family:var(--ar-display);
+    display:block; font-size:7.2pt; color:var(--navy);
+    margin-bottom:1.2mm; font-weight:700;
+  }
+  .sources span{ display:block; margin-bottom:1.3mm; }
+  .sources .url{
+    display:block; direction:ltr; unicode-bidi:isolate; text-align:start;
+    font-family:"Helvetica Neue", Arial, sans-serif;
+    font-size:6.8pt; word-break:break-word;
+  }
+
+  .footer{
+    margin-top:5mm;
+    border-top:2.5pt solid var(--navy);
+    padding-top:3.5mm;
+    display:grid;
+    grid-template-columns:1fr 82mm;
+    gap:0 8mm;
+  }
+  .footer h3{
+    font-family:var(--ar-display);
+    margin:0 0 2.6mm; font-size:8.2pt; color:var(--navy); font-weight:700;
+  }
+  .footer ul{ margin:0; padding-inline-start:4.5mm; font-size:8pt; line-height:1.58; color:var(--ink-soft); }
+  .footer li{ margin-bottom:1.4mm; }
+
+  .glossary{ background:var(--chip); padding:3.2mm 4mm; }
+  .glossary dl{
+    margin:0; font-size:7.7pt; line-height:1.48; color:var(--ink-soft);
+    display:grid; grid-template-columns:1fr 1fr; gap:1.8mm 5mm;
+  }
+  .glossary dt{ font-weight:700; color:var(--navy-deep); margin-bottom:.4mm; }
+  .glossary dd{ margin:0; }
+
+  .colophon{ margin-top:3.5mm; font-size:7.2pt; color:#7d8994; text-align:center; }
+
+  @media print{
+    html, body{ background:#fff; padding:0; }
+    .sheet{ box-shadow:none; margin:0; }
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <header class="masthead">
+    <div>
+      <p class="kicker">الطيران والصيانة والإصلاح والعمرة الشاملة — لوحة الأخبار الأسبوعية</p>
+      <h1>هذا الأسبوع في الصيانة<br><span class="thin">والإصلاح والعمرة الشاملة</span></h1>
+    </div>
+    <div class="meta">
+      <div><b>الفترة المشمولة</b> · 31 أغسطس – 7 سبتمبر 2026</div>
+      <div><b>تاريخ النشر</b> · 7 سبتمبر 2026</div>
+      <div><b>موجّهة إلى</b> · الإداريين وأعضاء هيئة التدريس والطلبة</div>
+    </div>
+  </header>
+
+  <p class="standfirst">
+    ثلاث قصص من الأيام السبعة الماضية: إلى أين يذهب أكبر أسطول A380 في العالم لإجراء فحوصه الثقيلة،
+    ولماذا تقرّر شركة طيران أن تبني ورشة مركّبات خاصة بها، ومَن يحقّ له أداء اختبار الفنيين.
+  </p>
+
+  <main class="posts">
+
+    <!-- ============ 01 ============ -->
+    <article class="post">
+      <div class="rail"><span class="num">01</span><span class="tag">الصناعة والخليج</span></div>
+      <h2>الإمارات تمدّد عقد الصيانة الثقيلة لطائرات A380 حتى 2030</h2>
+      <div class="body">
+        <p>مدّدت طيران الإمارات اتفاقية الصيانة الأساسية لطائرات A380 مع <span class="ltr">Lufthansa Technik Philippines</span> حتى عام 2030. وتعمل الشركتان معًا منذ 2023، وقد أُنجز حتى الآن أكثر من 30 فحصًا لطائرات A380 لصالح الناقلة. وتصف <span class="ltr">Lufthansa Technik</span> هذا التجديد بأنه من أكبر عقودها قيمةً في تاريخ وحدتها الفلبينية.</p>
+        <p>و<span class="term">الصيانة الأساسية</span> هي الطرف الثقيل من المهنة: تُسحب الطائرة من الخدمة أسابيع، وتدخل الحظيرة، فتُفتح وتُفحص ويُعاد تجميعها — بخلاف <span class="term">صيانة الخط</span>، وهي الفحوص السريعة التي تُجرى عند البوابة بين الرحلات. ويعمل خطّان مخصّصان لطائرات A380 في مانيلا، وستكون الإمارات العميل الأول لمنشأة جديدة في مطار كلارك الدولي عند تشغيلها.</p>
+        <p>ويجدر الانتباه إلى مكان تنفيذ العمل: تشغّل الإمارات أكبر أسطول A380 في العالم انطلاقًا من دبي، لكنها ترسل هذه الطائرات إلى الفلبين لإجراء الفحوص الثقيلة.</p>
+      </div>
+
+      <div class="figure">
+        <svg viewBox="0 0 240 96" role="img" aria-label="مقارنة بين مدة صيانة الخط ومدة الصيانة الأساسية، ومسار الفحوص الثقيلة">
+          <g font-family="Noto Sans Arabic">
+            <text x="240" y="7" text-anchor="end" font-size="6.4" font-weight="bold" fill="#3e4e5d">صيانة الخط · عند البوابة</text>
+            <rect x="226" y="11" width="14" height="9" fill="#8b98a4"/>
+            <text x="220" y="18.5" text-anchor="end" font-size="6.2" fill="#3e4e5d">ساعات — فحص سريع</text>
+
+            <text x="240" y="34" text-anchor="end" font-size="6.4" font-weight="bold" fill="#b4532a">الصيانة الأساسية · في الحظيرة</text>
+            <rect x="12" y="38" width="228" height="9" fill="#12314f"/>
+            <text x="240" y="56" text-anchor="end" font-size="6.2" fill="#3e4e5d">أسابيع — فحص شامل وإعادة تجميع</text>
+            <text x="240" y="64.5" text-anchor="end" font-size="5.6" fill="#8b98a4">الأشرطة بمقياس نسبي</text>
+
+            <line x1="0" y1="71" x2="240" y2="71" stroke="#c9d2da" stroke-width=".7"/>
+            <text x="240" y="81" text-anchor="end" font-size="6.4" font-weight="bold" fill="#3e4e5d">أين تُجرى الفحوص الثقيلة</text>
+
+            <circle cx="235" cy="91" r="3.2" fill="#b4532a"/>
+            <text x="228" y="93" text-anchor="end" font-family="Helvetica,Arial" font-size="6.4" font-weight="bold" fill="#111820">DXB</text>
+            <text x="212" y="93" text-anchor="end" font-size="6" fill="#3e4e5d">دبي</text>
+            <path d="M196 91 L182 91" stroke="#12314f" stroke-width="1"/>
+            <path d="M185 88.6 L181 91 L185 93.4" fill="#12314f"/>
+
+            <circle cx="175" cy="91" r="3.2" fill="#12314f"/>
+            <text x="168" y="93" text-anchor="end" font-family="Helvetica,Arial" font-size="6.4" font-weight="bold" fill="#111820">MNL</text>
+            <text x="152" y="93" text-anchor="end" font-size="6" fill="#3e4e5d">مانيلا</text>
+            <path d="M136 91 L122 91" stroke="#12314f" stroke-width="1" stroke-dasharray="2.6 2"/>
+            <path d="M125 88.6 L121 91 L125 93.4" fill="#12314f"/>
+
+            <circle cx="115" cy="91" r="3.2" fill="none" stroke="#12314f" stroke-width="1.2"/>
+            <text x="108" y="93" text-anchor="end" font-family="Helvetica,Arial" font-size="6.4" font-weight="bold" fill="#111820">CRK</text>
+            <text x="92" y="93" text-anchor="end" font-size="6" fill="#3e4e5d">كلارك</text>
+          </g>
+        </svg>
+        <p class="figcap"><b>أكثر من 30</b> فحصًا لطائرات A380 أُنجز لصالح الإمارات منذ 2023. الرسم: الفرق بين صيانة الخط والصيانة الأساسية، ومسار الفحوص الثقيلة.</p>
+      </div>
+
+      <div class="matters">
+        <b>لماذا يهمّنا هذا</b>
+        الطاقة الاستيعابية للحظائر وتوافر المواعيد والعمالة الماهرة هي ما يحدّد مكان صيانة الطائرة، لا مطار الناقلة الأم. فالصيانة سوق عالمية، والرخصة التي تحملها هي ما يتيح لك العمل فيها.
+      </div>
+      <div class="sources">
+        <b>المصادر</b>
+        <span>AviTrader، 2 سبتمبر 2026</span>
+        <span class="url">avitrader.com/2026/09/02/lufthansa-technik-and-emirates-renew-a380-maintenance-deal/</span>
+        <span>Philstar، 4 سبتمبر 2026</span>
+      </div>
+    </article>
+
+    <!-- ============ 02 ============ -->
+    <article class="post">
+      <div class="rail"><span class="num">02</span><span class="tag">الجانب الفني</span></div>
+      <h2>سويس تنقل إصلاح المركّبات إلى داخل منشآتها في زيورخ</h2>
+      <div class="body">
+        <p>تعمل شركة سويس على إنشاء ورشة لإصلاح المواد المركّبة في مطار زيورخ، يُتوقّع تشغيلها بنهاية عام 2027. وتقول الشركة إن نقل هذا العمل إلى الداخل سيزيد استقلاليتها ومرونتها ويقلّل اعتمادها على مزوّدين خارجيين.</p>
+        <p>و<span class="term">المواد المركّبة</span> — اللدائن المقوّاة بألياف الكربون وألواح الشطيرة ذات النواة الخلوية — باتت تشكّل حصة كبيرة من هيكل الطائرة الحديثة. فهي أخفّ من الألمنيوم ولا تتآكل، لكنها تفشل بطريقة مختلفة: إذ كثيرًا ما يكون التلف غير مرئي من الخارج، فقد يفصل الارتطام الطبقات الداخلية أو يهرس النواة بينما يبدو السطح سليمًا.</p>
+        <p>ويستلزم كشف ذلك اختبار الطَّرق أو الفحص بالموجات فوق الصوتية أو التصوير الحراري بدلًا من الفحص البصري. أما الإصلاح فيقوم على اللصق والمعالجة والتكييس الفراغي، لا على تثبيت رقعة بالبراشيم — مهارات وأدوات وذهنية مختلفة عن أعمال الصفائح المعدنية.</p>
+      </div>
+
+      <div class="figure">
+        <svg viewBox="0 0 240 96" role="img" aria-label="مقطع عرضي في لوح شطيرة مركّب يبيّن تلفًا ارتطاميًا بالكاد مرئي: سطح خارجي سليم مع انفصال طبقات ونواة مهروسة تحته">
+          <g stroke="#b4532a" stroke-width="1.8" fill="none">
+            <line x1="148" y1="4" x2="148" y2="21"/>
+            <path d="M144 17 L148 22 L152 17"/>
+          </g>
+          <text x="140" y="12" text-anchor="end" font-family="Noto Sans Arabic" font-size="6.6" font-weight="bold" fill="#b4532a">ارتطام</text>
+
+          <path d="M6 27 L140 27 Q148 29.5 156 27 L234 27 L234 33 L156 33 Q148 35.5 140 33 L6 33 Z" fill="#12314f"/>
+          <text x="234" y="24" text-anchor="end" font-family="Noto Sans Arabic" font-size="6.2" fill="#3e4e5d">سطح يبدو سليمًا</text>
+
+          <rect x="6" y="33" width="228" height="26" fill="#f7f8f6" stroke="#8b98a4" stroke-width=".7"/>
+          <g stroke="#8b98a4" stroke-width=".7" fill="none">
+            <path d="M14 33 L14 59 M26 33 L26 59 M38 33 L38 59 M50 33 L50 59 M62 33 L62 59 M74 33 L74 59 M86 33 L86 59 M98 33 L98 59 M110 33 L110 59 M122 33 L122 59"/>
+            <path d="M174 33 L174 59 M186 33 L186 59 M198 33 L198 59 M210 33 L210 59 M222 33 L222 59"/>
+            <path d="M6 46 L122 46 M174 46 L234 46"/>
+          </g>
+          <g stroke="#b4532a" stroke-width=".9" fill="none">
+            <path d="M130 33 L130 59 M136 33 L136 59 M142 33 L142 59 M148 33 L148 59 M154 33 L154 59 M160 33 L160 59 M166 33 L166 59"/>
+            <path d="M126 44 Q148 40 168 44"/>
+            <path d="M126 50 Q148 46 168 50"/>
+          </g>
+          <path d="M120 33.6 Q148 37 174 33.6" stroke="#b4532a" stroke-width="1.6" fill="none"/>
+
+          <rect x="6" y="59" width="228" height="6" fill="#12314f"/>
+
+          <line x1="148" y1="68" x2="148" y2="76" stroke="#b4532a" stroke-width=".8"/>
+          <text x="228" y="83" text-anchor="end" font-family="Noto Sans Arabic" font-size="6.4" font-weight="bold" fill="#b4532a">انفصال طبقات وهرس نواة</text>
+          <text x="118" y="48" text-anchor="end" font-family="Noto Sans Arabic" font-size="6" fill="#3e4e5d">نواة خلوية</text>
+          <text x="234" y="93" text-anchor="end" font-family="Noto Sans Arabic" font-size="6" fill="#3e4e5d">الكشف: طَرق · موجات فوق صوتية · تصوير حراري</text>
+        </svg>
+        <p class="figcap"><b>2027</b> — العام المقرّر لتشغيل ورشة زيورخ. الرسم: التلف الارتطامي الذي يكاد لا يُرى في لوح شطيرة، وهو سبب تعذّر فحص المركّبات بالعين.</p>
+      </div>
+
+      <div class="matters">
+        <b>لماذا يهمّنا هذا</b>
+        إصلاح المركّبات من أشدّ فجوات المهارة حدّة في القطاع. ووحدات المركّبات والفحص غير المتلف ليست موضوعًا جانبيًا، بل هي القدرة النادرة التي يفتقر إليها أصحاب العمل اليوم.
+      </div>
+      <div class="sources">
+        <b>المصادر</b>
+        <span>MRO Business Today، 31 أغسطس 2026</span>
+        <span class="url">mrobusinesstoday.com/swiss-expands-zurich-mro-capabilities-with-new-composite-shop/</span>
+        <span>Aviation Week، التحديثات اليومية، 3 سبتمبر 2026</span>
+      </div>
+    </article>
+
+    <!-- ============ 03 ============ -->
+    <article class="post">
+      <div class="rail"><span class="num">03</span><span class="tag">القسم 147 والتراخيص</span></div>
+      <h2>جهة رقابية تتساءل: مَن يحقّ له أداء اختبار الفنيين؟</h2>
+      <div class="body">
+        <p>أوصى مكتب المحاسبة الحكومي الأمريكي بأن تدرس الإدارة الاتحادية للطيران رسميًا السماح لطلبة المؤسسات <span class="term">غير</span> المعتمدة بموجب القسم 147 بأداء اختبار المعارف النظرية العام لشهادة الهيكل والمحرّك <span class="ltr">(A&amp;P)</span>. ونُشرت هذه التوصية في 1 سبتمبر 2026.</p>
+        <p>و<span class="term">القسم 147</span> هو النظام الأمريكي الذي يحكم معاهد فنيي صيانة الطائرات. فالمعهد الحائز شهادة القسم 147 تكون مناهجه وكادره وأدواته ومرافقه معتمدة من الجهة الرقابية، ويُؤهَّل خريجوه لأداء اختبارات <span class="ltr">A&amp;P</span> على هذا الأساس. أما سواهم فعليهم توثيق الخبرة العملية المطلوبة واعتمادها قبل التقدّم للاختبار.</p>
+        <p>وهكذا تحدّد شهادة واحدة مَن يسلك الطريق المباشر إلى الرخصة ومَن يسلك الطريق الأطول — ولهذا يتساءل المكتب عمّا إذا كانت البوابة موضوعة في مكانها الصحيح، في وقت يقول فيه القطاع إنه لا يجد فنيين بالعدد الكافي.</p>
+      </div>
+
+      <div class="figure">
+        <svg viewBox="0 0 240 96" role="img" aria-label="طريقان إلى أهلية اختبار الهيكل والمحرّك: معهد معتمد بموجب القسم 147، أو خبرة عملية موثّقة؛ ومسار ثالث مقترح قيد الدراسة">
+          <g font-family="Noto Sans Arabic">
+            <rect x="146" y="4" width="94" height="22" fill="#12314f"/>
+            <text x="234" y="14" text-anchor="end" font-size="6.2" font-weight="bold" fill="#ffffff">معهد القسم 147</text>
+            <text x="234" y="22" text-anchor="end" font-size="5.6" fill="#c9d2da">مناهج معتمدة</text>
+            <path d="M144 15 L126 15" stroke="#12314f" stroke-width="1.4"/>
+            <path d="M130 11.5 L125 15 L130 18.5" fill="#12314f"/>
+
+            <rect x="146" y="36" width="94" height="22" fill="none" stroke="#3e4e5d" stroke-width="1.1"/>
+            <text x="234" y="46" text-anchor="end" font-size="6.2" font-weight="bold" fill="#111820">خبرة عملية</text>
+            <text x="234" y="54" text-anchor="end" font-size="5.6" fill="#3e4e5d">موثّقة ومعتمدة</text>
+            <path d="M144 47 L134 47 L134 20 L126 20" stroke="#3e4e5d" stroke-width="1.1" fill="none"/>
+            <path d="M130 16.5 L125 20 L130 23.5" fill="#3e4e5d"/>
+
+            <rect x="146" y="70" width="94" height="22" fill="none" stroke="#b4532a" stroke-width="1.1" stroke-dasharray="3 2.4"/>
+            <text x="234" y="80" text-anchor="end" font-size="6.2" font-weight="bold" fill="#b4532a">مؤسسة غير معتمدة</text>
+            <text x="234" y="88" text-anchor="end" font-size="5.6" fill="#b4532a">قيد الدراسة</text>
+            <path d="M144 81 L134 81 L134 26 L126 26" stroke="#b4532a" stroke-width="1.1" fill="none" stroke-dasharray="3 2.4"/>
+            <path d="M130 22.5 L125 26 L130 29.5" fill="#b4532a"/>
+
+            <rect x="54" y="4" width="68" height="40" fill="#e3e8ec" stroke="#12314f" stroke-width="1.2"/>
+            <text x="114" y="18" text-anchor="end" font-size="6.4" font-weight="bold" fill="#12314f">الاختبار النظري</text>
+            <text x="114" y="29" text-anchor="end" font-size="5.8" fill="#3e4e5d">ثم شفهي وعملي</text>
+
+            <path d="M52 24 L36 24" stroke="#12314f" stroke-width="1.4"/>
+            <path d="M40 20.5 L35 24 L40 27.5" fill="#12314f"/>
+            <rect x="0" y="12" width="32" height="24" fill="#12314f"/>
+            <text x="26" y="23" text-anchor="end" font-family="Helvetica,Arial" font-size="6.4" font-weight="bold" fill="#ffffff">A&amp;P</text>
+            <text x="26" y="32" text-anchor="end" font-size="5.6" fill="#c9d2da">رخصة</text>
+          </g>
+        </svg>
+        <p class="figcap"><b>طريقان اليوم، وثالث قيد الدراسة.</b> الرسم: كيف تحدّد شهادة القسم 147 أهلية الاختبار، وأين تفتح توصية المكتب بابًا جديدًا.</p>
+      </div>
+
+      <div class="matters">
+        <b>لماذا يهمّنا هذا</b>
+        هذا نقاش يمسّ تصنيف مؤسستنا بالتحديد. فأطر الاعتماد — القسم 147 الأمريكي، و<span class="ltr">Part-147</span> الأوروبي، و<span class="ltr">CAR-147</span> لدى الهيئة العامة للطيران المدني — هي ما يحوّل دراستك إلى أهلية اختبار، لا إلى مجرد شهادة حضور.
+      </div>
+      <div class="sources">
+        <b>المصادر</b>
+        <span>Aviation Week، 1 سبتمبر 2026</span>
+        <span class="url">aviationweek.com/mro/workforce-training/gao-faa-should-consider-expanding-ap-test-eligibility</span>
+        <span>نص النظام: <span class="ltr">14 CFR Part 147</span> — ecfr.gov</span>
+      </div>
+    </article>
+
+  </main>
+
+  <footer class="footer">
+    <div>
+      <h3>شوهد أيضًا هذا الأسبوع</h3>
+      <ul>
+        <li>استحوذت <b>VSE</b> على <b>Atech Turbine Components</b> (1 سبتمبر) — ورشة من 40 موظفًا تملك أكثر من 300 اعتماد إصلاح، وتنفرد بتقديم إصلاحات حرجة لمحركات <span class="ltr">Pratt &amp; Whitney Canada</span>. دليل على أن التخصّص، لا الحجم، هو مصدر القيمة.</li>
+        <li>دعا الرئيس التنفيذي للعمليات في <b>TAP</b> إلى مرونة أكبر في صيانة المحركات (2 سبتمبر): على الورش التكيّف مع قيود التوريد بدل انتظار انفراجها.</li>
+        <li>وقّعت <b>Air Corsica</b> اتفاقية متعددة السنوات لمحركات <span class="ltr">CFM LEAP-1A</span> مع <span class="ltr">AFI KLM E&amp;M</span> (2 سبتمبر)؛ وأمّنت <b>AerFin</b> تمويلًا لثلاث طائرات A220 (4 سبتمبر)؛ وعيّنت <b>Lufthansa Technik</b> هارالد غلوي رئيسًا تنفيذيًا (4 سبتمبر).</li>
+        <li><b>القسم 147:</b> لم تُسجَّل تطورات تنظيمية أخرى داخل هذه النافذة. أما أكاديمية <span class="ltr">AMAC</span> المعتمدة <span class="ltr">Part-147</span> في بازل (أول دفعة يناير 2027) فقد ورد خبرها في 10 يوليو، خارجها.</li>
+      </ul>
+    </div>
+    <aside class="glossary">
+      <h3>مصطلحات سريعة</h3>
+      <dl>
+        <div><dt>MRO</dt><dd>الصيانة والإصلاح والعمرة الشاملة.</dd></div>
+        <div><dt>أساسية / خط</dt><dd>فحوص ثقيلة في الحظيرة مقابل فحوص سريعة عند البوابة.</dd></div>
+        <div><dt>المواد المركّبة</dt><dd>بنية من ألياف الكربون ونواة خلوية بدل المعدن.</dd></div>
+        <div><dt>NDT</dt><dd>الفحص غير المتلف: موجات فوق صوتية، تصوير حراري، طَرق.</dd></div>
+        <div><dt>القسم 147</dt><dd>النظام الذي يحكم معاهد التدريب المعتمدة على الصيانة.</dd></div>
+        <div><dt>A&amp;P</dt><dd>شهادة الهيكل والمحرّك الأمريكية للفنيين.</dd></div>
+      </dl>
+    </aside>
+  </footer>
+
+  <p class="colophon">أُعدّت هذه النشرة استنادًا إلى تقارير منشورة بين 31 أغسطس و7 سبتمبر 2026. الأرقام كما وردت في المصادر المذكورة. الرسوم أُعدّت خصيصًا لهذه النشرة — تخطيطية وليست بمقياس رسم.</p>
+
+</div>
+</body>
+</html>

@@ -27,7 +27,8 @@
   };
   var KIND_LABEL = {
     demo: "Interactive", paper: "Research", course: "Teaching resource",
-    post: "Article", venture: "Venture", dataset: "Dataset", tool: "Tool"
+    post: "Article", venture: "Venture", dataset: "Dataset", tool: "Tool",
+    newsletter: "Newsletter"
   };
 
   function pillarOf(id) {
