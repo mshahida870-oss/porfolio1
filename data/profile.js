@@ -10,8 +10,11 @@ window.PROFILE = {
   blurb: "Two decades of teaching physics and mathematics in higher education, " +
          "alongside doctoral research in nanomaterials at UAEU.",
 
-  location: "Al Ain, United Arab Emirates",
-  email: "shahida.maqsood@actvet.gov.ae",
+  location: "United Arab Emirates",
+
+  /* Contact e-mail is intentionally not published on the site.
+     Fill this in only if you want a public mailto: link. */
+  email: "",
   linkedin: "https://www.linkedin.com/in/s-m-092a7641",
 
   /* Optional — leave as empty strings until you have them.
@@ -51,15 +54,13 @@ window.PROFILE = {
 
   stats: [
     { value: "20+",  label: "Years teaching" },
-    { value: "PhD",  label: "In progress, UAEU" },
-    { value: "3.5",  label: "Master's GPA / 4.0" },
-    { value: "6+",   label: "Certifications" }
+    { value: "PhD",  label: "In progress, UAEU" }
   ],
 
   about: [
     "Physics and Mathematics instructor with over two decades of progressive teaching " +
     "experience in higher education. Currently pursuing a PhD in Physics at UAEU while " +
-    "teaching at Abu Dhabi Polytechnic, Al Ain.",
+    "teaching at Abu Dhabi Polytechnic.",
 
     "I bring proven expertise in delivering quality undergraduate education with a strong " +
     "commitment to student success and academic excellence. My specialization in advanced " +

@@ -47,8 +47,9 @@ Anything that is one folder with an `index.html` inside it.
 That is it. The project now appears on the home page, in the archive, on the
 Teaching page, and gets its own page where it runs live inside the site.
 
-> **Tip:** `projects/projectile-motion/` is a complete working example. Copy that
-> folder as a starting point for a new demo.
+> **Tip:** `projects/projectile-motion/` is a complete working example — copy
+> that folder as the starting point for a new demo. It needs to be
+> self-contained: its own HTML, CSS and JavaScript, no build step.
 
 ---
 
