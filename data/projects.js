@@ -41,6 +41,35 @@
 window.PROJECTS = [
 
   {
+    slug: "certify66",
+    title: "Certify66",
+    pillar: "ventures",
+    kind: "venture",
+    year: 2026,
+    status: "live",
+    featured: true,
+    summary: "An independent venture in aviation training and certification.",
+    tags: ["Aviation", "Training", "Certification", "EdTech"],
+    embed: { type: "site", src: "https://certify66.com" },
+    links: [{ label: "Visit certify66.com", url: "https://certify66.com" }]
+  },
+
+  {
+    slug: "flight-instruments",
+    title: "Flight Instruments Simulator",
+    pillar: "teaching",
+    kind: "demo",
+    year: 2026,
+    status: "live",
+    featured: true,
+    summary: "An interactive flight instruments panel, built as a teaching aid for " +
+             "aviation students learning how cockpit instrumentation behaves.",
+    tags: ["Aviation", "Interactive", "Simulator", "Classroom", "CAR Part 147"],
+    embed: { type: "site", src: "https://flight-instruments.vercel.app/" },
+    links: [{ label: "Open the live app", url: "https://flight-instruments.vercel.app/" }]
+  },
+
+  {
     slug: "projectile-motion",
     title: "Projectile Motion Explorer",
     pillar: "teaching",
@@ -97,18 +126,6 @@ window.PROJECTS = [
     /* To display the thesis, save the PDF into assets/docs/ and add:
        embed: { type: "pdf", src: "assets/docs/msc-thesis.pdf" },
        links: [{ label: "UAEU repository", url: "https://..." }]      */
-  },
-
-  {
-    slug: "ventures-placeholder",
-    title: "Your first venture goes here",
-    pillar: "ventures",
-    kind: "venture",
-    year: 2026,
-    status: "planned",
-    summary: "A placeholder so the Ventures section renders. Replace this entry with a " +
-             "real project, or delete it once you have one.",
-    tags: ["Placeholder"]
   }
 
 ];
