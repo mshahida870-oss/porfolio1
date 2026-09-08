@@ -170,7 +170,7 @@ window.PROJECTS = [
     slug: "phd-nanomaterials",
     title: "Advanced Physics Applications in Nano Materials",
     pillar: "research",
-    kind: "paper",
+    kind: "research",       /* in progress — not a publication */
     year: 2023,
     status: "ongoing",
     featured: true,
