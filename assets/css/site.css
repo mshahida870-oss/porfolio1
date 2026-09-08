@@ -176,7 +176,9 @@ a.chip:hover { color: var(--ink); border-color: var(--line-2); }
 .btn-sm { padding: 8px 16px; font-size: .86rem; }
 
 /* ---------- Stats ---------- */
-.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(158px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+/* auto-fit with a max keeps 2, 3 or 4 tiles looking right — a short row
+   centres instead of stretching each tile across the full width. */
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(158px, 260px)); justify-content: center; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; width: fit-content; margin: 0 auto; max-width: 100%; }
 .stat { background: var(--card); padding: 26px 20px; text-align: center; }
 .stat .v { font-family: var(--display); font-size: 2.1rem; font-weight: 600; color: var(--ink); line-height: 1.05; letter-spacing: -.03em; }
 .stat .l { font-size: .81rem; color: var(--ink-3); margin-top: 8px; }

@@ -175,6 +175,18 @@
       else if (mode === "no-posts") list = list.filter(function (p) { return p.kind !== "post"; });
       else if (mode !== "all")      list = list.filter(function (p) { return p.pillar === mode; });
 
+      /* optional data-kind="demo" narrows to one kind; data-kind="!demo"
+         excludes it. Lets a page give demos their own heading. */
+      var kind = host.getAttribute("data-kind");
+      if (kind) {
+        if (kind.charAt(0) === "!") {
+          var not = kind.slice(1);
+          list = list.filter(function (p) { return p.kind !== not; });
+        } else {
+          list = list.filter(function (p) { return p.kind === kind; });
+        }
+      }
+
       list.sort(byYear);
       if (limit > 0) list = list.slice(0, limit);
       paint(host, list, host.getAttribute("data-empty"));
