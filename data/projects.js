@@ -176,7 +176,10 @@ window.PROJECTS = [
           "is listed inside the app.",
     tags: ["Aviation", "Part-66", "Flight Instruments", "Interactive", "Offline app"],
     embed: { type: "site", src: "https://flight-instruments.vercel.app/", framable: true },
-    links: [{ label: "Open the live app", url: "https://flight-instruments.vercel.app/" }]
+    links: [
+      { label: "Open the live app", url: "https://flight-instruments.vercel.app/" },
+      { label: "View the poster", url: "projects/sixpack66/poster.html" }
+    ]
   },
 
   {
