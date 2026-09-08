@@ -28,7 +28,7 @@
   var KIND_LABEL = {
     demo: "Interactive", paper: "Research", course: "Teaching resource",
     post: "Article", venture: "Venture", dataset: "Dataset", tool: "Tool",
-    newsletter: "Newsletter"
+    newsletter: "Newsletter", research: "Doctoral research"
   };
 
   function pillarOf(id) {
