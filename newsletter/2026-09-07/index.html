@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aviation &amp; MRO Notice Board — 7 September 2026</title>
+<style>
+  @page { size: A3 portrait; margin: 0; }
+
+  :root{
+    --ink:#111820;
+    --ink-soft:#3e4e5d;
+    --line:#c9d2da;
+    --paper:#f7f8f6;
+    --navy:#12314f;
+    --navy-deep:#0b2135;
+    --accent:#b4532a;
+    --accent-soft:#f1e4db;
+    --chip:#edf0f2;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ background:#5b6670; }
+
+  body{
+    margin:0;
+    font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+    padding:24px 12px;
+  }
+
+  .sheet{
+    width:297mm;
+    height:420mm;
+    margin:0 auto;
+    background:var(--paper);
+    padding:13mm 14mm 9mm;
+    display:flex;
+    flex-direction:column;
+    box-shadow:0 10px 40px rgba(0,0,0,.35);
+    overflow:hidden;
+  }
+
+  /* ---------- masthead ---------- */
+  .masthead{
+    border-bottom:2.5pt solid var(--navy);
+    padding-bottom:4mm;
+    display:grid;
+    grid-template-columns:1fr auto;
+    align-items:flex-end;
+    gap:0 10mm;
+  }
+  .kicker{
+    font-size:9pt;
+    letter-spacing:.24em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:700;
+    margin:0 0 2.5mm;
+  }
+  .masthead h1{
+    font-size:31pt;
+    line-height:1.02;
+    margin:0;
+    letter-spacing:-.022em;
+    color:var(--navy-deep);
+    font-weight:800;
+  }
+  .masthead h1 .thin{ font-weight:300; color:var(--ink-soft); }
+
+  .meta{
+    text-align:right;
+    font-size:8.8pt;
+    line-height:1.6;
+    color:var(--ink-soft);
+    white-space:nowrap;
+  }
+  .meta b{ color:var(--navy-deep); font-weight:700; }
+
+  .standfirst{
+    margin:4mm 0 4.5mm;
+    font-size:10pt;
+    line-height:1.5;
+    color:var(--ink-soft);
+    max-width:215mm;
+  }
+
+  /* ---------- posts ---------- */
+  .posts{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:0 7mm;
+    flex:1;
+    min-height:0;
+  }
+
+  .post{
+    border-top:1.5pt solid var(--navy);
+    padding-top:3.5mm;
+    display:flex;
+    flex-direction:column;
+  }
+  .post + .post{ border-left:.75pt solid var(--line); padding-left:7mm; margin-left:-3.5mm; }
+
+  .rail{ display:flex; align-items:baseline; gap:0 3mm; margin-bottom:2.5mm; }
+  .num{
+    font-size:19pt; font-weight:800; line-height:1;
+    color:var(--line); letter-spacing:-.04em;
+  }
+  .tag{
+    font-size:6.8pt; letter-spacing:.15em; text-transform:uppercase;
+    font-weight:700; color:var(--accent);
+  }
+
+  .post h2{
+    margin:0 0 3mm;
+    font-size:15.5pt;
+    line-height:1.13;
+    letter-spacing:-.015em;
+    color:var(--navy-deep);
+    font-weight:750;
+  }
+
+  .body p{ margin:0 0 2.4mm; font-size:9.4pt; line-height:1.5; hyphens:auto; }
+  .term{ font-weight:700; color:var(--navy); }
+
+  /* ---------- figure ---------- */
+  .figure{
+    margin-top:auto;
+    padding-top:3.5mm;
+    border-top:.75pt solid var(--line);
+    margin-bottom:3.5mm;
+  }
+  .figure svg{ display:block; width:100%; height:auto; }
+  .figcap{
+    margin-top:2mm;
+    font-size:7.4pt;
+    line-height:1.42;
+    color:var(--ink-soft);
+  }
+  .figcap b{ color:var(--navy-deep); }
+
+  .matters{
+    background:var(--accent-soft);
+    border-left:2.5pt solid var(--accent);
+    padding:3mm 3.5mm;
+    font-size:9pt;
+    line-height:1.44;
+  }
+  .matters b{
+    display:block; font-size:6.8pt; letter-spacing:.15em;
+    text-transform:uppercase; color:var(--accent); margin-bottom:1.5mm;
+  }
+
+  .sources{
+    margin-top:2.8mm;
+    min-height:15mm;
+    font-size:7.2pt;
+    line-height:1.42;
+    color:#6a7784;
+    padding-top:2.2mm;
+    border-top:.75pt dotted var(--line);
+  }
+  .sources b{
+    display:block; text-transform:uppercase; letter-spacing:.13em;
+    font-size:6.4pt; color:var(--navy); margin-bottom:1mm;
+  }
+  .sources span{ display:block; margin-bottom:1.2mm; word-break:break-word; }
+
+  /* ---------- footer ---------- */
+  .footer{
+    margin-top:5mm;
+    border-top:2.5pt solid var(--navy);
+    padding-top:3.5mm;
+    display:grid;
+    grid-template-columns:1fr 78mm;
+    gap:0 8mm;
+  }
+  .footer h3{
+    margin:0 0 2.2mm; font-size:7.4pt; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--navy);
+  }
+  .footer ul{ margin:0; padding-left:4mm; font-size:8pt; line-height:1.42; color:var(--ink-soft); }
+  .footer li{ margin-bottom:1.2mm; }
+
+  .glossary{ background:var(--chip); padding:3.2mm 4mm; }
+  .glossary dl{
+    margin:0; font-size:7.8pt; line-height:1.4; color:var(--ink-soft);
+    display:grid; grid-template-columns:1fr 1fr; gap:1.8mm 5mm;
+  }
+  .glossary dt{ font-weight:700; color:var(--navy-deep); margin-bottom:.4mm; }
+  .glossary dd{ margin:0; }
+
+  .colophon{
+    margin-top:3.5mm; font-size:7pt; color:#7d8994;
+    letter-spacing:.04em; text-align:center;
+  }
+
+  @media print{
+    html, body{ background:#fff; padding:0; }
+    .sheet{ box-shadow:none; margin:0; }
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <header class="masthead">
+    <div>
+      <p class="kicker">Aviation &amp; MRO — Weekly Notice Board</p>
+      <h1>This Week in Maintenance,<br><span class="thin">Repair &amp; Overhaul</span></h1>
+    </div>
+    <div class="meta">
+      <div><b>Week covered</b> · 31 Aug – 7 Sep 2026</div>
+      <div><b>Posted</b> · 7 September 2026</div>
+      <div><b>For</b> · Staff, faculty &amp; students</div>
+    </div>
+  </header>
+
+  <p class="standfirst">
+    Three stories from the past seven days: where the world's largest A380 fleet goes for its heavy checks,
+    why an airline decides to build its own composite shop, and who is allowed to sit the mechanic's exam.
+  </p>
+
+  <main class="posts">
+
+    <!-- ============ POST 1 ============ -->
+    <article class="post">
+      <div class="rail"><span class="num">01</span><span class="tag">Industry &amp; the Gulf</span></div>
+      <h2>Emirates Extends A380 Heavy Maintenance Deal to 2030</h2>
+      <div class="body">
+        <p>Emirates has extended its A380 base maintenance agreement with Lufthansa Technik Philippines through 2030. The two have worked together since 2023, and more than 30 A380 checks have been completed for the airline so far. Lufthansa Technik describes the renewal as among the largest by value in its Philippine unit's history.</p>
+        <p><span class="term">Base maintenance</span> is the heavy end of the trade. The aircraft comes out of service for weeks, goes into a hangar, and is opened up, inspected and rebuilt — as opposed to <span class="term">line maintenance</span>, the quick checks done at the gate between flights. Two dedicated A380 lines run in Manila, and Emirates will be launch customer at a new Lufthansa Technik facility at Clark International Airport once it opens.</p>
+        <p>Note where the work happens. Emirates flies the world's largest A380 fleet out of Dubai, but sends those aircraft to the Philippines for heavy checks.</p>
+      </div>
+
+      <div class="figure">
+        <svg viewBox="0 0 240 96" role="img" aria-label="Comparison of line maintenance duration at the gate against base maintenance duration in the hangar, and the routing of Emirates A380 heavy checks from Dubai to Manila and Clark">
+          <!-- LINE -->
+          <text x="0" y="7" font-family="Helvetica,Arial" font-size="6.6" font-weight="bold" fill="#3e4e5d" letter-spacing="1">LINE MAINTENANCE · AT THE GATE</text>
+          <rect x="0" y="11" width="14" height="9" fill="#8b98a4"/>
+          <text x="19" y="18" font-family="Helvetica,Arial" font-size="6.4" fill="#3e4e5d">hours — walk-round, fluids, small defects</text>
+
+          <!-- BASE -->
+          <text x="0" y="33" font-family="Helvetica,Arial" font-size="6.6" font-weight="bold" fill="#b4532a" letter-spacing="1">BASE MAINTENANCE · IN THE HANGAR</text>
+          <rect x="0" y="37" width="228" height="9" fill="#12314f"/>
+          <text x="0" y="54" font-family="Helvetica,Arial" font-size="6.4" fill="#3e4e5d">weeks — aircraft opened up, inspected, rebuilt</text>
+          <text x="0" y="63" font-family="Helvetica,Arial" font-size="5.8" fill="#8b98a4">bars to relative scale</text>
+
+          <!-- routing -->
+          <line x1="0" y1="70" x2="240" y2="70" stroke="#c9d2da" stroke-width=".7"/>
+          <text x="0" y="80" font-family="Helvetica,Arial" font-size="6.4" font-weight="bold" fill="#3e4e5d" letter-spacing=".8">WHERE THE HEAVY CHECKS HAPPEN</text>
+
+          <circle cx="6" cy="90" r="3.4" fill="#b4532a"/>
+          <text x="13" y="92" font-family="Helvetica,Arial" font-size="6.6" font-weight="bold" fill="#111820">DXB</text>
+          <text x="30" y="92" font-family="Helvetica,Arial" font-size="6.2" fill="#3e4e5d">Dubai</text>
+          <path d="M52 90 L70 90" stroke="#12314f" stroke-width="1"/>
+          <path d="M67 87.5 L71 90 L67 92.5" fill="#12314f"/>
+
+          <circle cx="78" cy="90" r="3.4" fill="#12314f"/>
+          <text x="85" y="92" font-family="Helvetica,Arial" font-size="6.6" font-weight="bold" fill="#111820">MNL</text>
+          <text x="103" y="92" font-family="Helvetica,Arial" font-size="6.2" fill="#3e4e5d">Manila · 2 A380 lines</text>
+          <path d="M164 90 L182 90" stroke="#12314f" stroke-width="1" stroke-dasharray="2.6 2"/>
+          <path d="M179 87.5 L183 90 L179 92.5" fill="#12314f"/>
+
+          <circle cx="190" cy="90" r="3.4" fill="none" stroke="#12314f" stroke-width="1.2"/>
+          <text x="197" y="92" font-family="Helvetica,Arial" font-size="6.6" font-weight="bold" fill="#111820">CRK</text>
+          <text x="214" y="92" font-family="Helvetica,Arial" font-size="6.2" fill="#3e4e5d">Clark</text>
+        </svg>
+        <p class="figcap"><b>30+</b> A380 checks completed for Emirates since 2023. Diagram: line vs base maintenance, and the routing of the heavy checks.</p>
+      </div>
+
+      <div class="matters">
+        <b>Why it matters here</b>
+        Hangar slot, capacity and skilled labour decide where an aircraft is maintained — not the airline's home airport. MRO is a global market, and the licence you hold is what lets you work in it.
+      </div>
+      <div class="sources">
+        <b>Sources</b>
+        <span>AviTrader, 2 Sep 2026 — avitrader.com/2026/09/02/lufthansa-technik-and-emirates-renew-a380-maintenance-deal/</span>
+        <span>Philstar, 4 Sep 2026 — philstar.com/business/2026/09/04/2553806/ltp-emirates-extend-partnership</span>
+      </div>
+    </article>
+
+    <!-- ============ POST 2 ============ -->
+    <article class="post">
+      <div class="rail"><span class="num">02</span><span class="tag">Technical</span></div>
+      <h2>SWISS Brings Composite Repair In-House at Zurich</h2>
+      <div class="body">
+        <p>SWISS is building a composite repair shop at Zurich Airport, expected to be operational by the end of 2027. The airline says bringing this work in-house will increase its independence and flexibility, and cut its reliance on outside providers.</p>
+        <p><span class="term">Composites</span> — carbon-fibre reinforced plastics and honeycomb sandwich panels — now make up a large share of a modern airframe. They are lighter than aluminium and they do not corrode, but they fail differently. Damage is often invisible from outside: an impact can separate the internal layers or crush the core while the surface still looks intact.</p>
+        <p>Finding it means tap testing, ultrasonic or thermographic inspection rather than a visual check. Repairing it means bonding, curing and vacuum bagging rather than riveting on a patch — different skills, different tooling, a different mindset from sheet metal work.</p>
+      </div>
+
+      <div class="figure">
+        <svg viewBox="0 0 240 96" role="img" aria-label="Cross-section of a composite sandwich panel showing barely visible impact damage: intact outer skin with delamination and crushed core beneath">
+          <!-- impact arrow -->
+          <g stroke="#b4532a" stroke-width="1.8" fill="none">
+            <line x1="92" y1="4" x2="92" y2="21"/>
+            <path d="M88 17 L92 22 L96 17"/>
+          </g>
+          <text x="100" y="12" font-family="Helvetica,Arial" font-size="6.6" font-weight="bold" fill="#b4532a">Impact</text>
+
+          <!-- top skin (with slight dent, still 'intact') -->
+          <path d="M6 27 L84 27 Q92 29.5 100 27 L234 27 L234 33 L100 33 Q92 35.5 84 33 L6 33 Z" fill="#12314f"/>
+          <text x="6" y="24" font-family="Helvetica,Arial" font-size="6.4" fill="#3e4e5d">Outer skin — looks intact</text>
+
+          <!-- honeycomb core -->
+          <rect x="6" y="33" width="228" height="26" fill="#f7f8f6" stroke="#8b98a4" stroke-width=".7"/>
+          <g stroke="#8b98a4" stroke-width=".7" fill="none">
+            <path d="M14 33 L14 59 M26 33 L26 59 M38 33 L38 59 M50 33 L50 59 M62 33 L62 59 M74 33 L74 59"/>
+            <path d="M118 33 L118 59 M130 33 L130 59 M142 33 L142 59 M154 33 L154 59 M166 33 L166 59 M178 33 L178 59 M190 33 L190 59 M202 33 L202 59 M214 33 L214 59 M226 33 L226 59"/>
+            <path d="M6 46 L74 46 M118 46 L234 46"/>
+          </g>
+          <!-- crushed core zone -->
+          <g stroke="#b4532a" stroke-width=".9" fill="none">
+            <path d="M86 33 L86 59 M92 33 L92 59 M98 33 L98 59 M104 33 L104 59 M110 33 L110 59"/>
+            <path d="M82 44 Q92 40 112 44"/>
+            <path d="M82 50 Q92 46 112 50"/>
+          </g>
+          <!-- delamination line -->
+          <path d="M76 33.6 Q92 37 116 33.6" stroke="#b4532a" stroke-width="1.6" fill="none"/>
+
+          <!-- bottom skin -->
+          <rect x="6" y="59" width="228" height="6" fill="#12314f"/>
+
+          <!-- labels -->
+          <line x1="96" y1="68" x2="96" y2="76" stroke="#b4532a" stroke-width=".8"/>
+          <text x="60" y="83" font-family="Helvetica,Arial" font-size="6.6" font-weight="bold" fill="#b4532a">Delamination + crushed core</text>
+          <text x="6" y="48" font-family="Helvetica,Arial" font-size="6.4" fill="#3e4e5d">Honeycomb core</text>
+          <text x="6" y="93" font-family="Helvetica,Arial" font-size="6.4" fill="#3e4e5d">Detection: tap test · ultrasonic · thermography</text>
+        </svg>
+        <p class="figcap"><b>2027</b> — year the Zurich shop is due to open. Diagram: barely visible impact damage in a sandwich panel, the reason composite inspection cannot be done by eye.</p>
+      </div>
+
+      <div class="matters">
+        <b>Why it matters here</b>
+        Composite repair is one of the sharpest skill shortages in the industry. The composites and NDT modules are not a side topic on the way to something else — they are the scarce capability employers are short of.
+      </div>
+      <div class="sources">
+        <b>Sources</b>
+        <span>MRO Business Today, 31 Aug 2026 — mrobusinesstoday.com/swiss-expands-zurich-mro-capabilities-with-new-composite-shop/</span>
+        <span>Aviation Week, MRO Rolling Daily Updates, entry 3 Sep 2026</span>
+      </div>
+    </article>
+
+    <!-- ============ POST 3 ============ -->
+    <article class="post">
+      <div class="rail"><span class="num">03</span><span class="tag">Part 147 &amp; licensing</span></div>
+      <h2>Watchdog Questions Who May Sit the A&amp;P Exam</h2>
+      <div class="body">
+        <p>The US Government Accountability Office has recommended that the FAA formally examine allowing students at institutions <span class="term">not</span> certificated under Part 147 to sit the general written knowledge test for the Airframe &amp; Powerplant certificate. The recommendation was reported on 1 September 2026.</p>
+        <p><span class="term">Part 147</span> is the FAA rule governing Aviation Maintenance Technician Schools. A school holding a Part 147 certificate has had its curriculum, staff, tooling and facilities approved by the regulator, and its graduates qualify to sit the A&amp;P exams on that basis. Everyone else must instead document the required hands-on experience and have it verified before they can test.</p>
+        <p>That one certificate decides who gets a straight route to the licence and who takes the long way round — which is why the GAO is asking whether the gate sits in the right place, at a moment when the industry says it cannot find enough technicians.</p>
+      </div>
+
+      <div class="figure">
+        <svg viewBox="0 0 240 96" role="img" aria-label="Two routes to A and P exam eligibility: a Part 147 certificated school, or documented practical experience verified by the regulator; the GAO asks whether a third route should exist">
+          <!-- Route A -->
+          <rect x="0" y="4" width="88" height="22" fill="#12314f"/>
+          <text x="8" y="14" font-family="Helvetica,Arial" font-size="6.6" font-weight="bold" fill="#ffffff">Part 147 school</text>
+          <text x="8" y="22" font-family="Helvetica,Arial" font-size="6" fill="#c9d2da">Approved curriculum</text>
+          <path d="M90 15 L112 15" stroke="#12314f" stroke-width="1.4"/>
+          <path d="M108 11.5 L113 15 L108 18.5" fill="#12314f"/>
+
+          <!-- Route B -->
+          <rect x="0" y="36" width="88" height="22" fill="none" stroke="#3e4e5d" stroke-width="1.1"/>
+          <text x="8" y="46" font-family="Helvetica,Arial" font-size="6.6" font-weight="bold" fill="#111820">Documented</text>
+          <text x="8" y="54" font-family="Helvetica,Arial" font-size="6" fill="#3e4e5d">practical experience</text>
+          <path d="M90 47 L104 47 L104 20 L112 20" stroke="#3e4e5d" stroke-width="1.1" fill="none"/>
+          <path d="M108 16.5 L113 20 L108 23.5" fill="#3e4e5d"/>
+          <text x="8" y="66" font-family="Helvetica,Arial" font-size="5.8" fill="#6a7784">+ verification step</text>
+
+          <!-- Route C proposed -->
+          <rect x="0" y="72" width="88" height="22" fill="none" stroke="#b4532a" stroke-width="1.1" stroke-dasharray="3 2.4"/>
+          <text x="8" y="82" font-family="Helvetica,Arial" font-size="6.6" font-weight="bold" fill="#b4532a">Non-certificated</text>
+          <text x="8" y="90" font-family="Helvetica,Arial" font-size="6" fill="#b4532a">institution — under review</text>
+          <path d="M90 83 L104 83 L104 26 L112 26" stroke="#b4532a" stroke-width="1.1" fill="none" stroke-dasharray="3 2.4"/>
+          <path d="M108 22.5 L113 26 L108 29.5" fill="#b4532a"/>
+
+          <!-- Exam gate -->
+          <rect x="116" y="4" width="60" height="44" fill="#e3e8ec" stroke="#12314f" stroke-width="1.2"/>
+          <text x="124" y="20" font-family="Helvetica,Arial" font-size="7" font-weight="bold" fill="#12314f">A&amp;P written</text>
+          <text x="124" y="30" font-family="Helvetica,Arial" font-size="7" font-weight="bold" fill="#12314f">knowledge test</text>
+          <text x="124" y="40" font-family="Helvetica,Arial" font-size="6" fill="#3e4e5d">then oral + practical</text>
+
+          <path d="M178 26 L200 26" stroke="#12314f" stroke-width="1.4"/>
+          <path d="M196 22.5 L201 26 L196 29.5" fill="#12314f"/>
+          <rect x="204" y="14" width="36" height="24" fill="#12314f"/>
+          <text x="211" y="25" font-family="Helvetica,Arial" font-size="6.6" font-weight="bold" fill="#ffffff">A&amp;P</text>
+          <text x="211" y="33" font-family="Helvetica,Arial" font-size="6" fill="#c9d2da">licence</text>
+        </svg>
+        <p class="figcap"><b>Two routes today, a third under review.</b> Diagram: how a Part 147 certificate determines exam eligibility, and where the GAO recommendation would open a door.</p>
+      </div>
+
+      <div class="matters">
+        <b>Why it matters here</b>
+        This is a debate about the exact category of institution we are. Approval frameworks — FAA Part 147, EASA Part-147, GCAA CAR-147 — are what turn your coursework into exam eligibility rather than a certificate of attendance.
+      </div>
+      <div class="sources">
+        <b>Sources</b>
+        <span>Aviation Week, 1 Sep 2026 — aviationweek.com/mro/workforce-training/gao-faa-should-consider-expanding-ap-test-eligibility</span>
+        <span>14 CFR Part 147, rule text — ecfr.gov/current/title-14/chapter-I/subchapter-H/part-147</span>
+      </div>
+    </article>
+
+  </main>
+
+  <footer class="footer">
+    <div>
+      <h3>Also seen this week</h3>
+      <ul>
+        <li><b>VSE acquired Atech Turbine Components</b> (1 Sep) — a 40-person shop holding 300+ repair approvals and sole-source status on several flight-critical Pratt &amp; Whitney Canada repairs. Proof that specialisation, not scale, creates value.</li>
+        <li><b>TAP's COO urged greater engine MRO resilience</b> (2 Sep): shops must adapt to supply constraints rather than wait for them to ease.</li>
+        <li><b>Air Corsica</b> signed a multi-year CFM LEAP-1A agreement with AFI KLM E&amp;M (2 Sep); <b>AerFin</b> secured financing for three A220s (4 Sep); <b>Lufthansa Technik</b> named Harald Gloy as next CEO (4 Sep).</li>
+        <li><b>Part 147:</b> no other rule activity dated inside this window. AMAC Aerospace's new EASA Part-147 academy at Basel (first cohort January 2027) was reported 10 July, outside it.</li>
+      </ul>
+    </div>
+    <aside class="glossary">
+      <h3>Jargon check</h3>
+      <dl>
+        <div><dt>MRO</dt><dd>Maintenance, Repair &amp; Overhaul.</dd></div>
+        <div><dt>Base / line</dt><dd>Heavy hangar checks vs quick checks at the gate.</dd></div>
+        <div><dt>Composite</dt><dd>Carbon-fibre and honeycomb structure, not metal.</dd></div>
+        <div><dt>NDT</dt><dd>Non-destructive testing — ultrasonic, thermography, tap test.</dd></div>
+        <div><dt>Part 147</dt><dd>Rule governing approved maintenance training schools.</dd></div>
+        <div><dt>A&amp;P</dt><dd>Airframe &amp; Powerplant — the US mechanic certificate.</dd></div>
+      </dl>
+    </aside>
+  </footer>
+
+  <p class="colophon">Compiled from published reporting, 31 August – 7 September 2026. Figures as stated by the cited sources. Diagrams drawn for this brief — schematic, not to scale.</p>
+
+</div>
+</body>
+</html>

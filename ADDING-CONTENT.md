@@ -159,6 +159,51 @@ panel comes back.
 
 ---
 
+## Recipe 7 — Publish a weekly newsletter issue
+
+Each issue lives in its own dated folder under `newsletter/`, so issues never
+overwrite one another and the archive builds itself.
+
+```
+newsletter/
+└── 2026-09-07/
+    ├── index.html          the issue (English)
+    ├── ar/index.html       the same issue in Arabic  (optional)
+    └── issue.pdf           a print version            (optional)
+```
+
+Then add one entry per issue — **not** one per language:
+
+```js
+{
+  slug: "newsletter-2026-09-14",
+  title: "Aviation & MRO Notice Board — 14 September 2026",
+  pillar: "teaching",
+  kind: "newsletter",
+  year: 2026,
+  status: "published",
+  summary: "One or two sentences naming this issue's stories.",
+  tags: ["Newsletter", "English", "Arabic", "MRO"],
+  embed: { type: "folder", src: "newsletter/2026-09-14/index.html" },
+  links: [
+    { label: "النسخة العربية · Arabic edition", url: "newsletter/2026-09-14/ar/index.html" },
+    { label: "Download the PDF", url: "newsletter/2026-09-14/issue.pdf" }
+  ]
+},
+```
+
+New issues appear at the top of **The weekly bulletin** on the Writing page
+automatically, sorted by `year` then by their position in the list. Put the
+newest entry first.
+
+**Two things worth knowing about the posters.** They are sized for A3, so inside
+the page they scroll rather than shrink — the "Open in a new tab" button gives a
+full-size view, and browser print produces the A3 sheet. And if an issue uses a
+font that is not on the reader's computer, load it in that file's `<head>`; the
+Arabic edition loads Noto Sans Arabic and Noto Kufi Arabic this way.
+
+---
+
 ## Field reference
 
 | Field | Required | Notes |

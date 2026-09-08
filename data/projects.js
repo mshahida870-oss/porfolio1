@@ -41,6 +41,41 @@
 window.PROJECTS = [
 
   {
+    slug: "newsletter-2026-09-07",
+    title: "Aviation & MRO Notice Board — 7 September 2026",
+    pillar: "teaching",
+    kind: "newsletter",
+    year: 2026,
+    status: "published",
+    featured: true,
+    summary: "Weekly one-page news board on aviation maintenance, repair and overhaul, " +
+             "written for administrators, faculty and students. This issue: Emirates " +
+             "extends its A380 heavy maintenance deal, SWISS brings composite repair " +
+             "in-house at Zurich, and a watchdog questions who may sit the A&P exam.",
+    tags: ["Newsletter", "English", "Arabic", "MRO", "Aviation", "Part 147"],
+    embed: { type: "folder", src: "newsletter/2026-09-07/index.html" },
+    links: [{ label: "النسخة العربية · Arabic edition",
+              url: "newsletter/2026-09-07/ar/index.html" }]
+  },
+
+  {
+    slug: "newsletter-2026-09-02",
+    title: "Aviation & MRO Notice Board — 2 September 2026",
+    pillar: "teaching",
+    kind: "newsletter",
+    year: 2026,
+    status: "published",
+    summary: "Weekly one-page news board on aviation maintenance, repair and overhaul. " +
+             "This issue: retired A320s being turned into spare parts, an FAA order for " +
+             "repeat wing inspections on Boeing 787s, and a watchdog asking the FAA to " +
+             "widen mechanic exam access.",
+    tags: ["Newsletter", "English", "MRO", "Aviation", "Part 147"],
+    embed: { type: "folder", src: "newsletter/2026-09-02/index.html" },
+    links: [{ label: "Download the PDF",
+              url: "newsletter/2026-09-02/aviation-mro-notice-board-2026-09-02.pdf" }]
+  },
+
+  {
     slug: "certify66",
     title: "Certify66",
     pillar: "ventures",
@@ -50,7 +85,7 @@ window.PROJECTS = [
     featured: true,
     summary: "An independent venture in aviation training and certification.",
     tags: ["Aviation", "Training", "Certification", "EdTech"],
-    embed: { type: "site", src: "https://certify66.com" },
+    /* certify66.com refuses to be framed, so no embed — the link speaks for it. */
     links: [{ label: "Visit certify66.com", url: "https://certify66.com" }]
   },
 

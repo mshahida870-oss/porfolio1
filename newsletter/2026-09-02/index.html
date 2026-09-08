@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aviation &amp; MRO Notice Board — 2 September 2026</title>
+<style>
+  @page { size: A3 portrait; margin: 0; }
+
+  :root{
+    --ink:#111820;
+    --ink-soft:#3e4e5d;
+    --line:#c9d2da;
+    --paper:#f7f8f6;
+    --navy:#12314f;
+    --navy-deep:#0b2135;
+    --accent:#b4532a;
+    --accent-soft:#f1e4db;
+    --chip:#edf0f2;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ background:#5b6670; }
+
+  body{
+    margin:0;
+    font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+    padding:24px 12px;
+  }
+
+  .sheet{
+    width:297mm;
+    height:420mm;
+    margin:0 auto;
+    background:var(--paper);
+    padding:14mm 14mm 10mm;
+    display:flex;
+    flex-direction:column;
+    box-shadow:0 10px 40px rgba(0,0,0,.35);
+    overflow:hidden;
+  }
+
+  /* ---------- masthead ---------- */
+  .masthead{
+    border-bottom:2.5pt solid var(--navy);
+    padding-bottom:4.5mm;
+    display:grid;
+    grid-template-columns:1fr auto;
+    align-items:flex-end;
+    gap:0 10mm;
+  }
+  .kicker{
+    font-size:9pt;
+    letter-spacing:.24em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:700;
+    margin:0 0 3mm;
+  }
+  .masthead h1{
+    font-size:33pt;
+    line-height:1.02;
+    margin:0;
+    letter-spacing:-.022em;
+    color:var(--navy-deep);
+    font-weight:800;
+  }
+  .masthead h1 .thin{ font-weight:300; color:var(--ink-soft); }
+
+  .meta{
+    text-align:right;
+    font-size:9pt;
+    line-height:1.65;
+    color:var(--ink-soft);
+    white-space:nowrap;
+  }
+  .meta b{ color:var(--navy-deep); font-weight:700; }
+
+  .standfirst{
+    margin:5mm 0 6mm;
+    font-size:10.5pt;
+    line-height:1.5;
+    color:var(--ink-soft);
+    max-width:215mm;
+  }
+
+  /* ---------- posts ---------- */
+  .posts{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:0 7mm;
+    flex:1;
+    min-height:0;
+  }
+
+  .post{
+    border-top:1.5pt solid var(--navy);
+    padding-top:4mm;
+    display:flex;
+    flex-direction:column;
+  }
+  .post + .post{ border-left:.75pt solid var(--line); padding-left:7mm; margin-left:-3.5mm; }
+
+  .rail{
+    display:flex;
+    align-items:baseline;
+    gap:0 3mm;
+    margin-bottom:3mm;
+  }
+  .num{
+    font-size:20pt;
+    font-weight:800;
+    line-height:1;
+    color:var(--line);
+    letter-spacing:-.04em;
+  }
+  .tag{
+    font-size:7pt;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    font-weight:700;
+    color:var(--accent);
+  }
+
+  .post h2{
+    margin:0 0 3.5mm;
+    font-size:16.5pt;
+    line-height:1.13;
+    letter-spacing:-.015em;
+    color:var(--navy-deep);
+    font-weight:750;
+  }
+
+  .body p{
+    margin:0 0 2.8mm;
+    font-size:10.1pt;
+    line-height:1.52;
+    hyphens:auto;
+  }
+
+  .term{ font-weight:700; color:var(--navy); }
+
+  .stat{
+    margin-top:auto;
+    padding:4mm 0 4.5mm;
+    border-top:.75pt solid var(--line);
+    border-bottom:.75pt solid var(--line);
+    margin-bottom:4mm;
+  }
+  .stat .fig{
+    display:block;
+    font-size:26pt;
+    font-weight:800;
+    line-height:1;
+    letter-spacing:-.03em;
+    color:var(--navy);
+  }
+  .stat .cap{
+    display:block;
+    margin-top:2mm;
+    font-size:8.4pt;
+    line-height:1.4;
+    color:var(--ink-soft);
+  }
+
+  .matters{
+    background:var(--accent-soft);
+    border-left:2.5pt solid var(--accent);
+    padding:3.2mm 3.8mm;
+    font-size:9.4pt;
+    line-height:1.45;
+  }
+  .matters b{
+    display:block;
+    font-size:7pt;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin-bottom:1.5mm;
+  }
+
+  .sources{
+    margin-top:3mm;
+    min-height:17mm;
+    font-size:7.4pt;
+    line-height:1.42;
+    color:#6a7784;
+    padding-top:2.2mm;
+    border-top:.75pt dotted var(--line);
+  }
+  .sources b{
+    display:block;
+    text-transform:uppercase;
+    letter-spacing:.13em;
+    font-size:6.6pt;
+    color:var(--navy);
+    margin-bottom:1mm;
+  }
+  .sources span{ display:block; margin-bottom:1.2mm; word-break:break-word; }
+
+  /* ---------- footer ---------- */
+  .footer{
+    margin-top:6mm;
+    border-top:2.5pt solid var(--navy);
+    padding-top:4mm;
+    display:grid;
+    grid-template-columns:1fr 78mm;
+    gap:0 8mm;
+  }
+  .footer h3{
+    margin:0 0 2.5mm;
+    font-size:7.6pt;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--navy);
+  }
+  .footer ul{ margin:0; padding-left:4mm; font-size:8.2pt; line-height:1.45; color:var(--ink-soft); }
+  .footer li{ margin-bottom:1.4mm; }
+
+  .glossary{ background:var(--chip); padding:3.5mm 4mm; }
+  .glossary dl{
+    margin:0;
+    font-size:8pt;
+    line-height:1.4;
+    color:var(--ink-soft);
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:2mm 5mm;
+  }
+  .glossary dt{ font-weight:700; color:var(--navy-deep); margin-bottom:.6mm; }
+  .glossary dd{ margin:0; }
+  .glossary .gitem{ break-inside:avoid; }
+
+  .colophon{
+    margin-top:4mm;
+    font-size:7.2pt;
+    color:#7d8994;
+    letter-spacing:.04em;
+    text-align:center;
+  }
+
+  @media print{
+    html, body{ background:#fff; padding:0; }
+    .sheet{ box-shadow:none; margin:0; }
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <header class="masthead">
+    <div>
+      <p class="kicker">Aviation &amp; MRO — Weekly Notice Board</p>
+      <h1>This Week in Maintenance,<br><span class="thin">Repair &amp; Overhaul</span></h1>
+    </div>
+    <div class="meta">
+      <div><b>Week covered</b> · 26 Aug – 2 Sep 2026</div>
+      <div><b>Posted</b> · 2 September 2026</div>
+      <div><b>For</b> · Staff, faculty &amp; students</div>
+    </div>
+  </header>
+
+  <p class="standfirst">
+    Three stories from the past seven days, chosen because they connect to what is taught in this building:
+    the parts supply chain, structural inspection, and the licence that lets you sign for the work.
+  </p>
+
+  <main class="posts">
+
+    <article class="post">
+      <div class="rail"><span class="num">01</span><span class="tag">Industry &amp; supply chain</span></div>
+      <h2>Retired A320s Are Being Turned Into Spare Parts</h2>
+      <div class="body">
+        <p>The aftermarket for used Airbus A320 parts is running hot. On 27 August, parts supplier Werner Aero confirmed its second A320-200 purchase of the month — aircraft MSN 2964 — which goes to the eCube facility at St Athan in Wales to be dismantled. Aviation Week's daily MRO log recorded further teardown deals in the same week, including a HEICO subsidiary, Prime Air, taking an ex-Spirit Airlines A320neo to Arizona for component disassembly.</p>
+        <p>When an aircraft is retired, usable components — landing gear, avionics boxes, actuators, cabin items — are removed, inspected, repaired and re-certified. They then re-enter service as <span class="term">USM: used serviceable material</span>. USM is legal, traceable, and often the fastest route to a part when new production has long lead times.</p>
+        <p>Note how young some of these airframes are. Neo-generation aircraft being torn down this early tells you how tight the parts market has become.</p>
+      </div>
+      <div class="stat">
+        <span class="fig">2</span>
+        <span class="cap">A320-200 airframes bought by Werner Aero for teardown in August alone</span>
+      </div>
+      <div class="matters">
+        <b>Why it matters here</b>
+        Teardown, parts trading and certification paperwork are real MRO careers, not a sideline. Students should understand traceability, Form 1 / 8130-3 documentation and airworthiness release — that is what turns a removed part into a saleable one.
+      </div>
+      <div class="sources">
+        <b>Sources</b>
+        <span>AviTrader, 27 Aug 2026 — avitrader.com/2026/08/27/second-a320-acquisition-boosts-werner-aeros-parts-drive/</span>
+        <span>Aviation Week, MRO Rolling Daily Updates, 27–28 Aug 2026 — aviationweek.com/mro/mro-industry-rolling-daily-updates-august-2026</span>
+      </div>
+    </article>
+
+    <article class="post">
+      <div class="rail"><span class="num">02</span><span class="tag">Technical &amp; regulatory</span></div>
+      <h2>FAA Orders Repeat Wing Inspections on Boeing 787s</h2>
+      <div class="body">
+        <p>The FAA published Airworthiness Directive 2026-17-02 in the Federal Register on 27 August 2026, effective 1 October 2026. It applies to Boeing 787-8, 787-9 and 787-10 aircraft.</p>
+        <p>The unsafe condition traces back to build quality: shim gaps may have exceeded engineering allowances, and high pull-up forces used to close those gaps could start fatigue cracks at fastener holes. A <span class="term">shim</span> is a thin filler placed between two structural parts so they mate without being forced together.</p>
+        <p>Operators must carry out repetitive ultrasonic (UT) and detailed visual (DET) inspections of the lower side-of-body splice plates, rear and front spar terminal fittings, lower chords and jack pads — and repair anything found. The FAA counts 17 US-registered aircraft affected, with cost estimated at up to $24,310 per aircraft per inspection cycle.</p>
+        <p>An <span class="term">Airworthiness Directive</span> is not advice. It is a legally binding instruction; ignoring it makes the aircraft unairworthy.</p>
+      </div>
+      <div class="stat">
+        <span class="fig">17</span>
+        <span class="cap">US-registered Boeing 787s covered by the new directive</span>
+      </div>
+      <div class="matters">
+        <b>Why it matters here</b>
+        This directive touches three things on our syllabus at once: non-destructive testing, primary structure and fatigue, and human factors in assembly. A manufacturing decision can become a maintenance task for the next twenty years.
+      </div>
+      <div class="sources">
+        <b>Source</b>
+        <span>Federal Register, 27 Aug 2026 — AD 2026-17-02, Docket FAA-2026-2295 — federalregister.gov/documents/2026/08/27/2026-17553/airworthiness-directives-the-boeing-company-airplanes</span>
+      </div>
+    </article>
+
+    <article class="post">
+      <div class="rail"><span class="num">03</span><span class="tag">Careers &amp; licensing</span></div>
+      <h2>Watchdog Asks FAA to Widen Mechanic Exam Access</h2>
+      <div class="body">
+        <p>The US Government Accountability Office has recommended that the FAA formally examine letting students at non-certificated institutions sit the general written knowledge test for the Airframe &amp; Powerplant (A&amp;P) certificate. The recommendation was reported on 1 September 2026. At present that route is generally open to graduates of FAA-certificated maintenance schools, or to applicants who can document the required practical experience.</p>
+        <p>It lands against a clear demand picture. Aviation Week reported on 27 August that the Asia-Pacific region alone will need more than 300,000 new maintenance technicians over the next decade, citing Boeing's forecast that the region will account for over 40% of the world's new technicians through 2045. In the same week HAECO said a planned joint venture in Vietnam would create more than 1,000 jobs.</p>
+        <p>The debate is essentially about how many doors lead to a licence, and how quickly.</p>
+      </div>
+      <div class="stat">
+        <span class="fig">300,000+</span>
+        <span class="cap">New maintenance technicians Asia-Pacific needs over the next decade</span>
+      </div>
+      <div class="matters">
+        <b>Why it matters here</b>
+        Licensing pathways decide careers. Whichever system you train under — FAA A&amp;P, EASA Part-66, or a GCAA CAR-66 licence — the modules, exams and logged experience are the currency. Watch these rule changes: they change how portable your qualification is.
+      </div>
+      <div class="sources">
+        <b>Sources</b>
+        <span>Aviation Week, 1 Sep 2026 — aviationweek.com/mro/workforce-training/gao-faa-should-consider-expanding-ap-test-eligibility</span>
+        <span>Aviation Week, 27 Aug 2026 — aviationweek.com/mro/workforce-training/asia-pacific-mros-face-labor-hurdles-demand-accelerates</span>
+      </div>
+    </article>
+
+  </main>
+
+  <footer class="footer">
+    <div>
+      <h3>Also seen this week</h3>
+      <ul>
+        <li><b>Turkish Technic</b> opened a seventh Istanbul hangar (29,400 m²), lifting single-city capacity to 57 aircraft — first reported 23 August, just outside this week's window.</li>
+        <li><b>Willis Lease Finance</b> bought land in Johor, Malaysia for a new engine repair centre targeted for Q1 2027 (1 September).</li>
+        <li><b>Batam Aero Technic</b> gained South Korean MRO approval (26 August) — cross-border regulatory recognition in practice.</li>
+        <li>No major <b>Gulf-specific</b> MRO announcement landed inside the window; flydubai's Dubai South maintenance centre is still due to complete in Q4 2026.</li>
+      </ul>
+    </div>
+    <aside class="glossary">
+      <h3>Jargon check</h3>
+      <dl>
+        <div class="gitem"><dt>MRO</dt><dd>Maintenance, Repair &amp; Overhaul.</dd></div>
+        <div class="gitem"><dt>AD</dt><dd>Airworthiness Directive — a mandatory regulator instruction.</dd></div>
+        <div class="gitem"><dt>USM</dt><dd>Used serviceable material — parts recovered from a retired aircraft and re-certified.</dd></div>
+        <div class="gitem"><dt>NDT / UT</dt><dd>Non-destructive testing; ultrasonic inspection is one method.</dd></div>
+        <div class="gitem"><dt>A&amp;P</dt><dd>Airframe &amp; Powerplant — the US mechanic certificate.</dd></div>
+        <div class="gitem"><dt>Part-66 / CAR-66</dt><dd>EASA and UAE GCAA licence frameworks for engineers.</dd></div>
+      </dl>
+    </aside>
+  </footer>
+
+  <p class="colophon">Compiled from published reporting, 26 August – 2 September 2026. Figures as stated by the cited sources.</p>
+
+</div>
+</body>
+</html>
