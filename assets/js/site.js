@@ -234,11 +234,9 @@
   /* ---------- project detail page ---------- */
   function embedHTML(p) {
     var e = p.embed;
-    if (!e || !e.type || e.type === "none") {
-      return '<div class="notice"><strong>No live version attached yet.</strong> ' +
-             "Add an <code>embed</code> to this entry in <code>data/projects.js</code> " +
-             "to show the work itself right here.</div>";
-    }
+    /* No embed: show nothing. The links in the header already carry the entry,
+       and a note addressed to the site's author does not belong on a live page. */
+    if (!e || !e.type || e.type === "none") return "";
     var src = (e.type === "video" || e.type === "site") ? e.src : u(e.src);
 
     /* Most sites refuse to be framed (X-Frame-Options / frame-ancestors), and a
@@ -310,7 +308,10 @@
         (links ? '<div class="cta-row" style="margin-bottom:8px">' + links + "</div>" : "") +
       "</div></section>" +
 
-      '<section style="padding-bottom:72px"><div class="wrap">' + embedHTML(p) + "</div></section>" +
+      (function () {
+        var body = embedHTML(p);
+        return body ? '<section style="padding-bottom:72px"><div class="wrap">' + body + "</div></section>" : "";
+      })() +
 
       (related.length
         ? '<section class="section section-alt"><div class="wrap">' +

@@ -85,7 +85,7 @@ window.PROJECTS = [
     featured: true,
     summary: "An independent venture in aviation training and certification.",
     tags: ["Aviation", "Training", "Certification", "EdTech"],
-    embed: { type: "site", src: "https://certify66.com" },
+    /* certify66.com refuses to be framed, so no embed — the link speaks for it. */
     links: [{ label: "Visit certify66.com", url: "https://certify66.com" }]
   },
 
