@@ -157,7 +157,8 @@ window.PROJECTS = [
     featured: true,
     summary: "Master's dissertation: an ab initio study of how alloying and substitution " +
              "shift the electronic band gap in transition metal dichalcogenide monolayers.",
-    tags: ["2D Materials", "Ab initio", "DFT", "Band Structure", "Master's Thesis"]
+    tags: ["2D Materials", "Ab initio", "DFT", "Band Structure", "Master's Thesis"],
+    archive: false          /* shown on the Research page, not in the Work archive */
     /* To display the thesis, save the PDF into assets/docs/ and add:
        embed: { type: "pdf", src: "assets/docs/msc-thesis.pdf" },
        links: [{ label: "UAEU repository", url: "https://..." }]      */

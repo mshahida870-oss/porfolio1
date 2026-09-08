@@ -221,6 +221,7 @@ Arabic edition loads Noto Sans Arabic and Noto Kufi Arabic this way.
 | `links` | no | `[{ label, url }]` — shown as buttons. |
 | `embed` | no | How the work is displayed. See recipes above. |
 | `href` | no | Use instead of `embed` to link straight to another page. |
+| `archive` | no | Set to `false` to keep an entry off the Work archive. It still appears on its pillar page. |
 
 ---
 
