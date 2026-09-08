@@ -15,7 +15,7 @@ window.PROFILE = {
   /* Contact e-mail is intentionally not published on the site.
      Fill this in only if you want a public mailto: link. */
   email: "",
-  linkedin: "https://www.linkedin.com/in/s-m-092a7641",
+  linkedin: "https://www.linkedin.com/in/shahida-maqsood-076572417/",
 
   /* Optional — leave as empty strings until you have them.
      Any link with an empty url is hidden automatically. */
