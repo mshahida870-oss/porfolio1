@@ -222,6 +222,9 @@ Arabic edition loads Noto Sans Arabic and Noto Kufi Arabic this way.
 | `embed` | no | How the work is displayed. See recipes above. |
 | `href` | no | Use instead of `embed` to link straight to another page. |
 | `archive` | no | Set to `false` to keep an entry off the Work archive. It still appears on its pillar page. |
+| `venue` | no | Journal or publisher. Shown on the card and in the citation. |
+| `published` | no | Publication date, e.g. `"31 August 2026"`. |
+| `authors` | no | Array of names in order. Your own name is bolded automatically. |
 
 ---
 

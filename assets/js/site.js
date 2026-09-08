@@ -140,7 +140,7 @@
           '<div class="card-foot">' +
             '<span class="tag" data-pillar="' + esc(p.pillar) + '">' + esc(pillarOf(p.pillar).label) + "</span>" +
             statusTag +
-            "<span>" + esc(KIND_LABEL[p.kind] || p.kind) + "</span>" +
+            "<span>" + esc(p.venue || KIND_LABEL[p.kind] || p.kind) + "</span>" +
             "<span>·</span><span>" + esc(p.year) + "</span>" +
           "</div>" +
         "</div>" +
@@ -340,6 +340,26 @@
         'loading="lazy" allowfullscreen></iframe>';
   }
 
+  /* A publication needs its venue and its full author list; a card summary is
+     not a citation. Shown only when the entry carries them. */
+  function citationHTML(p) {
+    if (!p.venue && !p.authors) return "";
+    var who = "";
+    if (p.authors && p.authors.length) {
+      who = '<p class="cite-authors">' + p.authors.map(function (a) {
+        return a === (P.name || "")
+          ? "<strong>" + esc(a) + "</strong>"
+          : esc(a);
+      }).join(", ") + "</p>";
+    }
+    var where = "";
+    if (p.venue) {
+      where = '<p class="cite-venue"><em>' + esc(p.venue) + "</em>" +
+              (p.published ? " · " + esc(p.published) : "") + "</p>";
+    }
+    return '<div class="citation">' + who + where + "</div>";
+  }
+
   function mountDetail() {
     var host = el("project-detail");
     if (!host) return;
@@ -376,10 +396,16 @@
 
     host.innerHTML =
       '<section class="section" style="padding-bottom:40px"><div class="wrap">' +
-        '<p class="eyebrow">' + esc(pillarOf(p.pillar).title) + " · " + esc(KIND_LABEL[p.kind] || p.kind) + "</p>" +
+        '<p class="eyebrow">' + (function () {
+          /* "Research · Research" reads as a mistake; show one label when the
+             pillar and the kind happen to carry the same name. */
+          var a = pillarOf(p.pillar).title, k = KIND_LABEL[p.kind] || p.kind;
+          return esc(a.toLowerCase() === k.toLowerCase() ? a : a + " · " + k);
+        })() + "</p>" +
         '<h1 style="font-family:var(--display);font-size:clamp(2rem,4.6vw,3rem);line-height:1.08;letter-spacing:-.03em;margin-bottom:16px">' +
           esc(p.title) + "</h1>" +
         '<p style="font-size:1.13rem;color:var(--ink-2);max-width:66ch;margin-bottom:22px">' + esc(p.summary) + "</p>" +
+        citationHTML(p) +
         '<div class="hero-meta">' +
           '<span class="chip">' + esc(STATUS_LABEL[status] || status) + "</span>" +
           '<span class="chip">' + esc(p.year) + "</span>" + tags +
