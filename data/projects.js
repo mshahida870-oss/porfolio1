@@ -117,23 +117,64 @@ window.PROJECTS = [
     year: 2026,
     status: "live",
     featured: true,
-    summary: "An independent venture in aviation training and certification.",
-    tags: ["Aviation", "Training", "Certification", "EdTech"],
+    summary: "Interactive exam preparation for EASA and UAE GCAA Part-66 — all seventeen " +
+             "modules for Categories A, B1, B2 and B1.3, with notes, simulations, question " +
+             "banks and timed papers indexed by syllabus reference.",
+    body: [
+      "Every sub-section carries the four things a student needs: notes and mind maps " +
+      "written to the level their own licence category is examined at, simulations where " +
+      "they change a value and watch the result, questions with a written explanation so a " +
+      "wrong attempt teaches something, and timed papers at the official Appendix II length " +
+      "and duration.",
+
+      "That comes to 271 topics by syllabus reference, 390 note sets and concept maps, 100 " +
+      "simulations, 3,720 explained questions and 32 mock papers at the 75% pass mark. A " +
+      "student revising 2.3 finds everything for 2.3 in one place, and an instructor can set " +
+      "work the same way.",
+
+      "Material is graded per licence category, so a Category A student is never shown B1 or " +
+      "B2 content they will not be examined on, and it is audited against the GCAA Curriculum " +
+      "Manuals and Part-66 Appendix I and II, module by module. All seventeen modules open in " +
+      "full: no licence, no per-student fee."
+    ],
+    note: "Certify66 is an independent study aid. It is not EASA or GCAA approved training " +
+          "and does not replace approved Part-147 instruction — it sits alongside it as revision.",
+    tags: ["Aviation", "Part-66", "Exam Preparation", "EdTech", "Free"],
     /* certify66.com refuses to be framed, so no embed — the link speaks for it. */
     links: [{ label: "Visit certify66.com", url: "https://certify66.com" }]
   },
 
   {
     slug: "flight-instruments",
-    title: "Flight Instruments Pack66",
+    title: "SixPack66",
     pillar: "teaching",
     kind: "demo",
     year: 2026,
     status: "live",
     featured: true,
-    summary: "An interactive flight instruments pack, built as a teaching aid for " +
-             "aviation students.",
-    tags: ["Aviation", "Interactive", "Instruments", "Classroom"],
+    summary: "The six standard flight instruments, live in the browser. Move one control " +
+             "and every gauge responds the way it would in the aircraft — built for EASA " +
+             "and GCAA Part-66 students.",
+    body: [
+      "Six instruments with correct faces and markings rather than icons: Cessna 172 " +
+      "airspeed arcs, a three-pointer altimeter, a rotating compass card. They are driven " +
+      "from one shared flight state, so the altimeter, vertical speed indicator and turn " +
+      "coordinator cannot disagree with each other.",
+
+      "Direct mode moves one parameter at a time. Fly mode hands over throttle, elevator, " +
+      "aileron and rudder. Rate of turn follows ω = 1091·tan(bank)/TAS, so a standard-rate " +
+      "turn really is 3°/s and the bank angle needed rises with speed.",
+
+      "Presets cover straight and level, steady climb, descent, standard-rate turns, a " +
+      "climbing turn and an approach to the stall. The whole app is 40 KB. It installs from " +
+      "the browser and keeps working offline on a phone or a shared classroom PC — no app " +
+      "store, no login, no backend, nothing collected."
+    ],
+    note: "The flight model is a simplified response model built to teach instrument " +
+          "behaviour, not a certified flight-dynamics model. Airspeed markings follow " +
+          "Cessna 172S values and IAS is treated as TAS; every instrumentation assumption " +
+          "is listed inside the app.",
+    tags: ["Aviation", "Part-66", "Flight Instruments", "Interactive", "Offline app"],
     embed: { type: "site", src: "https://flight-instruments.vercel.app/", framable: true },
     links: [{ label: "Open the live app", url: "https://flight-instruments.vercel.app/" }]
   },
