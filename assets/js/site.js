@@ -189,8 +189,86 @@
       }
 
       list.sort(byYear);
+      var off = parseInt(host.getAttribute("data-offset"), 10);
+      if (off > 0) list = list.slice(off);
       if (limit > 0) list = list.slice(0, limit);
       paint(host, list, host.getAttribute("data-empty"));
+    });
+  }
+
+  /* ---------- show the newest issue of a kind in full ----------
+     The posters are laid out for A3, so they are rendered at their natural
+     width in an off-screen-width frame and scaled down to fit the column.
+     Scaling the frame keeps the layout intact; setting the frame narrow
+     would reflow the poster and break its three-column grid.            */
+  var POSTER_W = 1160, POSTER_H = 1640;   /* fallback until the frame reports its own size */
+
+  function mountFeatureEmbed() {
+    var hosts = document.querySelectorAll("[data-embed-latest]");
+    Array.prototype.forEach.call(hosts, function (host) {
+      var kind = host.getAttribute("data-embed-latest");
+      var list = ALL.filter(function (p) { return p.kind === kind && p.embed && p.embed.src; })
+                    .sort(byYear);
+      var p = list[0];
+      if (!p) { host.innerHTML = ""; return; }
+
+      var links = (p.links || []).map(function (l) {
+        var href = /^https?:/.test(l.url) ? l.url : u(l.url);
+        return '<a class="btn btn-ghost btn-sm" href="' + esc(href) + '" target="_blank" rel="noopener">' + esc(l.label) + " ↗</a>";
+      }).join("");
+
+      host.innerHTML =
+        '<div class="poster-head">' +
+          "<div><h3>" + esc(p.title) + "</h3>" +
+          '<p class="muted">' + esc(p.summary) + "</p></div>" +
+        "</div>" +
+        '<div class="poster-wrap"><iframe class="poster-frame" src="' + esc(u(p.embed.src)) +
+          '" title="' + esc(p.title) + '" loading="lazy" scrolling="no"></iframe></div>' +
+        '<div class="cta-row" style="margin-top:16px">' +
+          '<a class="btn btn-primary btn-sm" href="' + esc(u(p.embed.src)) + '" target="_blank" rel="noopener">Open full size ↗</a>' +
+          links +
+        "</div>";
+
+      var wrap = host.querySelector(".poster-wrap");
+      var frame = host.querySelector(".poster-frame");
+      var natW = POSTER_W, natH = POSTER_H;
+
+      /* The poster is same-origin, so its real laid-out size can be measured
+         rather than assumed. Guessing A3 in pixels clipped the last column. */
+      function measure() {
+        try {
+          var d = frame.contentDocument;
+          if (!d || !d.body) return;
+          var sheet = d.querySelector(".sheet") || d.body.firstElementChild;
+          var cs = d.defaultView.getComputedStyle(d.body);
+          var padX = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight);
+          var padY = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom);
+          if (sheet) {
+            var r = sheet.getBoundingClientRect();
+            if (r.width > 0) { natW = Math.ceil(r.width + padX); natH = Math.ceil(r.height + padY); }
+          } else {
+            natW = d.documentElement.scrollWidth;
+            natH = d.documentElement.scrollHeight;
+          }
+        } catch (err) { /* cross-origin: keep the fallback size */ }
+      }
+
+      function fit() {
+        var w = wrap.clientWidth;
+        if (!w) return;
+        var k = w / natW;
+        frame.style.width = natW + "px";
+        frame.style.height = natH + "px";
+        frame.style.transform = "scale(" + k + ")";
+        wrap.style.height = Math.round(natH * k) + "px";
+      }
+
+      frame.addEventListener("load", function () { measure(); fit(); });
+      /* A scrollbar appearing after the first fit changes the column width,
+         so track the wrapper rather than fitting once. */
+      if (window.ResizeObserver) new ResizeObserver(fit).observe(wrap);
+      else window.addEventListener("resize", fit);
+      fit();
     });
   }
 
@@ -444,6 +522,7 @@
     renderFooter();
     mountProfileBits();
     mountLists();
+    mountFeatureEmbed();
     mountArchive();
     mountDetail();
   }

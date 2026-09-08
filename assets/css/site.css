@@ -376,3 +376,17 @@ a.chip:hover { color: var(--ink); border-color: var(--line-2); }
   background: var(--ink); color: var(--paper); font-size: .92rem; font-weight: 550;
 }
 .visit-panel:hover .visit-cta { background: var(--accent); }
+
+/* ---------- Newsletter poster shown in full ---------- */
+.poster-head { margin-bottom: 18px; }
+.poster-head h3 { font-family: var(--display); font-size: 1.3rem; font-weight: 600; margin-bottom: 6px; }
+.poster-head p { font-size: .93rem; margin: 0; max-width: 68ch; }
+.poster-wrap {
+  position: relative; width: 100%; overflow: hidden;
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background: #5b6670;
+}
+/* The global reset caps every iframe at max-width:100%. This frame is
+   deliberately laid out at the poster's natural width and then scaled
+   down, so it has to opt out or the poster is squeezed and clipped. */
+.poster-frame { border: 0; display: block; transform-origin: top left; max-width: none; }
