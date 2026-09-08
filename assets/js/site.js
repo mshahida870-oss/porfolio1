@@ -180,12 +180,14 @@
          excludes it. Lets a page give demos their own heading. */
       var kind = host.getAttribute("data-kind");
       if (kind) {
-        if (kind.charAt(0) === "!") {
-          var not = kind.slice(1);
-          list = list.filter(function (p) { return p.kind !== not; });
-        } else {
-          list = list.filter(function (p) { return p.kind === kind; });
-        }
+        var exclude = kind.charAt(0) === "!";
+        var kinds = kind.replace(/^!/, "").split(",").map(function (k) {
+          return k.trim();
+        }).filter(Boolean);
+        list = list.filter(function (p) {
+          var hit = kinds.indexOf(p.kind) !== -1;
+          return exclude ? !hit : hit;
+        });
       }
 
       list.sort(byYear);
