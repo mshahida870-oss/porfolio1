@@ -507,6 +507,20 @@
       }).join("");
     }
 
+    /* <a data-profile-link="linkedin"> takes its href from the profile, so a
+       contact link is never hardcoded into a page and cannot drift. An empty
+       field hides the link rather than leaving it pointing nowhere. */
+    Array.prototype.forEach.call(document.querySelectorAll("[data-profile-link]"), function (a) {
+      var v = P[a.getAttribute("data-profile-link")];
+      if (v) {
+        a.setAttribute("href", v);
+        a.setAttribute("target", "_blank");
+        a.setAttribute("rel", "noopener");
+      } else {
+        a.hidden = true;
+      }
+    });
+
     /* simple text slots */
     Array.prototype.forEach.call(document.querySelectorAll("[data-profile]"), function (n) {
       var path = n.getAttribute("data-profile").split(".");
