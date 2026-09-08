@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Projectile Motion Explorer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap"></noscript>
+<style>
+  :root {
+    --paper:#FBFAF7; --card:#FFFFFF; --paper-2:#F4F1EA;
+    --ink:#1B1A16; --ink-2:#57544A; --ink-3:#8A8578;
+    --line:#E5E0D4; --line-2:#D2CBBA;
+    --accent:#B4522E; --vacuum:#3F58A0; --pine:#2E6A56;
+    --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+    --display:"Fraunces","Iowan Old Style",Georgia,serif;
+    color-scheme: light;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin:0; padding:20px; background:var(--paper); color:var(--ink);
+    font-family:var(--sans); font-size:15px; line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  .app { max-width:1000px; margin:0 auto; }
+  h1 { font-family:var(--display); font-size:1.5rem; font-weight:600; letter-spacing:-.02em; margin:0 0 4px; }
+  .sub { color:var(--ink-3); font-size:.88rem; margin:0 0 20px; }
+
+  .stage { border:1px solid var(--line); border-radius:14px; background:var(--card); overflow:hidden; }
+  canvas { display:block; width:100%; height:auto; }
+
+  .controls {
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(215px,1fr));
+    gap:16px 22px; margin-top:20px;
+  }
+  .ctrl label { display:flex; justify-content:space-between; align-items:baseline; gap:10px;
+    font-size:.8rem; font-weight:600; letter-spacing:.02em; color:var(--ink-2); margin-bottom:7px; }
+  .ctrl label b { font-family:var(--display); font-size:1rem; font-weight:600; color:var(--ink);
+    font-variant-numeric:tabular-nums; }
+  input[type=range] { width:100%; margin:0; accent-color:var(--accent); height:22px; }
+
+  .row { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-top:18px; }
+  button {
+    font:inherit; font-size:.87rem; font-weight:550; padding:9px 18px; border-radius:999px;
+    border:1px solid var(--ink); background:var(--ink); color:var(--paper); cursor:pointer;
+  }
+  button:hover { background:var(--accent); border-color:var(--accent); }
+  button.ghost { background:transparent; color:var(--ink); border-color:var(--line-2); }
+  button.ghost:hover { background:var(--paper-2); color:var(--ink); border-color:var(--ink-3); }
+  .toggle { display:inline-flex; align-items:center; gap:8px; font-size:.87rem; color:var(--ink-2); cursor:pointer; }
+  .toggle input { accent-color:var(--accent); width:16px; height:16px; }
+
+  .readouts {
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(128px,1fr));
+    gap:1px; background:var(--line); border:1px solid var(--line);
+    border-radius:12px; overflow:hidden; margin-top:20px;
+  }
+  .ro { background:var(--card); padding:14px 12px; text-align:center; }
+  .ro .v { font-family:var(--display); font-size:1.32rem; font-weight:600; letter-spacing:-.02em;
+    font-variant-numeric:tabular-nums; line-height:1.1; }
+  .ro .l { font-size:.72rem; color:var(--ink-3); margin-top:5px; letter-spacing:.03em; }
+  .ro.vac .v { color:var(--vacuum); }
+  .ro.drag .v { color:var(--accent); }
+
+  .legend { display:flex; flex-wrap:wrap; gap:16px; margin-top:16px; font-size:.8rem; color:var(--ink-3); }
+  .legend i { display:inline-block; width:22px; height:0; border-top-width:2.5px; margin-right:7px;
+    vertical-align:middle; }
+  .note { margin-top:18px; padding:14px 16px; background:var(--paper-2); border:1px solid var(--line);
+    border-radius:10px; font-size:.83rem; color:var(--ink-2); }
+  .note code { font-family:ui-monospace,Menlo,Consolas,monospace; font-size:.92em; color:var(--ink); }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <h1>Projectile Motion Explorer</h1>
+  <p class="sub">Change the launch conditions and watch how air resistance pulls the real
+     trajectory away from the textbook parabola.</p>
+
+  <div class="stage"><canvas id="cv" aria-label="Projectile trajectory plot"></canvas></div>
+
+  <div class="controls">
+    <div class="ctrl">
+      <label for="v0">Launch speed <b><span id="v0v">30</span> m/s</b></label>
+      <input type="range" id="v0" min="5" max="80" step="1" value="30">
+    </div>
+    <div class="ctrl">
+      <label for="ang">Launch angle <b><span id="angv">45</span>°</b></label>
+      <input type="range" id="ang" min="5" max="85" step="1" value="45">
+    </div>
+    <div class="ctrl">
+      <label for="drag">Air resistance <b><span id="dragv">0.010</span> /m</b></label>
+      <input type="range" id="drag" min="0" max="60" step="1" value="10">
+    </div>
+    <div class="ctrl">
+      <label for="grav">Gravity <b><span id="gravv">9.81</span> m/s²</b></label>
+      <input type="range" id="grav" min="1.6" max="24.8" step="0.1" value="9.81">
+    </div>
+  </div>
+
+  <div class="row">
+    <button id="launch" type="button">Replay launch</button>
+    <button id="reset" type="button" class="ghost">Reset</button>
+    <label class="toggle"><input type="checkbox" id="showVac" checked> Compare with vacuum</label>
+    <label class="toggle"><input type="checkbox" id="showApex" checked> Mark apex</label>
+  </div>
+
+  <div class="readouts">
+    <div class="ro drag"><div class="v" id="r-range">—</div><div class="l">Range</div></div>
+    <div class="ro drag"><div class="v" id="r-apex">—</div><div class="l">Max height</div></div>
+    <div class="ro drag"><div class="v" id="r-time">—</div><div class="l">Flight time</div></div>
+    <div class="ro drag"><div class="v" id="r-imp">—</div><div class="l">Impact speed</div></div>
+    <div class="ro vac"><div class="v" id="r-vrange">—</div><div class="l">Vacuum range</div></div>
+    <div class="ro vac"><div class="v" id="r-loss">—</div><div class="l">Range lost</div></div>
+  </div>
+
+  <div class="legend">
+    <span><i style="border-top:2.5px solid var(--accent)"></i>With air resistance</span>
+    <span><i style="border-top:2.5px dashed var(--vacuum)"></i>Vacuum (textbook parabola)</span>
+  </div>
+
+  <div class="note">
+    <strong>The model.</strong> Motion is integrated with a fourth-order Runge–Kutta scheme
+    using quadratic drag, <code>a = −g ĵ − k|v|v</code>, where <code>k</code> is the drag
+    coefficient per unit mass in units of 1/m. Setting <code>k = 0</code> recovers the
+    analytic parabola exactly, which is why the two curves coincide at the left end of the
+    air-resistance slider.
+  </div>
+
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var cv = document.getElementById("cv"), ctx = cv.getContext("2d");
+  var css = getComputedStyle(document.documentElement);
+  var C = {
+    accent: css.getPropertyValue("--accent").trim() || "#B4522E",
+    vacuum: css.getPropertyValue("--vacuum").trim() || "#3F58A0",
+    ink:    css.getPropertyValue("--ink").trim()    || "#1B1A16",
+    ink3:   css.getPropertyValue("--ink-3").trim()  || "#8A8578",
+    line:   css.getPropertyValue("--line").trim()   || "#E5E0D4",
+    paper2: css.getPropertyValue("--paper-2").trim()|| "#F4F1EA"
+  };
+
+  var el = function (id) { return document.getElementById(id); };
+  var inV0 = el("v0"), inAng = el("ang"), inDrag = el("drag"), inGrav = el("grav");
+  var showVac = el("showVac"), showApex = el("showApex");
+
+  var PAD = { l: 46, r: 22, t: 22, b: 38 };
+  var W = 900, H = 430;                 /* logical drawing size */
+  var anim = null, animT = 0, running = false;
+  var traj = { drag: [], vac: [], stats: null };
+
+  /* ---------- physics ---------- */
+  function deriv(s, k, g) {
+    var vx = s[2], vy = s[3], sp = Math.hypot(vx, vy);
+    return [vx, vy, -k * sp * vx, -g - k * sp * vy];
+  }
+  function add(s, d, h) {
+    return [s[0] + d[0] * h, s[1] + d[1] * h, s[2] + d[2] * h, s[3] + d[3] * h];
+  }
+  function simulate(v0, angDeg, k, g) {
+    var th = angDeg * Math.PI / 180, dt = 0.002, tMax = 120;
+    var s = [0, 0, v0 * Math.cos(th), v0 * Math.sin(th)], t = 0;
+    var pts = [{ x: 0, y: 0 }], apex = { x: 0, y: 0 };
+
+    while (t < tMax) {
+      var k1 = deriv(s, k, g),
+          k2 = deriv(add(s, k1, dt / 2), k, g),
+          k3 = deriv(add(s, k2, dt / 2), k, g),
+          k4 = deriv(add(s, k3, dt), k, g);
+      var next = [
+        s[0] + dt / 6 * (k1[0] + 2 * k2[0] + 2 * k3[0] + k4[0]),
+        s[1] + dt / 6 * (k1[1] + 2 * k2[1] + 2 * k3[1] + k4[1]),
+        s[2] + dt / 6 * (k1[2] + 2 * k2[2] + 2 * k3[2] + k4[2]),
+        s[3] + dt / 6 * (k1[3] + 2 * k2[3] + 2 * k3[3] + k4[3])
+      ];
+      t += dt;
+
+      if (next[1] < 0) {                       /* land: interpolate to y = 0 */
+        var f = s[1] / (s[1] - next[1]);
+        var land = [s[0] + (next[0] - s[0]) * f, 0,
+                    s[2] + (next[2] - s[2]) * f, s[3] + (next[3] - s[3]) * f];
+        pts.push({ x: land[0], y: 0 });
+        return {
+          pts: pts, apex: apex,
+          range: land[0], height: apex.y, time: t - dt * (1 - f),
+          impact: Math.hypot(land[2], land[3])
+        };
+      }
+      s = next;
+      if (s[1] > apex.y) apex = { x: s[0], y: s[1] };
+      if (pts.length < 4000) pts.push({ x: s[0], y: s[1] });
+    }
+    return { pts: pts, apex: apex, range: s[0], height: apex.y, time: t, impact: Math.hypot(s[2], s[3]) };
+  }
+
+  /* ---------- drawing ---------- */
+  function niceStep(span) {
+    var raw = span / 5, mag = Math.pow(10, Math.floor(Math.log10(raw))), n = raw / mag;
+    return (n >= 5 ? 5 : n >= 2 ? 2 : 1) * mag;
+  }
+
+  /* Uniform scale keeps the curve's true shape; the canvas is then trimmed to
+     the height the trajectory actually needs, so there is no dead space above. */
+  function fit() {
+    var st = traj.stats;
+    if (!st) return null;
+    var maxX = Math.max(st.range, showVac.checked ? traj.vacStats.range : 0) * 1.06 || 1;
+    var maxY = Math.max(st.height, showVac.checked ? traj.vacStats.height : 0) * 1.16 || 1;
+    var pw = W - PAD.l - PAD.r;
+    var scale = pw / maxX;
+    var needed = maxY * scale + PAD.t + PAD.b;
+    var h = Math.round(Math.max(250, Math.min(480, needed)));
+    if (needed > 480) scale = (480 - PAD.t - PAD.b) / maxY;   /* very steep launch */
+    return { maxX: maxX, maxY: maxY, scale: scale, h: h };
+  }
+
+  function sizeCanvas(h) {
+    if (h === H && cv.width) return;
+    H = h;
+    var dpr = window.devicePixelRatio || 1;
+    cv.width = W * dpr; cv.height = H * dpr;
+    cv.style.height = H + "px";
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function draw(progress) {
+    var d = traj.drag, v = traj.vac, st = traj.stats;
+    if (!st) return;
+    var f = fit();
+    sizeCanvas(f.h);
+    var maxX = f.maxX, maxY = f.maxY, scale = f.scale;
+    var pw = W - PAD.l - PAD.r, ph = H - PAD.t - PAD.b;
+    var X = function (x) { return PAD.l + x * scale; };
+    var Y = function (y) { return H - PAD.b - y * scale; };
+
+    ctx.clearRect(0, 0, W, H);
+
+    /* grid + axes */
+    var stepX = niceStep(maxX), stepX2 = stepX;
+    ctx.font = "11px " + (css.getPropertyValue("--sans") || "sans-serif");
+    ctx.strokeStyle = C.line; ctx.fillStyle = C.ink3; ctx.lineWidth = 1;
+
+    for (var gx = 0; gx <= maxX + 1e-9; gx += stepX2) {
+      if (X(gx) > W - PAD.r + 2) break;
+      ctx.globalAlpha = .7;
+      ctx.beginPath(); ctx.moveTo(X(gx), PAD.t); ctx.lineTo(X(gx), H - PAD.b); ctx.stroke();
+      ctx.globalAlpha = 1;
+      ctx.textAlign = "center"; ctx.textBaseline = "top";
+      ctx.fillText(Math.round(gx) + "", X(gx), H - PAD.b + 8);
+    }
+    var stepY = niceStep(maxY);
+    for (var gy = 0; gy <= maxY + 1e-9; gy += stepY) {
+      if (Y(gy) < PAD.t - 2) break;
+      ctx.globalAlpha = .7;
+      ctx.beginPath(); ctx.moveTo(PAD.l, Y(gy)); ctx.lineTo(W - PAD.r, Y(gy)); ctx.stroke();
+      ctx.globalAlpha = 1;
+      ctx.textAlign = "right"; ctx.textBaseline = "middle";
+      ctx.fillText(Math.round(gy) + "", PAD.l - 9, Y(gy));
+    }
+
+    /* ground */
+    ctx.strokeStyle = C.ink; ctx.lineWidth = 1.6; ctx.globalAlpha = .55;
+    ctx.beginPath(); ctx.moveTo(PAD.l, Y(0)); ctx.lineTo(W - PAD.r, Y(0)); ctx.stroke();
+    ctx.globalAlpha = 1;
+
+    /* axis labels */
+    ctx.fillStyle = C.ink3; ctx.textAlign = "center"; ctx.textBaseline = "bottom";
+    ctx.fillText("horizontal distance (m)", PAD.l + pw / 2, H - 4);
+    ctx.save();
+    ctx.translate(13, PAD.t + ph / 2); ctx.rotate(-Math.PI / 2);
+    ctx.textBaseline = "top"; ctx.fillText("height (m)", 0, 0);
+    ctx.restore();
+
+    function path(pts, upto) {
+      var n = Math.max(2, Math.floor(pts.length * upto));
+      ctx.beginPath();
+      for (var i = 0; i < n; i++) {
+        var p = pts[i];
+        if (i === 0) ctx.moveTo(X(p.x), Y(p.y)); else ctx.lineTo(X(p.x), Y(p.y));
+      }
+      ctx.stroke();
+      return pts[Math.min(n - 1, pts.length - 1)];
+    }
+
+    /* vacuum comparison */
+    if (showVac.checked) {
+      ctx.setLineDash([6, 5]); ctx.strokeStyle = C.vacuum; ctx.lineWidth = 2;
+      ctx.globalAlpha = .85; path(v, progress); ctx.globalAlpha = 1;
+      ctx.setLineDash([]);
+    }
+
+    /* drag trajectory */
+    ctx.strokeStyle = C.accent; ctx.lineWidth = 2.8;
+    ctx.lineJoin = "round"; ctx.lineCap = "round";
+    var head = path(d, progress);
+
+    /* apex marker */
+    if (showApex.checked && progress > .5) {
+      ctx.fillStyle = C.accent; ctx.globalAlpha = .9;
+      ctx.beginPath(); ctx.arc(X(st.apex.x), Y(st.apex.y), 3.5, 0, 6.284); ctx.fill();
+      ctx.globalAlpha = 1;
+      ctx.textAlign = "center"; ctx.textBaseline = "bottom"; ctx.fillStyle = C.accent;
+      ctx.fillText(st.height.toFixed(1) + " m", X(st.apex.x), Y(st.apex.y) - 9);
+    }
+
+    /* projectile */
+    if (head) {
+      ctx.fillStyle = C.accent;
+      ctx.beginPath(); ctx.arc(X(head.x), Y(head.y), 6, 0, 6.284); ctx.fill();
+      ctx.strokeStyle = "#fff"; ctx.lineWidth = 2; ctx.stroke();
+    }
+  }
+
+  /* ---------- wiring ---------- */
+  function dragK() { return (+inDrag.value) / 1000; }
+
+  function recompute() {
+    var v0 = +inV0.value, ang = +inAng.value, g = +inGrav.value, k = dragK();
+    el("v0v").textContent = v0;
+    el("angv").textContent = ang;
+    el("dragv").textContent = k.toFixed(3);
+    el("gravv").textContent = g.toFixed(2);
+
+    var a = simulate(v0, ang, k, g), b = simulate(v0, ang, 0, g);
+    traj.drag = a.pts; traj.vac = b.pts; traj.stats = a; traj.vacStats = b;
+
+    el("r-range").textContent  = a.range.toFixed(1) + " m";
+    el("r-apex").textContent   = a.height.toFixed(1) + " m";
+    el("r-time").textContent   = a.time.toFixed(2) + " s";
+    el("r-imp").textContent    = a.impact.toFixed(1) + " m/s";
+    el("r-vrange").textContent = b.range.toFixed(1) + " m";
+    var lost = b.range > 0 ? (1 - a.range / b.range) * 100 : 0;
+    el("r-loss").textContent   = lost.toFixed(1) + " %";
+  }
+
+  function animate() {
+    running = true; animT = 0;
+    if (anim) cancelAnimationFrame(anim);
+    var dur = Math.min(2600, 700 + traj.stats.time * 320), start = null;
+    function frame(ts) {
+      if (start === null) start = ts;
+      var p = Math.min(1, (ts - start) / dur);
+      draw(p);
+      if (p < 1) anim = requestAnimationFrame(frame); else running = false;
+    }
+    anim = requestAnimationFrame(frame);
+  }
+
+  function update(replay) {
+    recompute();
+    if (replay) animate(); else { if (anim) cancelAnimationFrame(anim); running = false; draw(1); }
+  }
+
+  function resize() {
+    var w = cv.parentNode.clientWidth || 900;
+    W = Math.max(320, w);
+    H = 0;                       /* force sizeCanvas to re-apply on the new width */
+    if (traj.stats) draw(1); else sizeCanvas(340);
+  }
+
+  [inV0, inAng, inDrag, inGrav].forEach(function (i) {
+    i.addEventListener("input", function () { update(false); });
+  });
+  [showVac, showApex].forEach(function (c) {
+    c.addEventListener("change", function () { update(false); });
+  });
+  el("launch").addEventListener("click", function () { update(true); });
+  el("reset").addEventListener("click", function () {
+    inV0.value = 30; inAng.value = 45; inDrag.value = 10; inGrav.value = 9.81;
+    showVac.checked = true; showApex.checked = true;
+    update(true);
+  });
+  window.addEventListener("resize", resize);
+
+  resize();
+  recompute();
+  animate();
+})();
+</script>
+</body>
+</html>
