@@ -41,6 +41,40 @@
 window.PROJECTS = [
 
   {
+    slug: "pr-promoted-oxygen-ion-conduction-ceo2",
+    title: "Theoretical Insights Into Pr-Promoted Oxygen-Ion Conduction in CeO₂: A Hybrid Functional Study",
+    pillar: "research",
+    kind: "paper",
+    year: 2026,
+    status: "published",
+    venue: "International Journal of Energy Research",
+    published: "31 August 2026",
+    authors: ["Xiaoping Han", "Maamar Benkraouda", "Shahida Maqsood",
+              "Deepa Jithin", "El Hadi Sadki", "Noureddine Amrane"],
+    summary: "A hybrid-functional study of praseodymium-promoted oxygen-ion conduction " +
+             "in ceria, published in the International Journal of Energy Research.",
+    tags: ["DFT", "Hybrid Functional", "Ceria", "Oxygen-Ion Conduction", "Co-authored"],
+    links: [{ label: "Read the paper (DOI)", url: "https://doi.org/10.1155/er/6421833" }]
+  },
+
+  {
+    slug: "ferromagnetism-sm-doped-ceo2",
+    title: "Theoretical Insights into Ferromagnetism in Sm-Doped CeO₂ from Hybrid Functional: Synergistic Interplay between Sm and Oxygen Vacancy",
+    pillar: "research",
+    kind: "paper",
+    year: 2026,
+    status: "published",
+    venue: "ACS Omega",
+    published: "21 August 2026",
+    authors: ["Xiaoping Han", "Maamar Benkraouda", "Shahida Maqsood",
+              "Deepa Jithin", "El Hadi Sadki", "Noureddine Amrane"],
+    summary: "A hybrid-functional study of ferromagnetism in samarium-doped ceria and the " +
+             "interplay between the dopant and oxygen vacancies, published in ACS Omega.",
+    tags: ["DFT", "Hybrid Functional", "Ceria", "Ferromagnetism", "Co-authored"],
+    links: [{ label: "Read the paper (DOI)", url: "https://doi.org/10.1021/acsomega.6c04304" }]
+  },
+
+  {
     slug: "newsletter-2026-09-07",
     title: "Aviation & MRO Notice Board — 7 September 2026",
     pillar: "teaching",
@@ -142,7 +176,8 @@ window.PROJECTS = [
     featured: true,
     summary: "Doctoral research at UAEU into the fundamental properties and applications " +
              "of nano-scale materials. In progress since August 2023.",
-    tags: ["Nanomaterials", "PhD", "UAEU", "Condensed Matter"]
+    tags: ["Nanomaterials", "PhD", "UAEU", "Condensed Matter"],
+    archive: false          /* research, not built work — Research page only */
     /* When you have a preprint or poster, add:
        embed: { type: "pdf", src: "assets/docs/phd-poster.pdf" }   */
   },
