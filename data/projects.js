@@ -91,15 +91,15 @@ window.PROJECTS = [
 
   {
     slug: "flight-instruments",
-    title: "Flight Instruments Simulator",
+    title: "Flight Instruments Pack66",
     pillar: "teaching",
     kind: "demo",
     year: 2026,
     status: "live",
     featured: true,
-    summary: "An interactive flight instruments panel, built as a teaching aid for " +
-             "aviation students learning how cockpit instrumentation behaves.",
-    tags: ["Aviation", "Interactive", "Simulator", "Classroom", "CAR Part 147"],
+    summary: "An interactive flight instruments pack, built as a teaching aid for " +
+             "aviation students.",
+    tags: ["Aviation", "Interactive", "Instruments", "Classroom"],
     embed: { type: "site", src: "https://flight-instruments.vercel.app/", framable: true },
     links: [{ label: "Open the live app", url: "https://flight-instruments.vercel.app/" }]
   },
