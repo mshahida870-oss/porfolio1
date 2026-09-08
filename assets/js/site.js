@@ -206,6 +206,7 @@
     function apply() {
       var q = (search && search.value || "").trim().toLowerCase();
       var list = ALL.filter(function (p) {
+        if (p.archive === false) return false;   /* kept on its pillar page only */
         if (active !== "all" && p.pillar !== active) return false;
         if (!q) return true;
         var hay = [p.title, p.summary, p.kind, p.year, (p.tags || []).join(" ")].join(" ").toLowerCase();
