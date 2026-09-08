@@ -65,7 +65,7 @@ window.PROJECTS = [
     summary: "An interactive flight instruments panel, built as a teaching aid for " +
              "aviation students learning how cockpit instrumentation behaves.",
     tags: ["Aviation", "Interactive", "Simulator", "Classroom", "CAR Part 147"],
-    embed: { type: "site", src: "https://flight-instruments.vercel.app/" },
+    embed: { type: "site", src: "https://flight-instruments.vercel.app/", framable: true },
     links: [{ label: "Open the live app", url: "https://flight-instruments.vercel.app/" }]
   },
 

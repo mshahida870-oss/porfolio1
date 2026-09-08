@@ -357,3 +357,22 @@ a.chip:hover { color: var(--ink); border-color: var(--line-2); }
 @media (max-width: 880px) { .split { grid-template-columns: 1fr; gap: 32px; } }
 .prose { color: var(--ink-2); font-size: 1.02rem; line-height: 1.75; }
 .prose p:last-child { margin-bottom: 0; }
+
+/* ---------- External site panel (used when a site refuses framing) ---------- */
+.visit-panel {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 10px; text-align: center; text-decoration: none;
+  padding: 64px 28px; min-height: 260px;
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background: var(--card); color: inherit;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.visit-panel:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); border-color: var(--line-2); }
+.visit-label { font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-3); }
+.visit-host { font-family: var(--display); font-size: clamp(1.4rem, 3.2vw, 2rem); font-weight: 600; letter-spacing: -.02em; color: var(--ink); }
+.visit-cta {
+  margin-top: 8px; display: inline-flex; align-items: center; gap: 8px;
+  padding: 11px 22px; border-radius: 999px;
+  background: var(--ink); color: var(--paper); font-size: .92rem; font-weight: 550;
+}
+.visit-panel:hover .visit-cta { background: var(--accent); }

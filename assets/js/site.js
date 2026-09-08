@@ -239,6 +239,20 @@
              "to show the work itself right here.</div>";
     }
     var src = (e.type === "video" || e.type === "site") ? e.src : u(e.src);
+
+    /* Most sites refuse to be framed (X-Frame-Options / frame-ancestors), and a
+       refused frame renders as a blank box with no way to detect it from here.
+       So an external site gets a link panel unless it is known to allow framing
+       and opts in with framable: true. */
+    if (e.type === "site" && !e.framable) {
+      var host = src.replace(/^https?:\/\//, "").replace(/\/$/, "");
+      return '<a class="visit-panel" href="' + esc(src) + '" target="_blank" rel="noopener">' +
+          '<span class="visit-label">Live site</span>' +
+          '<span class="visit-host">' + esc(host) + "</span>" +
+          '<span class="visit-cta">Open the site ↗</span>' +
+        "</a>";
+    }
+
     var openLabel = e.type === "pdf" ? "Open the PDF" : "Open in a new tab";
     return '<div class="embed-bar">' +
         '<span class="label">' + (e.type === "pdf" ? "Document" : "Live") + "</span>" +

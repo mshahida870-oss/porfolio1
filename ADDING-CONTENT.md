@@ -134,6 +134,31 @@ Use the **embed** URL (`/embed/VIDEO_ID`), not the normal watch link.
 
 ---
 
+## Recipe 6 — Link to a site you run
+
+```js
+embed: { type: "site", src: "https://example.com" },
+links: [{ label: "Visit the site", url: "https://example.com" }]
+```
+
+This shows a panel with the domain and an **Open the site** button.
+
+Most websites refuse to be displayed inside another page — a security header
+called `X-Frame-Options` — and when they refuse, the browser shows an empty box
+with no way for this site to detect it. So the link panel is the default.
+
+If you *know* a site allows framing (usually only ones you built yourself), you
+can show it live inside the page by adding `framable: true`:
+
+```js
+embed: { type: "site", src: "https://myapp.example.com", framable: true }
+```
+
+Check the result. If the panel comes out blank, remove `framable` and the link
+panel comes back.
+
+---
+
 ## Field reference
 
 | Field | Required | Notes |
