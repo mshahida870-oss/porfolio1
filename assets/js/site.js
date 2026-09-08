@@ -416,6 +416,17 @@
       "</div></section>" +
 
       (function () {
+        /* Longer copy and any disclaimer sit above the embed, so a reader knows
+           what they are looking at before they start poking at it. */
+        var paras = (p.body || []).map(function (t) { return "<p>" + esc(t) + "</p>"; }).join("");
+        var note = p.note ? '<div class="notice" style="margin-top:22px">' + esc(p.note) + "</div>" : "";
+        if (!paras && !note) return "";
+        return '<section style="padding-bottom:56px"><div class="wrap">' +
+                 '<div class="prose" style="max-width:70ch">' + paras + "</div>" + note +
+               "</div></section>";
+      })() +
+
+      (function () {
         var body = embedHTML(p);
         return body ? '<section style="padding-bottom:72px"><div class="wrap">' + body + "</div></section>" : "";
       })() +

@@ -225,6 +225,8 @@ Arabic edition loads Noto Sans Arabic and Noto Kufi Arabic this way.
 | `venue` | no | Journal or publisher. Shown on the card and in the citation. |
 | `published` | no | Publication date, e.g. `"31 August 2026"`. |
 | `authors` | no | Array of names in order. Your own name is bolded automatically. |
+| `body` | no | Array of paragraphs shown on the entry's own page, under the summary. |
+| `note` | no | A caveat or disclaimer, shown in a boxed note below the body. |
 
 ---
 
