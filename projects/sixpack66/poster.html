@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="SixPack66 — the six standard flight instruments, live in the browser. Built for EASA and GCAA Part-66 students by Shahida Maqsood.">
+<title>SixPack66 Poster</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=JetBrains+Mono:wght@400;500;700&family=Source+Sans+3:wght@400;600&display=swap">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=JetBrains+Mono:wght@400;500;700&family=Source+Sans+3:wght@400;600&display=swap"></noscript>
+<style>
+:root{
+  --backdrop:#E7EAEF; --paper:#FFFFFF; --ink:#0E1725; --ink-mid:#4A566A; --ink-low:#7C8798;
+  --rule:#DCE2EA; --sunk:#F4F6F9; --mag:#B5286B; --nav:#1D4E89; --nav-soft:#E9F0F8;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--backdrop:#0A0F16}}
+:root[data-theme="dark"]{--backdrop:#0A0F16}
+*{box-sizing:border-box}
+body{margin:0;background:var(--backdrop);font-family:"Source Sans 3",ui-sans-serif,sans-serif;
+  display:flex;justify-content:center;align-items:flex-start;padding:24px 12px}
+.sheet{width:210mm;min-height:297mm;background:var(--paper);color:var(--ink);
+  padding:10mm 12mm 5mm;display:flex;flex-direction:column;gap:3.4mm;
+  box-shadow:0 18px 50px -20px rgba(0,0,0,.45)}
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:6mm;
+  border-bottom:1.3mm solid var(--ink);padding-bottom:3.2mm}
+.kick{font-family:"JetBrains Mono",monospace;font-size:6.3pt;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--mag);font-weight:500}
+h1{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:40pt;line-height:.9;
+  letter-spacing:-.035em;margin:1.4mm 0 1.8mm}
+.tag{margin:0;font-size:10pt;color:var(--ink-mid);max-width:120mm;line-height:1.35}
+.by{text-align:right;flex-shrink:0;display:flex;flex-direction:column;gap:.8mm}
+.by-l{font-family:"JetBrains Mono",monospace;font-size:5.7pt;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink-low)}
+.by-n{font-family:"Bricolage Grotesque",sans-serif;font-weight:600;font-size:11.5pt;line-height:1.1}
+.by-r{font-size:7.4pt;color:var(--ink-mid);line-height:1.25}
+
+.gauges{display:grid;grid-template-columns:repeat(3,44mm);justify-content:center;gap:2.6mm 7mm}
+.g{--face:#0b0e13;--bezel:#161c26;--mark:#f2f5f8;--dim-mark:#8e9bab;--sky:#3b7fd4;--ground:#8a5a2b;
+  display:flex;flex-direction:column;gap:1.2mm}
+.g svg{width:100%;height:auto;display:block;background:#1a2332;border-radius:3mm;
+  border:.3mm solid var(--rule)}
+  /* gauge internals */
+  .bezel{fill:var(--bezel);}
+  .face{fill:var(--face);}
+  .rim{fill:none;stroke:rgba(255,255,255,.13);stroke-width:1.5;}
+  .tick-maj{stroke:var(--mark);stroke-width:2.6;stroke-linecap:round;}
+  .tick-min{stroke:var(--dim-mark);stroke-width:1.4;stroke-linecap:round;}
+  .lbl{fill:var(--mark);font-size:15px;font-weight:650;text-anchor:middle;dominant-baseline:central;
+    font-family:system-ui,sans-serif;}
+  .lbl-sm{fill:var(--mark);font-size:11px;font-weight:600;text-anchor:middle;dominant-baseline:central;}
+  .lbl-xs{fill:var(--dim-mark);font-size:8px;font-weight:600;text-anchor:middle;dominant-baseline:central;
+    letter-spacing:.06em;}
+  .needle{fill:var(--mark);stroke:none;}
+  .needle-thin{stroke:var(--mark);stroke-width:3;stroke-linecap:round;}
+  .hub{fill:#c9d3de;stroke:#4a5563;stroke-width:1;}
+  .arc-white{fill:none;stroke:#ffffff;stroke-width:5;}
+  .arc-green{fill:none;stroke:#2ecc71;stroke-width:5;}
+  .arc-yellow{fill:none;stroke:#f5c400;stroke-width:5;}
+  .arc-red{stroke:#ff3b30;stroke-width:4;stroke-linecap:butt;}
+.cap{font-family:"JetBrains Mono",monospace;font-size:5.9pt;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--ink-low);text-align:center}
+.cap span{color:var(--nav);font-weight:700}
+
+.feats{display:grid;grid-template-columns:1fr 1fr;gap:2.4mm 6mm}
+.f{display:flex;gap:2.4mm;align-items:flex-start}
+.f .n{font-family:"JetBrains Mono",monospace;font-size:7.4pt;font-weight:700;color:var(--mag);
+  line-height:1.25;flex-shrink:0;width:5mm}
+.f h3{margin:0 0 .4mm;font-size:8.6pt;font-weight:600;line-height:1.2}
+.f p{margin:0;font-size:7.4pt;color:var(--ink-mid);line-height:1.33}
+
+.proof{display:grid;grid-template-columns:repeat(3,1fr);border:.3mm solid var(--rule)}
+.pf{padding:2.6mm 3.2mm;border-right:.3mm solid var(--rule);display:flex;flex-direction:column;gap:.5mm}
+.pf:last-child{border-right:0}
+.pf .n{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:15pt;line-height:1;
+  letter-spacing:-.03em;color:var(--mag)}
+.pf .d{font-size:7.2pt;color:var(--ink-mid);line-height:1.3}
+
+.band{display:flex;gap:6mm;align-items:center;border:.3mm solid var(--rule);
+  background:var(--sunk);padding:4mm 5mm}
+.qr{width:31mm;height:31mm;flex-shrink:0;background:#fff;border:.3mm solid var(--rule);
+  border-radius:2mm;padding:1.6mm}
+.band-t{flex:1;min-width:0;display:flex;flex-direction:column;gap:1.6mm}
+.band-t h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:600;font-size:12pt;
+  margin:0;letter-spacing:-.015em}
+.band-t p{margin:0;font-size:8pt;color:var(--ink-mid);line-height:1.4;max-width:112mm}
+.url{font-family:"JetBrains Mono",monospace;font-size:9.5pt;color:var(--nav);
+  background:var(--nav-soft);border:.3mm solid var(--rule);border-radius:1.4mm;
+  padding:1.6mm 2.4mm;display:inline-block;align-self:flex-start}
+.steps{display:flex;gap:4mm;flex-wrap:wrap;font-size:7.4pt;color:var(--ink-mid)}
+.steps b{color:var(--ink)}
+.how{display:flex;gap:3.4mm;flex-wrap:wrap;font-size:7pt;color:var(--ink-mid);
+  border-top:.25mm solid var(--rule);padding-top:1.6mm}
+.how b{color:var(--nav);font-weight:600;letter-spacing:.02em}
+
+.foot{margin-top:auto;padding-top:2.6mm;border-top:.3mm solid var(--rule);
+  display:flex;justify-content:space-between;gap:5mm;font-size:6.5pt;color:var(--ink-low);line-height:1.35}
+.foot p{margin:0;max-width:128mm}
+.foot .t{font-family:"JetBrains Mono",monospace;letter-spacing:.1em;text-transform:uppercase;
+  white-space:nowrap;text-align:right}
+
+@media print{
+  @page{size:A4 portrait;margin:0}
+  body{background:#fff;padding:0;display:block}
+  .sheet{box-shadow:none;width:210mm;height:297mm;min-height:0;overflow:hidden}
+}
+@media (max-width:700px){
+  body{padding:10px 6px}
+  .sheet{width:100%;min-height:0;padding:8mm}
+  .gauges{grid-template-columns:repeat(2,1fr)}
+  .feats{grid-template-columns:1fr}
+  h1{font-size:30pt}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <header class="head">
+    <div>
+      <div class="kick">EASA / CAR Part-66 &middot; Flight Instruments &middot; The Six Pack</div>
+      <h1>SixPack66</h1>
+      <p class="tag">The six standard flight instruments, live on your phone. Move one control and
+      watch every gauge respond the way it would in the aircraft.</p>
+    </div>
+    <div class="by">
+      <div class="by-l">Designed &amp; built by</div>
+      <div class="by-n">Shahida Maqsood</div>
+      <div class="by-r">&copy; 2026 Shahida Maqsood<br>All rights reserved</div>
+    </div>
+  </header>
+
+  <div class="gauges">
+    <div class="g"><svg id="svgAsi" viewBox="0 0 200 200" role="img" aria-label="Airspeed"></svg><div class="cap">Airspeed <span>95 kt</span></div></div>
+    <div class="g"><svg id="svgAi" viewBox="0 0 200 200" role="img" aria-label="Attitude"></svg><div class="cap">Attitude <span>6&deg; up &middot; 14&deg; right</span></div></div>
+    <div class="g"><svg id="svgAlt" viewBox="0 0 200 200" role="img" aria-label="Altimeter"></svg><div class="cap">Altimeter <span>3,200 ft</span></div></div>
+    <div class="g"><svg id="svgTc" viewBox="0 0 200 200" role="img" aria-label="Turn coordinator"></svg><div class="cap">Turn coordinator <span>Standard rate</span></div></div>
+    <div class="g"><svg id="svgDg" viewBox="0 0 200 200" role="img" aria-label="Heading"></svg><div class="cap">Heading <span>045&deg;</span></div></div>
+    <div class="g"><svg id="svgVsi" viewBox="0 0 200 200" role="img" aria-label="Vertical speed"></svg><div class="cap">Vertical speed <span>+600 fpm</span></div></div>
+  </div>
+
+  <div class="feats"><div class="f"><div class="n">01</div><div><h3>Six real instruments</h3><p>Correct faces and markings, not icons. Cessna 172 airspeed arcs, a three-pointer altimeter, a rotating compass card.</p></div></div><div class="f"><div class="n">02</div><div><h3>One shared flight state</h3><p>The altimeter, VSI and turn coordinator cannot disagree, because every needle reads the same simulated aeroplane.</p></div></div><div class="f"><div class="n">03</div><div><h3>Set it, or fly it</h3><p>Direct mode moves one parameter at a time. Fly mode hands you throttle, elevator, aileron and rudder.</p></div></div><div class="f"><div class="n">04</div><div><h3>Real instrument physics</h3><p>Rate of turn is &omega; = 1091&middot;tan(bank)/TAS, so a standard-rate turn really is 3&deg;/s and the bank needed rises with speed.</p></div></div><div class="f"><div class="n">05</div><div><h3>Presets that teach</h3><p>Straight and level, steady climb, descent, standard-rate turns, a climbing turn, and an approach to the stall.</p></div></div><div class="f"><div class="n">06</div><div><h3>Runs with no network</h3><p>Install it once from the browser. It opens full screen and keeps working offline on a phone or a shared classroom PC.</p></div></div></div>
+
+  <div class="proof"><div class="pf"><div class="n">Six</div><div class="d">Instruments driven from one flight state, every needle consistent with the others</div></div><div class="pf"><div class="n">3&deg;/s</div><div class="d">Standard rate reproduced exactly &mdash; 120 seconds for a full 360&deg; turn</div></div><div class="pf"><div class="n">40 KB</div><div class="d">The entire app. No build step, no backend, no login, no app store</div></div></div>
+
+  <div class="band">
+    <div class="qr"><svg viewBox="0 0 29 29" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%"><rect width="29" height="29" fill="#fff"/><g fill="#0E1725"><rect x="0" y="0" width="1" height="1"/><rect x="1" y="0" width="1" height="1"/><rect x="2" y="0" width="1" height="1"/><rect x="3" y="0" width="1" height="1"/><rect x="4" y="0" width="1" height="1"/><rect x="5" y="0" width="1" height="1"/><rect x="6" y="0" width="1" height="1"/><rect x="8" y="0" width="1" height="1"/><rect x="13" y="0" width="1" height="1"/><rect x="15" y="0" width="1" height="1"/><rect x="16" y="0" width="1" height="1"/><rect x="18" y="0" width="1" height="1"/><rect x="22" y="0" width="1" height="1"/><rect x="23" y="0" width="1" height="1"/><rect x="24" y="0" width="1" height="1"/><rect x="25" y="0" width="1" height="1"/><rect x="26" y="0" width="1" height="1"/><rect x="27" y="0" width="1" height="1"/><rect x="28" y="0" width="1" height="1"/><rect x="0" y="1" width="1" height="1"/><rect x="6" y="1" width="1" height="1"/><rect x="11" y="1" width="1" height="1"/><rect x="13" y="1" width="1" height="1"/><rect x="14" y="1" width="1" height="1"/><rect x="19" y="1" width="1" height="1"/><rect x="22" y="1" width="1" height="1"/><rect x="28" y="1" width="1" height="1"/><rect x="0" y="2" width="1" height="1"/><rect x="2" y="2" width="1" height="1"/><rect x="3" y="2" width="1" height="1"/><rect x="4" y="2" width="1" height="1"/><rect x="6" y="2" width="1" height="1"/><rect x="10" y="2" width="1" height="1"/><rect x="12" y="2" width="1" height="1"/><rect x="15" y="2" width="1" height="1"/><rect x="16" y="2" width="1" height="1"/><rect x="17" y="2" width="1" height="1"/><rect x="18" y="2" width="1" height="1"/><rect x="20" y="2" width="1" height="1"/><rect x="22" y="2" width="1" height="1"/><rect x="24" y="2" width="1" height="1"/><rect x="25" y="2" width="1" height="1"/><rect x="26" y="2" width="1" height="1"/><rect x="28" y="2" width="1" height="1"/><rect x="0" y="3" width="1" height="1"/><rect x="2" y="3" width="1" height="1"/><rect x="3" y="3" width="1" height="1"/><rect x="4" y="3" width="1" height="1"/><rect x="6" y="3" width="1" height="1"/><rect x="8" y="3" width="1" height="1"/><rect x="9" y="3" width="1" height="1"/><rect x="15" y="3" width="1" height="1"/><rect x="18" y="3" width="1" height="1"/><rect x="19" y="3" width="1" height="1"/><rect x="22" y="3" width="1" height="1"/><rect x="24" y="3" width="1" height="1"/><rect x="25" y="3" width="1" height="1"/><rect x="26" y="3" width="1" height="1"/><rect x="28" y="3" width="1" height="1"/><rect x="0" y="4" width="1" height="1"/><rect x="2" y="4" width="1" height="1"/><rect x="3" y="4" width="1" height="1"/><rect x="4" y="4" width="1" height="1"/><rect x="6" y="4" width="1" height="1"/><rect x="8" y="4" width="1" height="1"/><rect x="9" y="4" width="1" height="1"/><rect x="10" y="4" width="1" height="1"/><rect x="11" y="4" width="1" height="1"/><rect x="14" y="4" width="1" height="1"/><rect x="15" y="4" width="1" height="1"/><rect x="16" y="4" width="1" height="1"/><rect x="17" y="4" width="1" height="1"/><rect x="18" y="4" width="1" height="1"/><rect x="22" y="4" width="1" height="1"/><rect x="24" y="4" width="1" height="1"/><rect x="25" y="4" width="1" height="1"/><rect x="26" y="4" width="1" height="1"/><rect x="28" y="4" width="1" height="1"/><rect x="0" y="5" width="1" height="1"/><rect x="6" y="5" width="1" height="1"/><rect x="8" y="5" width="1" height="1"/><rect x="10" y="5" width="1" height="1"/><rect x="16" y="5" width="1" height="1"/><rect x="17" y="5" width="1" height="1"/><rect x="19" y="5" width="1" height="1"/><rect x="22" y="5" width="1" height="1"/><rect x="28" y="5" width="1" height="1"/><rect x="0" y="6" width="1" height="1"/><rect x="1" y="6" width="1" height="1"/><rect x="2" y="6" width="1" height="1"/><rect x="3" y="6" width="1" height="1"/><rect x="4" y="6" width="1" height="1"/><rect x="5" y="6" width="1" height="1"/><rect x="6" y="6" width="1" height="1"/><rect x="8" y="6" width="1" height="1"/><rect x="10" y="6" width="1" height="1"/><rect x="12" y="6" width="1" height="1"/><rect x="14" y="6" width="1" height="1"/><rect x="16" y="6" width="1" height="1"/><rect x="18" y="6" width="1" height="1"/><rect x="20" y="6" width="1" height="1"/><rect x="22" y="6" width="1" height="1"/><rect x="23" y="6" width="1" height="1"/><rect x="24" y="6" width="1" height="1"/><rect x="25" y="6" width="1" height="1"/><rect x="26" y="6" width="1" height="1"/><rect x="27" y="6" width="1" height="1"/><rect x="28" y="6" width="1" height="1"/><rect x="8" y="7" width="1" height="1"/><rect x="13" y="7" width="1" height="1"/><rect x="15" y="7" width="1" height="1"/><rect x="16" y="7" width="1" height="1"/><rect x="17" y="7" width="1" height="1"/><rect x="20" y="7" width="1" height="1"/><rect x="0" y="8" width="1" height="1"/><rect x="4" y="8" width="1" height="1"/><rect x="6" y="8" width="1" height="1"/><rect x="7" y="8" width="1" height="1"/><rect x="8" y="8" width="1" height="1"/><rect x="9" y="8" width="1" height="1"/><rect x="13" y="8" width="1" height="1"/><rect x="17" y="8" width="1" height="1"/><rect x="19" y="8" width="1" height="1"/><rect x="21" y="8" width="1" height="1"/><rect x="22" y="8" width="1" height="1"/><rect x="23" y="8" width="1" height="1"/><rect x="24" y="8" width="1" height="1"/><rect x="25" y="8" width="1" height="1"/><rect x="28" y="8" width="1" height="1"/><rect x="4" y="9" width="1" height="1"/><rect x="5" y="9" width="1" height="1"/><rect x="8" y="9" width="1" height="1"/><rect x="13" y="9" width="1" height="1"/><rect x="14" y="9" width="1" height="1"/><rect x="15" y="9" width="1" height="1"/><rect x="16" y="9" width="1" height="1"/><rect x="22" y="9" width="1" height="1"/><rect x="23" y="9" width="1" height="1"/><rect x="24" y="9" width="1" height="1"/><rect x="25" y="9" width="1" height="1"/><rect x="26" y="9" width="1" height="1"/><rect x="27" y="9" width="1" height="1"/><rect x="28" y="9" width="1" height="1"/><rect x="1" y="10" width="1" height="1"/><rect x="2" y="10" width="1" height="1"/><rect x="3" y="10" width="1" height="1"/><rect x="6" y="10" width="1" height="1"/><rect x="10" y="10" width="1" height="1"/><rect x="11" y="10" width="1" height="1"/><rect x="12" y="10" width="1" height="1"/><rect x="15" y="10" width="1" height="1"/><rect x="16" y="10" width="1" height="1"/><rect x="17" y="10" width="1" height="1"/><rect x="18" y="10" width="1" height="1"/><rect x="21" y="10" width="1" height="1"/><rect x="24" y="10" width="1" height="1"/><rect x="28" y="10" width="1" height="1"/><rect x="0" y="11" width="1" height="1"/><rect x="1" y="11" width="1" height="1"/><rect x="3" y="11" width="1" height="1"/><rect x="4" y="11" width="1" height="1"/><rect x="7" y="11" width="1" height="1"/><rect x="8" y="11" width="1" height="1"/><rect x="9" y="11" width="1" height="1"/><rect x="10" y="11" width="1" height="1"/><rect x="11" y="11" width="1" height="1"/><rect x="14" y="11" width="1" height="1"/><rect x="17" y="11" width="1" height="1"/><rect x="19" y="11" width="1" height="1"/><rect x="21" y="11" width="1" height="1"/><rect x="22" y="11" width="1" height="1"/><rect x="25" y="11" width="1" height="1"/><rect x="27" y="11" width="1" height="1"/><rect x="28" y="11" width="1" height="1"/><rect x="0" y="12" width="1" height="1"/><rect x="3" y="12" width="1" height="1"/><rect x="4" y="12" width="1" height="1"/><rect x="5" y="12" width="1" height="1"/><rect x="6" y="12" width="1" height="1"/><rect x="7" y="12" width="1" height="1"/><rect x="9" y="12" width="1" height="1"/><rect x="12" y="12" width="1" height="1"/><rect x="13" y="12" width="1" height="1"/><rect x="14" y="12" width="1" height="1"/><rect x="15" y="12" width="1" height="1"/><rect x="17" y="12" width="1" height="1"/><rect x="19" y="12" width="1" height="1"/><rect x="21" y="12" width="1" height="1"/><rect x="27" y="12" width="1" height="1"/><rect x="1" y="13" width="1" height="1"/><rect x="2" y="13" width="1" height="1"/><rect x="3" y="13" width="1" height="1"/><rect x="8" y="13" width="1" height="1"/><rect x="10" y="13" width="1" height="1"/><rect x="11" y="13" width="1" height="1"/><rect x="15" y="13" width="1" height="1"/><rect x="21" y="13" width="1" height="1"/><rect x="22" y="13" width="1" height="1"/><rect x="23" y="13" width="1" height="1"/><rect x="24" y="13" width="1" height="1"/><rect x="25" y="13" width="1" height="1"/><rect x="26" y="13" width="1" height="1"/><rect x="27" y="13" width="1" height="1"/><rect x="28" y="13" width="1" height="1"/><rect x="0" y="14" width="1" height="1"/><rect x="5" y="14" width="1" height="1"/><rect x="6" y="14" width="1" height="1"/><rect x="9" y="14" width="1" height="1"/><rect x="10" y="14" width="1" height="1"/><rect x="11" y="14" width="1" height="1"/><rect x="13" y="14" width="1" height="1"/><rect x="14" y="14" width="1" height="1"/><rect x="15" y="14" width="1" height="1"/><rect x="16" y="14" width="1" height="1"/><rect x="22" y="14" width="1" height="1"/><rect x="25" y="14" width="1" height="1"/><rect x="26" y="14" width="1" height="1"/><rect x="28" y="14" width="1" height="1"/><rect x="0" y="15" width="1" height="1"/><rect x="1" y="15" width="1" height="1"/><rect x="3" y="15" width="1" height="1"/><rect x="4" y="15" width="1" height="1"/><rect x="5" y="15" width="1" height="1"/><rect x="8" y="15" width="1" height="1"/><rect x="9" y="15" width="1" height="1"/><rect x="10" y="15" width="1" height="1"/><rect x="13" y="15" width="1" height="1"/><rect x="15" y="15" width="1" height="1"/><rect x="17" y="15" width="1" height="1"/><rect x="18" y="15" width="1" height="1"/><rect x="20" y="15" width="1" height="1"/><rect x="21" y="15" width="1" height="1"/><rect x="22" y="15" width="1" height="1"/><rect x="23" y="15" width="1" height="1"/><rect x="24" y="15" width="1" height="1"/><rect x="27" y="15" width="1" height="1"/><rect x="28" y="15" width="1" height="1"/><rect x="4" y="16" width="1" height="1"/><rect x="6" y="16" width="1" height="1"/><rect x="10" y="16" width="1" height="1"/><rect x="11" y="16" width="1" height="1"/><rect x="13" y="16" width="1" height="1"/><rect x="15" y="16" width="1" height="1"/><rect x="17" y="16" width="1" height="1"/><rect x="18" y="16" width="1" height="1"/><rect x="19" y="16" width="1" height="1"/><rect x="27" y="16" width="1" height="1"/><rect x="0" y="17" width="1" height="1"/><rect x="4" y="17" width="1" height="1"/><rect x="5" y="17" width="1" height="1"/><rect x="8" y="17" width="1" height="1"/><rect x="9" y="17" width="1" height="1"/><rect x="10" y="17" width="1" height="1"/><rect x="11" y="17" width="1" height="1"/><rect x="13" y="17" width="1" height="1"/><rect x="14" y="17" width="1" height="1"/><rect x="15" y="17" width="1" height="1"/><rect x="16" y="17" width="1" height="1"/><rect x="17" y="17" width="1" height="1"/><rect x="18" y="17" width="1" height="1"/><rect x="22" y="17" width="1" height="1"/><rect x="23" y="17" width="1" height="1"/><rect x="24" y="17" width="1" height="1"/><rect x="25" y="17" width="1" height="1"/><rect x="27" y="17" width="1" height="1"/><rect x="28" y="17" width="1" height="1"/><rect x="5" y="18" width="1" height="1"/><rect x="6" y="18" width="1" height="1"/><rect x="7" y="18" width="1" height="1"/><rect x="8" y="18" width="1" height="1"/><rect x="10" y="18" width="1" height="1"/><rect x="15" y="18" width="1" height="1"/><rect x="18" y="18" width="1" height="1"/><rect x="20" y="18" width="1" height="1"/><rect x="23" y="18" width="1" height="1"/><rect x="26" y="18" width="1" height="1"/><rect x="28" y="18" width="1" height="1"/><rect x="2" y="19" width="1" height="1"/><rect x="3" y="19" width="1" height="1"/><rect x="5" y="19" width="1" height="1"/><rect x="8" y="19" width="1" height="1"/><rect x="11" y="19" width="1" height="1"/><rect x="12" y="19" width="1" height="1"/><rect x="14" y="19" width="1" height="1"/><rect x="15" y="19" width="1" height="1"/><rect x="17" y="19" width="1" height="1"/><rect x="19" y="19" width="1" height="1"/><rect x="22" y="19" width="1" height="1"/><rect x="24" y="19" width="1" height="1"/><rect x="27" y="19" width="1" height="1"/><rect x="28" y="19" width="1" height="1"/><rect x="0" y="20" width="1" height="1"/><rect x="1" y="20" width="1" height="1"/><rect x="2" y="20" width="1" height="1"/><rect x="4" y="20" width="1" height="1"/><rect x="6" y="20" width="1" height="1"/><rect x="7" y="20" width="1" height="1"/><rect x="10" y="20" width="1" height="1"/><rect x="13" y="20" width="1" height="1"/><rect x="14" y="20" width="1" height="1"/><rect x="17" y="20" width="1" height="1"/><rect x="19" y="20" width="1" height="1"/><rect x="20" y="20" width="1" height="1"/><rect x="21" y="20" width="1" height="1"/><rect x="22" y="20" width="1" height="1"/><rect x="23" y="20" width="1" height="1"/><rect x="24" y="20" width="1" height="1"/><rect x="25" y="20" width="1" height="1"/><rect x="28" y="20" width="1" height="1"/><rect x="8" y="21" width="1" height="1"/><rect x="10" y="21" width="1" height="1"/><rect x="12" y="21" width="1" height="1"/><rect x="15" y="21" width="1" height="1"/><rect x="16" y="21" width="1" height="1"/><rect x="20" y="21" width="1" height="1"/><rect x="24" y="21" width="1" height="1"/><rect x="28" y="21" width="1" height="1"/><rect x="0" y="22" width="1" height="1"/><rect x="1" y="22" width="1" height="1"/><rect x="2" y="22" width="1" height="1"/><rect x="3" y="22" width="1" height="1"/><rect x="4" y="22" width="1" height="1"/><rect x="5" y="22" width="1" height="1"/><rect x="6" y="22" width="1" height="1"/><rect x="8" y="22" width="1" height="1"/><rect x="9" y="22" width="1" height="1"/><rect x="11" y="22" width="1" height="1"/><rect x="12" y="22" width="1" height="1"/><rect x="13" y="22" width="1" height="1"/><rect x="14" y="22" width="1" height="1"/><rect x="15" y="22" width="1" height="1"/><rect x="18" y="22" width="1" height="1"/><rect x="19" y="22" width="1" height="1"/><rect x="20" y="22" width="1" height="1"/><rect x="22" y="22" width="1" height="1"/><rect x="24" y="22" width="1" height="1"/><rect x="25" y="22" width="1" height="1"/><rect x="26" y="22" width="1" height="1"/><rect x="28" y="22" width="1" height="1"/><rect x="0" y="23" width="1" height="1"/><rect x="6" y="23" width="1" height="1"/><rect x="9" y="23" width="1" height="1"/><rect x="10" y="23" width="1" height="1"/><rect x="12" y="23" width="1" height="1"/><rect x="13" y="23" width="1" height="1"/><rect x="16" y="23" width="1" height="1"/><rect x="17" y="23" width="1" height="1"/><rect x="19" y="23" width="1" height="1"/><rect x="20" y="23" width="1" height="1"/><rect x="24" y="23" width="1" height="1"/><rect x="28" y="23" width="1" height="1"/><rect x="0" y="24" width="1" height="1"/><rect x="2" y="24" width="1" height="1"/><rect x="3" y="24" width="1" height="1"/><rect x="4" y="24" width="1" height="1"/><rect x="6" y="24" width="1" height="1"/><rect x="8" y="24" width="1" height="1"/><rect x="9" y="24" width="1" height="1"/><rect x="13" y="24" width="1" height="1"/><rect x="17" y="24" width="1" height="1"/><rect x="19" y="24" width="1" height="1"/><rect x="20" y="24" width="1" height="1"/><rect x="21" y="24" width="1" height="1"/><rect x="22" y="24" width="1" height="1"/><rect x="23" y="24" width="1" height="1"/><rect x="24" y="24" width="1" height="1"/><rect x="25" y="24" width="1" height="1"/><rect x="27" y="24" width="1" height="1"/><rect x="0" y="25" width="1" height="1"/><rect x="2" y="25" width="1" height="1"/><rect x="3" y="25" width="1" height="1"/><rect x="4" y="25" width="1" height="1"/><rect x="6" y="25" width="1" height="1"/><rect x="12" y="25" width="1" height="1"/><rect x="14" y="25" width="1" height="1"/><rect x="15" y="25" width="1" height="1"/><rect x="16" y="25" width="1" height="1"/><rect x="18" y="25" width="1" height="1"/><rect x="19" y="25" width="1" height="1"/><rect x="21" y="25" width="1" height="1"/><rect x="28" y="25" width="1" height="1"/><rect x="0" y="26" width="1" height="1"/><rect x="2" y="26" width="1" height="1"/><rect x="3" y="26" width="1" height="1"/><rect x="4" y="26" width="1" height="1"/><rect x="6" y="26" width="1" height="1"/><rect x="9" y="26" width="1" height="1"/><rect x="10" y="26" width="1" height="1"/><rect x="13" y="26" width="1" height="1"/><rect x="15" y="26" width="1" height="1"/><rect x="16" y="26" width="1" height="1"/><rect x="17" y="26" width="1" height="1"/><rect x="18" y="26" width="1" height="1"/><rect x="19" y="26" width="1" height="1"/><rect x="20" y="26" width="1" height="1"/><rect x="21" y="26" width="1" height="1"/><rect x="25" y="26" width="1" height="1"/><rect x="26" y="26" width="1" height="1"/><rect x="27" y="26" width="1" height="1"/><rect x="28" y="26" width="1" height="1"/><rect x="0" y="27" width="1" height="1"/><rect x="6" y="27" width="1" height="1"/><rect x="10" y="27" width="1" height="1"/><rect x="11" y="27" width="1" height="1"/><rect x="12" y="27" width="1" height="1"/><rect x="13" y="27" width="1" height="1"/><rect x="14" y="27" width="1" height="1"/><rect x="16" y="27" width="1" height="1"/><rect x="17" y="27" width="1" height="1"/><rect x="18" y="27" width="1" height="1"/><rect x="20" y="27" width="1" height="1"/><rect x="21" y="27" width="1" height="1"/><rect x="23" y="27" width="1" height="1"/><rect x="24" y="27" width="1" height="1"/><rect x="25" y="27" width="1" height="1"/><rect x="27" y="27" width="1" height="1"/><rect x="28" y="27" width="1" height="1"/><rect x="0" y="28" width="1" height="1"/><rect x="1" y="28" width="1" height="1"/><rect x="2" y="28" width="1" height="1"/><rect x="3" y="28" width="1" height="1"/><rect x="4" y="28" width="1" height="1"/><rect x="5" y="28" width="1" height="1"/><rect x="6" y="28" width="1" height="1"/><rect x="8" y="28" width="1" height="1"/><rect x="12" y="28" width="1" height="1"/><rect x="14" y="28" width="1" height="1"/><rect x="16" y="28" width="1" height="1"/><rect x="17" y="28" width="1" height="1"/><rect x="20" y="28" width="1" height="1"/><rect x="21" y="28" width="1" height="1"/><rect x="23" y="28" width="1" height="1"/><rect x="24" y="28" width="1" height="1"/><rect x="25" y="28" width="1" height="1"/><rect x="27" y="28" width="1" height="1"/></g></svg></div>
+    <div class="band-t">
+      <h2>Scan it, or type the address</h2>
+      <div class="url">flight-instruments.vercel.app</div>
+      <div class="steps">
+        <span><b>1.</b> Open the link</span>
+        <span><b>2.</b> Pick a preset</span>
+        <span><b>3.</b> Install it to your Home Screen</span>
+      </div>
+      <div class="how">
+        <span><b>iPhone</b> Safari only: Share, then Add to Home Screen</span>
+        <span><b>Android</b> Chrome menu, then Install app</span>
+        <span><b>Laptop</b> Install icon at the end of the address bar</span>
+      </div>
+      <p>No app store and no download. Once installed it opens full screen and still works with no
+         network, so it runs on a shared classroom PC or on a student's own phone. Nothing is
+         collected and there is no login.</p>
+    </div>
+  </div>
+
+  <div class="foot">
+    <p>The gauges above are drawn by the app itself, shown in a standard-rate climbing turn. The
+       flight model is a simplified response model built to teach instrument behaviour, not a
+       certified flight-dynamics model. Airspeed markings follow Cessna 172S values and IAS is
+       treated as TAS; every instrumentation assumption is listed inside the app.</p>
+    <div class="t">flight-instruments<br>.vercel.app</div>
+  </div>
+
+</div>
+
+<script>
+(function(){
+"use strict";
+/* ---------------- helpers ---------------- */
+var SVGNS = "http://www.w3.org/2000/svg";
+var $ = function(id){ return document.getElementById(id); };
+var clamp = function(v,a,b){ return Math.min(b, Math.max(a, v)); };
+var wrap360 = function(v){ return ((v % 360) + 360) % 360; };
+var rad = function(d){ return d * Math.PI / 180; };
+
+// angle convention: 0 deg = 12 o'clock, positive = clockwise
+function polar(cx, cy, r, a){
+  return { x: cx + r * Math.sin(rad(a)), y: cy - r * Math.cos(rad(a)) };
+}
+function el(tag, attrs){
+  var n = document.createElementNS(SVGNS, tag);
+  for (var k in attrs) if (attrs.hasOwnProperty(k)) n.setAttribute(k, attrs[k]);
+  return n;
+}
+function line(x1,y1,x2,y2,cls){ return el("line",{x1:x1,y1:y1,x2:x2,y2:y2,"class":cls}); }
+function text(x,y,str,cls,extra){
+  var t = el("text",{x:x,y:y,"class":cls});
+  if (extra) for (var k in extra) t.setAttribute(k, extra[k]);
+  t.textContent = str; return t;
+}
+function radialTick(g,cx,cy,r1,r2,a,cls){
+  var p1 = polar(cx,cy,r1,a), p2 = polar(cx,cy,r2,a);
+  g.appendChild(line(p1.x,p1.y,p2.x,p2.y,cls));
+}
+function arcPath(cx,cy,r,a0,a1){
+  var p0 = polar(cx,cy,r,a0), p1 = polar(cx,cy,r,a1);
+  var large = (Math.abs(a1-a0) > 180) ? 1 : 0;
+  return "M"+p0.x+" "+p0.y+"A"+r+" "+r+" 0 "+large+" 1 "+p1.x+" "+p1.y;
+}
+function bezel(svg){
+  svg.appendChild(el("circle",{cx:100,cy:100,r:98,"class":"bezel"}));
+  svg.appendChild(el("circle",{cx:100,cy:100,r:88,"class":"face"}));
+  svg.appendChild(el("circle",{cx:100,cy:100,r:88,"class":"rim"}));
+}
+// tapered needle pointing up from the hub
+function needlePath(len, w, tail){
+  return "M0 "+(-len)+" L"+(w/2)+" "+(-len*0.18)+" L"+(w*0.34)+" "+tail+
+         " L"+(-w*0.34)+" "+tail+" L"+(-w/2)+" "+(-len*0.18)+" Z";
+}
+
+/* ---------------- shared flight state ---------------- */
+var S = {
+  mode: "direct",
+  paused: false,
+  ias: 95,          // knots, indicated (= true here)
+  altT: 2500,       // true altitude, ft
+  hdg: 90,          // magnetic heading, deg
+  vs: 0,            // instantaneous vertical speed, fpm
+  vsInd: 0,         // lagged VSI needle indication, fpm
+  pitch: 0,         // deg
+  bank: 0,          // deg
+  baro: 29.92,      // inHg
+  // fly mode controls
+  thr: 55, elev: 0, ail: 0, flaps: 0,
+  rud: 0,
+  turnRate: 0,      // deg/sec
+  ball: 0,          // -1 .. +1, positive = ball right
+  stall: false
+};
+var DEFAULTS = JSON.parse(JSON.stringify(S));
+
+// indicated altitude follows the subscale: ~1000 ft per inHg
+function indicatedAlt(){ return S.altT + (S.baro - 29.92) * 1000; }
+// bank required for a standard-rate (3 deg/s) turn at the current speed
+function stdRateBank(){ return Math.atan(3 * Math.max(S.ias,30) / 1091) * 180 / Math.PI; }
+
+/* ================= AIRSPEED INDICATOR ================= */
+// 40 kt at 12 o'clock, sweeping clockwise to 170 kt at 330 deg.
+var ASI_MIN = 40, ASI_MAX = 170, ASI_SWEEP = 330;
+function asiAngle(v){ return (clamp(v, ASI_MIN, ASI_MAX) - ASI_MIN) * ASI_SWEEP / (ASI_MAX - ASI_MIN); }
+
+var asiNeedle;
+function buildASI(){
+  var svg = $("svgAsi"); bezel(svg);
+  var g = el("g",{});
+
+  // colour arcs (C172S)
+  g.appendChild(el("path",{d:arcPath(100,100,64,asiAngle(40),asiAngle(85)),"class":"arc-white"}));
+  g.appendChild(el("path",{d:arcPath(100,100,72,asiAngle(48),asiAngle(129)),"class":"arc-green"}));
+  g.appendChild(el("path",{d:arcPath(100,100,72,asiAngle(129),asiAngle(163)),"class":"arc-yellow"}));
+  var r0 = polar(100,100,66,asiAngle(163)), r1 = polar(100,100,78,asiAngle(163));
+  g.appendChild(line(r0.x,r0.y,r1.x,r1.y,"arc-red"));
+
+  for (var v = ASI_MIN; v <= ASI_MAX; v += 5){
+    var a = asiAngle(v);
+    var major = (v % 10 === 0);
+    radialTick(g,100,100, major ? 70 : 74, 80, a, major ? "tick-maj" : "tick-min");
+    if (v % 20 === 0 && v <= 160){
+      var p = polar(100,100,50,a);
+      g.appendChild(text(p.x,p.y,String(v),"lbl"));
+    }
+  }
+  g.appendChild(text(100,72,"KNOTS","lbl-xs"));
+  svg.appendChild(g);
+
+  asiNeedle = el("path",{d:needlePath(64,11,16),"class":"needle"});
+  svg.appendChild(asiNeedle);
+  svg.appendChild(el("circle",{cx:100,cy:100,r:7,"class":"hub"}));
+}
+
+/* ================= ALTIMETER (three pointer) ================= */
+var altH100, altH1000, altH10000, altBaroText;
+function buildAlt(){
+  var svg = $("svgAlt"); bezel(svg);
+  var g = el("g",{});
+  // 10 numerals, 36 deg apart; 5 minor ticks between = 20 ft each
+  for (var i = 0; i < 50; i++){
+    var a = i * 7.2;
+    var major = (i % 5 === 0);
+    radialTick(g,100,100, major ? 70 : 76, 81, a, major ? "tick-maj" : "tick-min");
+  }
+  for (var n = 0; n < 10; n++){
+    var p = polar(100,100,57,n*36);
+    g.appendChild(text(p.x,p.y,String(n),"lbl"));
+  }
+  g.appendChild(text(100,72,"FEET","lbl-xs"));
+
+  // Kollsman window (altimeter subscale)
+  g.appendChild(el("rect",{x:126,y:93,width:42,height:15,rx:2,fill:"#1c222c",stroke:"#46525f","stroke-width":"1"}));
+  altBaroText = text(147,101,"29.92","lbl-xs");
+  altBaroText.setAttribute("fill","#f2f5f8");
+  altBaroText.setAttribute("font-size","10");
+  g.appendChild(altBaroText);
+  svg.appendChild(g);
+
+  // 10,000 ft pointer: thin, with a small triangle at the tip
+  altH10000 = el("path",{d:"M0 -78 L5 -66 L0 -60 L-5 -66 Z M0 -60 L2 8 L-2 8 Z","class":"needle"});
+  // 1,000 ft hand: short and broad
+  altH1000  = el("path",{d:needlePath(43,15,14),"class":"needle"});
+  // 100 ft hand: long and slim
+  altH100   = el("path",{d:needlePath(76,9,18),"class":"needle"});
+  svg.appendChild(altH10000);
+  svg.appendChild(altH1000);
+  svg.appendChild(altH100);
+  svg.appendChild(el("circle",{cx:100,cy:100,r:7,"class":"hub"}));
+}
+
+/* ================= ATTITUDE INDICATOR ================= */
+var aiRoll, aiPitch, aiRollPtr;
+var AI_PX_PER_DEG = 3.1;
+function buildAI(){
+  var svg = $("svgAi"); bezel(svg);
+
+  var clip = el("clipPath",{id:"aiClip"});
+  clip.appendChild(el("circle",{cx:100,cy:100,r:80}));
+  svg.appendChild(clip);
+
+  var world = el("g",{"clip-path":"url(#aiClip)"});
+  aiRoll = el("g",{});      // rotates with bank
+  aiPitch = el("g",{});     // translates with pitch
+
+  aiPitch.appendChild(el("rect",{x:-140,y:-300,width:480,height:400,fill:"var(--sky)"}));
+  aiPitch.appendChild(el("rect",{x:-140,y:100,width:480,height:400,fill:"var(--ground)"}));
+  aiPitch.appendChild(el("line",{x1:-140,y1:100,x2:340,y2:100,stroke:"#ffffff","stroke-width":"2.5"}));
+
+  // pitch ladder every 5 deg, long bars at 10 and 20
+  for (var d = -20; d <= 20; d += 5){
+    if (d === 0) continue;
+    var y = 100 - d * AI_PX_PER_DEG;
+    var half = (Math.abs(d) % 10 === 0) ? 26 : 13;
+    aiPitch.appendChild(el("line",{x1:100-half,y1:y,x2:100+half,y2:y,stroke:"#ffffff","stroke-width":"1.6"}));
+    if (Math.abs(d) % 10 === 0){
+      aiPitch.appendChild(text(100-half-10, y, String(Math.abs(d)), "lbl-xs", {fill:"#ffffff"}));
+      aiPitch.appendChild(text(100+half+10, y, String(Math.abs(d)), "lbl-xs", {fill:"#ffffff"}));
+    }
+  }
+  aiRoll.appendChild(aiPitch);
+
+  // roll pointer triangle riding on the moving card
+  aiRollPtr = el("path",{d:"M100 26 L94 38 L106 38 Z",fill:"#ffffff"});
+  aiRoll.appendChild(aiRollPtr);
+
+  world.appendChild(aiRoll);
+  svg.appendChild(world);
+
+  // fixed bank scale on the bezel
+  var g = el("g",{});
+  var marks = [-60,-45,-30,-20,-10,0,10,20,30,45,60];
+  for (var i = 0; i < marks.length; i++){
+    var m = marks[i];
+    var big = (m === 0 || Math.abs(m) === 30 || Math.abs(m) === 60);
+    radialTick(g,100,100, big ? 68 : 74, 80, m, big ? "tick-maj" : "tick-min");
+  }
+  // fixed sky pointer
+  g.appendChild(el("path",{d:"M100 14 L93 26 L107 26 Z",fill:"#ffd34d"}));
+  // fixed aircraft symbol
+  g.appendChild(el("path",{d:"M58 100 L86 100 M114 100 L142 100",stroke:"#ffd34d","stroke-width":"4",
+    "stroke-linecap":"round"}));
+  g.appendChild(el("path",{d:"M100 100 m-4 0 a4 4 0 1 0 8 0 a4 4 0 1 0 -8 0",fill:"#ffd34d"}));
+  g.appendChild(el("path",{d:"M86 100 L86 108 M114 100 L114 108",stroke:"#ffd34d","stroke-width":"4",
+    "stroke-linecap":"round"}));
+  svg.appendChild(g);
+}
+
+/* ================= HEADING INDICATOR ================= */
+var dgCard;
+var COMPASS = {0:"N",30:"3",60:"6",90:"E",120:"12",150:"15",180:"S",210:"21",240:"24",270:"W",300:"30",330:"33"};
+function buildDG(){
+  var svg = $("svgDg"); bezel(svg);
+  dgCard = el("g",{});
+  for (var a = 0; a < 360; a += 5){
+    var major = (a % 10 === 0);
+    radialTick(dgCard,100,100, major ? 68 : 74, 80, a, major ? "tick-maj" : "tick-min");
+  }
+  for (var k in COMPASS){
+    if (!COMPASS.hasOwnProperty(k)) continue;
+    var ang = Number(k);
+    var p = polar(100,100,54,ang);
+    var t = text(p.x,p.y,COMPASS[k], (ang % 90 === 0) ? "lbl" : "lbl-sm");
+    t.setAttribute("transform","rotate("+ang+" "+p.x+" "+p.y+")");
+    dgCard.appendChild(t);
+  }
+  svg.appendChild(dgCard);
+
+  // fixed lubber line + aircraft symbol
+  var g = el("g",{});
+  g.appendChild(el("path",{d:"M100 12 L93 26 L107 26 Z",fill:"#ffd34d"}));
+  g.appendChild(el("path",{d:"M100 82 L100 124 M82 104 L118 104 M91 118 L109 118",
+    stroke:"#ffd34d","stroke-width":"3","stroke-linecap":"round",fill:"none"}));
+  svg.appendChild(g);
+}
+
+/* ================= VERTICAL SPEED INDICATOR ================= */
+// zero at 9 o'clock; 0-1000 fpm over 105 deg, 1000-2000 fpm compressed into 60 deg
+function vsiAngle(fpm){
+  var v = clamp(fpm, -2000, 2000);
+  var m = Math.abs(v), sweep;
+  if (m <= 1000) sweep = (m / 1000) * 105;
+  else sweep = 105 + ((m - 1000) / 1000) * 60;
+  return -90 + (v >= 0 ? sweep : -sweep);
+}
+var vsiNeedle;
+function buildVSI(){
+  var svg = $("svgVsi"); bezel(svg);
+  var g = el("g",{});
+  var steps = [0,100,200,300,400,500,600,700,800,900,1000,1200,1400,1600,1800,2000];
+  for (var s = 0; s < steps.length; s++){
+    var v = steps[s];
+    var major = (v % 500 === 0);
+    [v, -v].forEach(function(sv){
+      if (sv === 0 && v !== 0) return;
+      radialTick(g,100,100, major ? 68 : 74, 80, vsiAngle(sv), major ? "tick-maj" : "tick-min");
+    });
+  }
+  // labels: 0, 5, 10, 15, 20 (hundreds of fpm) both directions
+  [[0,"0"],[500,"5"],[1000,"10"],[1500,"15"],[2000,"20"]].forEach(function(pair){
+    [pair[0], -pair[0]].forEach(function(sv){
+      if (sv === 0 && pair[0] !== 0) return;
+      var p = polar(100,100,54,vsiAngle(sv));
+      g.appendChild(text(p.x,p.y,pair[1],"lbl-sm"));
+    });
+  });
+  g.appendChild(text(122,84,"UP","lbl-xs"));
+  g.appendChild(text(122,120,"DOWN","lbl-xs"));
+  g.appendChild(text(100,172,"100 FT PER MIN","lbl-xs"));
+  svg.appendChild(g);
+
+  vsiNeedle = el("path",{d:needlePath(72,9,16),"class":"needle"});
+  svg.appendChild(vsiNeedle);
+  svg.appendChild(el("circle",{cx:100,cy:100,r:6,"class":"hub"}));
+}
+
+/* ================= TURN COORDINATOR ================= */
+var tcPlane, tcBall;
+var TC_STD_DEFLECT = 20; // symbol rotation at 3 deg/s
+function buildTC(){
+  var svg = $("svgTc"); bezel(svg);
+  var g = el("g",{});
+
+  // standard-rate index marks: L and R, plus wings-level marks
+  [-TC_STD_DEFLECT, TC_STD_DEFLECT].forEach(function(a){
+    radialTick(g,100,100,66,80,a-90,"tick-maj");
+    radialTick(g,100,100,66,80,a+90,"tick-maj");
+  });
+  radialTick(g,100,100,70,80,-90,"tick-min");
+  radialTick(g,100,100,70,80, 90,"tick-min");
+  g.appendChild(text(46,64,"L","lbl-sm"));
+  g.appendChild(text(154,64,"R","lbl-sm"));
+  g.appendChild(text(100,44,"2 MIN","lbl-xs"));
+  g.appendChild(text(100,150,"NO PITCH INFORMATION","lbl-xs"));
+  svg.appendChild(g);
+
+  // miniature aircraft — rotates with RATE OF TURN, not bank
+  tcPlane = el("g",{});
+  tcPlane.appendChild(el("path",{d:"M40 100 L160 100",stroke:"#ffffff","stroke-width":"4",
+    "stroke-linecap":"round"}));
+  tcPlane.appendChild(el("path",{d:"M100 100 L100 76",stroke:"#ffffff","stroke-width":"4",
+    "stroke-linecap":"round"}));
+  tcPlane.appendChild(el("path",{d:"M88 78 L112 78",stroke:"#ffffff","stroke-width":"3.5",
+    "stroke-linecap":"round"}));
+  tcPlane.appendChild(el("circle",{cx:100,cy:100,r:5,fill:"#ffffff"}));
+  svg.appendChild(tcPlane);
+
+  // inclinometer (slip / skid ball): a curved, fluid-filled glass tube.
+  // Real instruments back the tube with a light face so the black ball reads against it.
+  var inc = el("g",{});
+  inc.appendChild(el("path",{d:"M120.2 125.3 A46 46 0 0 0 79.8 125.3",fill:"none",
+    stroke:"#dfe6ee","stroke-width":"16","stroke-linecap":"round"}));
+  inc.appendChild(el("path",{d:"M120.2 125.3 A46 46 0 0 0 79.8 125.3",fill:"none",
+    stroke:"#8f9aa6","stroke-width":"17","stroke-linecap":"round","stroke-opacity":"0.35"}));
+  inc.appendChild(el("path",{d:"M120.2 125.3 A46 46 0 0 0 79.8 125.3",fill:"none",
+    stroke:"#eef3f8","stroke-width":"14","stroke-linecap":"round"}));
+  // the two cage marks that bracket a centred (coordinated) ball
+  [173, 187].forEach(function(a){
+    var p1 = polar(100,84,38,a), p2 = polar(100,84,54,a);
+    inc.appendChild(el("line",{x1:p1.x,y1:p1.y,x2:p2.x,y2:p2.y,stroke:"#4a5563","stroke-width":"1.6"}));
+  });
+  tcBall = el("circle",{cx:100,cy:130,r:6,fill:"#14181e",stroke:"#000","stroke-width":"0.8"});
+  inc.appendChild(tcBall);
+  svg.appendChild(inc);
+}
+
+buildASI(); buildAlt(); buildAI(); buildDG(); buildVSI(); buildTC();
+
+/* a standard-rate climbing turn: every instrument has something to show */
+var ias=95, alt=3200, vs=600, pitch=6, bank=14, hdg=45;
+var turn = 1091 * Math.tan(bank*Math.PI/180) / ias;
+
+asiNeedle.setAttribute("transform","translate(100,100) rotate("+asiAngle(ias)+")");
+altH100  .setAttribute("transform","translate(100,100) rotate("+((alt%1000)/1000*360)+")");
+altH1000 .setAttribute("transform","translate(100,100) rotate("+((alt%10000)/10000*360)+")");
+altH10000.setAttribute("transform","translate(100,100) rotate("+((alt%100000)/100000*360)+")");
+aiRoll   .setAttribute("transform","rotate("+(-bank)+" 100 100)");
+aiPitch  .setAttribute("transform","translate(0,"+(pitch*AI_PX_PER_DEG)+")");
+dgCard   .setAttribute("transform","rotate("+(-hdg)+" 100 100)");
+vsiNeedle.setAttribute("transform","translate(100,100) rotate("+vsiAngle(vs)+")");
+tcPlane  .setAttribute("transform","rotate("+(turn/3*TC_STD_DEFLECT)+" 100 100)");
+})();
+</script>
+</body>
+</html>
