@@ -20,7 +20,7 @@ window.PROFILE = {
   /* Optional — leave as empty strings until you have them.
      Any link with an empty url is hidden automatically. */
   orcid: "https://orcid.org/0009-0007-7375-8241",
-  googleScholar: "",
+  googleScholar: "https://scholar.google.com/citations?user=99QDJAYAAAAJ",
   researchGate: "",
   github: "",
 
