@@ -25,12 +25,13 @@ jobs:
       - name: Check out the site
         uses: actions/checkout@v4
 
-      # enablement: true turns GitHub Pages on for this repository the first
-      # time the workflow runs, so there is nothing to click in Settings.
+      # Requires Pages to have been switched on once, by hand:
+      #   Settings -> Pages -> Build and deployment -> Source: GitHub Actions
+      # The workflow token is not allowed to create a Pages site itself
+      # ("Resource not accessible by integration"), so it cannot do this for you.
+      # After that one-time step, every push to main deploys automatically.
       - name: Configure Pages
         uses: actions/configure-pages@v5
-        with:
-          enablement: true
 
       # The site is plain HTML/CSS/JS, so the repository is uploaded as-is.
       - name: Upload site

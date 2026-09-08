@@ -69,8 +69,17 @@ python -m http.server 8000     # then open http://localhost:8000
 ## Deployment
 
 Pushing to `main` deploys the site automatically via GitHub Actions
-(`.github/workflows/deploy.yml`). The workflow enables GitHub Pages on the first
-run, so there is nothing to switch on by hand.
+(`.github/workflows/deploy.yml`).
+
+### One-time setup
+
+GitHub Pages has to be switched on by hand once. A workflow cannot do it for
+you — the token Actions runs with is not permitted to create a Pages site.
+
+1. Go to **Settings → Pages**.
+2. Under **Build and deployment → Source**, choose **GitHub Actions**.
+
+That is the whole step. From then on every push to `main` deploys on its own.
 
 To check on a deployment: **Actions** tab → the most recent “Deploy site to
 GitHub Pages” run. The live URL is printed at the end of the run.
