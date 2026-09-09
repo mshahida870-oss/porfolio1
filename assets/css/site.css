@@ -509,3 +509,22 @@ a.chip:hover { color: var(--ink); border-color: var(--line-2); }
   width: 100%; height: 100%; object-fit: cover; object-position: center;
   display: block; border-radius: 50%;
 }
+
+/* ---------- Justified body copy ----------
+   Justification without hyphenation opens ragged gaps between words and the
+   "rivers" of white space that run down a column. hyphens: auto needs the
+   lang attribute, which every page carries. Applied only to running prose —
+   card summaries and news lines are too short to justify well. */
+.prose p,
+.abstract p,
+.article p,
+#about p {
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+
+/* A last line left nearly empty looks worse justified than ragged, so keep
+   short paragraphs and list items ragged-right. */
+.prose p:only-child { text-align: left; }
+.card p, .news-text, .lede, .section-head p { text-align: left; hyphens: manual; }
