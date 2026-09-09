@@ -356,8 +356,15 @@
     }
     var where = "";
     if (p.venue) {
-      where = '<p class="cite-venue"><em>' + esc(p.venue) + "</em>" +
-              (p.published ? " · " + esc(p.published) : "") + "</p>";
+      var vol = "";
+      if (p.volume) {
+        vol = " <strong>" + esc(p.volume) + "</strong>";
+        if (p.pages) vol += ", " + esc(p.pages.replace("--", "–"));
+      }
+      where = '<p class="cite-venue"><em>' + esc(p.venue) + "</em>" + vol +
+              (p.published ? " · " + esc(p.published) : "") +
+              (p.openAccess ? ' <span class="oa">' + esc(p.openAccess) + "</span>" : "") +
+              "</p>";
     }
     return '<div class="citation">' + who + where + "</div>";
   }
@@ -381,12 +388,50 @@
     return i === -1 ? name : name.slice(i + 1) + ", " + name.slice(0, i);
   }
 
+  /* A key built from the first long word collides when two papers open the
+     same way — both CeO₂ papers begin "Theoretical Insights", which produced
+     one key for both and would break a bibliography citing them together.
+     Skip words that carry no identity, then guarantee uniqueness across the
+     whole manifest by suffixing a letter. */
+  var KEY_STOPWORDS = ("theoretical insights into from with study studies analysis " +
+    "investigation investigations approach approaches novel effect effects using " +
+    "towards toward role their there where which that this").split(" ");
+
+  function bibKey(p) {
+    var family = (P.name || "author").split(" ").pop().toLowerCase();
+    var words = (p.title.match(/[A-Za-z]{4,}/g) || ["ref"]).map(function (w) {
+      return w.toLowerCase();
+    });
+    var word = "ref";
+    for (var i = 0; i < words.length; i++) {
+      if (KEY_STOPWORDS.indexOf(words[i]) === -1) { word = words[i]; break; }
+    }
+    var base = family + p.year + word;
+
+    /* deterministic order, so a key never changes between page loads */
+    var same = ALL.filter(function (x) {
+      return x.venue && bibBase(x) === base;
+    });
+    if (same.length < 2) return base;
+    var idx = same.map(function (x) { return x.slug; }).sort().indexOf(p.slug);
+    return base + "abcdefghijklmnop".charAt(idx);
+  }
+
+  function bibBase(p) {
+    var family = (P.name || "author").split(" ").pop().toLowerCase();
+    var words = (p.title.match(/[A-Za-z]{4,}/g) || ["ref"]).map(function (w) {
+      return w.toLowerCase();
+    });
+    for (var i = 0; i < words.length; i++) {
+      if (KEY_STOPWORDS.indexOf(words[i]) === -1) return family + p.year + words[i];
+    }
+    return family + p.year + "ref";
+  }
+
   function bibtexFor(p) {
     if (!p.venue) return "";
     var type = p.citeType || "article";
-    var family = (P.name || "author").split(" ").pop().toLowerCase();
-    var word = (p.title.match(/[A-Za-z]{4,}/) || ["ref"])[0].toLowerCase();
-    var key = family + p.year + word;
+    var key = bibKey(p);
 
     var fields = [["title", "{" + texify(p.title) + "}"]];
     if (p.authors && p.authors.length) {
@@ -396,6 +441,8 @@
     }
     if (type === "mastersthesis") fields.push(["school", p.venue]);
     else fields.push(["journal", p.venue]);
+    if (p.volume) fields.push(["volume", p.volume]);
+    if (p.pages)  fields.push(["pages", p.pages]);
     fields.push(["year", String(p.year)]);
     if (p.doi) fields.push(["doi", p.doi]);
 
@@ -498,15 +545,17 @@
           '<span class="chip">' + esc(STATUS_LABEL[status] || status) + "</span>" +
           '<span class="chip">' + esc(p.year) + "</span>" + tags +
         "</div>" +
-        ((links || citeBlockHTML(p))
-          ? '<div class="cta-row" style="margin-bottom:8px">' + links + citeBlockHTML(p) + "</div>"
-          : "") +
+        (links ? '<div class="cta-row" style="margin-bottom:14px">' + links + "</div>" : "") +
+        citeBlockHTML(p) +
       "</div></section>" +
 
       (function () {
         /* Longer copy and any disclaimer sit above the embed, so a reader knows
            what they are looking at before they start poking at it. */
-        var paras = (p.body || []).map(function (t) { return "<p>" + esc(t) + "</p>"; }).join("");
+        var abs = p.abstract
+          ? '<div class="abstract"><h2>Abstract</h2><p>' + esc(p.abstract) + "</p></div>"
+          : "";
+        var paras = abs + (p.body || []).map(function (t) { return "<p>" + esc(t) + "</p>"; }).join("");
         var note = p.note ? '<div class="notice" style="margin-top:22px">' + esc(p.note) + "</div>" : "";
         if (!paras && !note) return "";
         return '<section style="padding-bottom:56px"><div class="wrap">' +
