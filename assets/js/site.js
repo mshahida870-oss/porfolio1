@@ -46,6 +46,7 @@
   /* ---------- header & footer ---------- */
   var NAV = [
     { href: "index.html",    label: "Home",     page: "home" },
+    { href: "about.html",    label: "About",    page: "about" },
     { href: "research.html", label: "Research", page: "research" },
     { href: "teaching.html", label: "Teaching", page: "teaching" },
     { href: "ventures.html", label: "Ventures", page: "ventures" },
