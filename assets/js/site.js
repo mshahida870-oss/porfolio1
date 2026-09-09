@@ -362,6 +362,92 @@
     return '<div class="citation">' + who + where + "</div>";
   }
 
+  /* ---------- BibTeX ----------
+     Built from the fields the entry already carries. BibTeX wants
+     "Last, First", and every author here is a two-part name with the family
+     name last, so splitting on the final space is correct for this list —
+     it keeps "El Hadi Sadki" as "Sadki, El Hadi". */
+  /* Unicode subscripts and superscripts do not compile in LaTeX, and a
+     citation people paste into a paper has to. CeO₂ becomes CeO$_2$. */
+  var SUB = "₀₁₂₃₄₅₆₇₈₉", SUP = "⁰¹²³⁴⁵⁶⁷⁸⁹";
+  function texify(t) {
+    return String(t).replace(/[₀-₉]/g, function (c) { return "$_" + SUB.indexOf(c) + "$"; })
+                    .replace(/[⁰-⁹]/g, function (c) { return "$^" + SUP.indexOf(c) + "$"; })
+                    .replace(/[–—]/g, "--");
+  }
+
+  function bibAuthor(name) {
+    var i = name.lastIndexOf(" ");
+    return i === -1 ? name : name.slice(i + 1) + ", " + name.slice(0, i);
+  }
+
+  function bibtexFor(p) {
+    if (!p.venue) return "";
+    var type = p.citeType || "article";
+    var family = (P.name || "author").split(" ").pop().toLowerCase();
+    var word = (p.title.match(/[A-Za-z]{4,}/) || ["ref"])[0].toLowerCase();
+    var key = family + p.year + word;
+
+    var fields = [["title", "{" + texify(p.title) + "}"]];
+    if (p.authors && p.authors.length) {
+      fields.push(["author", p.authors.map(bibAuthor).join(" and ")]);
+    } else {
+      fields.push(["author", bibAuthor(P.name || "")]);
+    }
+    if (type === "mastersthesis") fields.push(["school", p.venue]);
+    else fields.push(["journal", p.venue]);
+    fields.push(["year", String(p.year)]);
+    if (p.doi) fields.push(["doi", p.doi]);
+
+    var pad = 8;
+    var body = fields.map(function (f) {
+      return "  " + f[0] + Array(Math.max(1, pad - f[0].length + 1)).join(" ") + "= {" +
+             f[1].replace(/^\{|\}$/g, "") + "},";
+    }).join("\n").replace(/,$/, "");
+    return "@" + type + "{" + key + ",\n" + body + "\n}";
+  }
+
+  function citeBlockHTML(p) {
+    var bib = bibtexFor(p);
+    if (!bib) return "";
+    return '<div class="cite-box">' +
+      '<button class="btn btn-ghost btn-sm cite-toggle" type="button" aria-expanded="false">Cite ▾</button>' +
+      '<div class="cite-panel" hidden>' +
+        '<pre class="cite-bib">' + esc(bib) + "</pre>" +
+        '<button class="btn btn-ghost btn-sm cite-copy" type="button">Copy BibTeX</button>' +
+      "</div></div>";
+  }
+
+  function wireCite(host) {
+    var toggle = host.querySelector(".cite-toggle");
+    if (!toggle) return;
+    var panel = host.querySelector(".cite-panel");
+    var copy = host.querySelector(".cite-copy");
+    toggle.addEventListener("click", function () {
+      var open = panel.hidden;
+      panel.hidden = !open;
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      toggle.textContent = open ? "Cite ▴" : "Cite ▾";
+    });
+    copy.addEventListener("click", function () {
+      var text = host.querySelector(".cite-bib").textContent;
+      function done() { copy.textContent = "Copied"; setTimeout(function () { copy.textContent = "Copy BibTeX"; }, 1600); }
+      /* clipboard access is blocked in some contexts, so fall back to
+         selecting the text rather than failing silently */
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done, select);
+      } else { select(); }
+      function select() {
+        var r = document.createRange();
+        r.selectNodeContents(host.querySelector(".cite-bib"));
+        var sel = window.getSelection();
+        sel.removeAllRanges(); sel.addRange(r);
+        copy.textContent = "Press Ctrl+C";
+        setTimeout(function () { copy.textContent = "Copy BibTeX"; }, 2600);
+      }
+    });
+  }
+
   function mountDetail() {
     var host = el("project-detail");
     if (!host) return;
@@ -412,7 +498,9 @@
           '<span class="chip">' + esc(STATUS_LABEL[status] || status) + "</span>" +
           '<span class="chip">' + esc(p.year) + "</span>" + tags +
         "</div>" +
-        (links ? '<div class="cta-row" style="margin-bottom:8px">' + links + "</div>" : "") +
+        ((links || citeBlockHTML(p))
+          ? '<div class="cta-row" style="margin-bottom:8px">' + links + citeBlockHTML(p) + "</div>"
+          : "") +
       "</div></section>" +
 
       (function () {
@@ -437,6 +525,8 @@
             '<div class="card-grid">' + related.map(cardHTML).join("") + "</div>" +
           "</div></section>"
         : "");
+
+    wireCite(host);
   }
 
   /* ---------- profile-driven blocks ---------- */
@@ -533,6 +623,15 @@
           '<div style="font-size:1.15rem;margin-bottom:6px">' + esc(a.icon) + "</div>" +
           "<strong>" + esc(a.title) + "</strong>" +
           '<p class="muted" style="font-size:.86rem;font-weight:400;margin:6px 0 0">' + esc(a.text) + "</p></div>";
+      }).join("");
+    }
+
+    if ((h = el("news"))) {
+      h.innerHTML = (P.news || []).map(function (n) {
+        var body = esc(n.text);
+        if (n.href) body = '<a href="' + esc(u(n.href)) + '">' + body + "</a>";
+        return '<li><span class="news-date">' + esc(n.date) + "</span>" +
+               '<span class="news-text">' + body + "</span></li>";
       }).join("");
     }
 
