@@ -63,7 +63,15 @@ body {
 img, svg, iframe, video { max-width: 100%; }
 a { color: var(--accent-ink); text-decoration-color: rgba(180,82,46,.32); text-underline-offset: 3px; }
 a:hover { text-decoration-color: currentColor; }
-h1, h2, h3, h4 { line-height: 1.2; margin: 0; font-weight: 600; letter-spacing: -.02em; }
+/* Headings are balanced across their lines rather than broken by hand.
+   A hardcoded <br> only looks right at one window width; below it the
+   first half wraps too and strands a word on a line of its own. */
+h1, h2, h3, h4 {
+  line-height: 1.2; margin: 0; font-weight: 600; letter-spacing: -.02em;
+  text-wrap: balance;
+}
+/* pretty avoids a one-word last line in running text */
+p, li, dd, figcaption { text-wrap: pretty; }
 p { margin: 0 0 1em; }
 ul { margin: 0; padding-left: 1.15em; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
@@ -498,6 +506,6 @@ a.chip:hover { color: var(--ink); border-color: var(--line-2); }
 /* ---------- Portrait ---------- */
 .avatar.has-photo { background: var(--paper-2); padding: 0; overflow: hidden; }
 .avatar.has-photo img {
-  width: 100%; height: 100%; object-fit: cover; object-position: center 28%;
+  width: 100%; height: 100%; object-fit: cover; object-position: center;
   display: block; border-radius: 50%;
 }
