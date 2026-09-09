@@ -50,12 +50,32 @@ window.PROJECTS = [
     featured: true,
     venue: "International Journal of Energy Research",
     doi: "10.1155/er/6421833",
+    openAccess: "Open access",
     published: "31 August 2026",
     authors: ["Xiaoping Han", "Maamar Benkraouda", "Shahida Maqsood",
               "Deepa Jithin", "El Hadi Sadki", "Noureddine Amrane"],
     summary: "A hybrid-functional study of praseodymium-promoted oxygen-ion conduction " +
              "in ceria, published in the International Journal of Energy Research.",
-    tags: ["DFT", "Hybrid Functional", "Ceria", "Oxygen-Ion Conduction", "Co-authored"],
+    tags: ["DFT", "Hybrid Functional", "Ceria", "Oxygen-Ion Conduction",
+           "Vacancy Migration", "Pr Doping", "Co-authored"],
+    abstract: "Pr-doped CeO₂ is a promising oxygen-ion conductor for solid oxide electrochemical " +
+      "devices, yet a quantitative atomistic understanding of how Pr influences oxygen vacancy " +
+      "(Vₒ) formation and migration remains incomplete. In this work, the Heyd–Scuseria–Ernzerhof " +
+      "(HSE) hybrid functional method was used to systematically investigate oxygen vacancy " +
+      "thermodynamics, migration pathways, and Pr–Vₒ interactions in 2×2×2 CeO₂ supercells with " +
+      "single and paired Pr substitutions. Results show that Pr incorporation significantly lowers " +
+      "the vacancy formation energies in CeO₂, indicative of facile vacancy generation at higher " +
+      "dopant concentrations. Oxygen vacancy migration is found to preferentially occur along the " +
+      "intrinsic ⟨100⟩ diffusion channel of the fluorite lattice, and the corresponding migration " +
+      "barrier is reduced from 0.49 eV in pure CeO₂ to 0.43–0.45 eV for single-Pr doping and to " +
+      "0.38–0.41 eV for Pr-pair configurations. Meanwhile, the calculated Pr–Vₒ association " +
+      "energies remain weak (−0.07 to −0.01 eV), avoiding strong vacancy trapping and preserving " +
+      "high vacancy mobility. These results demonstrate that Pr doping simultaneously enhances the " +
+      "Vₒ generation and mobility while maintaining weak dopant–vacancy binding, providing a " +
+      "coherent atomistic explanation for the improved oxygen-ion conductivity observed " +
+      "experimentally in Pr-doped ceria. The present study provides robust atomistic insights into " +
+      "defect-controlled ion transport in Pr-doped ceria, offering theoretical guidance for the " +
+      "rational design of high-performance ionic conductors based on rare-earth-doped ceria.",
     links: [{ label: "Read the paper (DOI)", url: "https://doi.org/10.1155/er/6421833" }]
   },
 
@@ -69,12 +89,34 @@ window.PROJECTS = [
     featured: true,
     venue: "ACS Omega",
     doi: "10.1021/acsomega.6c04304",
+    volume: "11",
+    pages: "52824--52831",
+    openAccess: "CC BY 4.0",
     published: "21 August 2026",
     authors: ["Xiaoping Han", "Maamar Benkraouda", "Shahida Maqsood",
               "Deepa Jithin", "El Hadi Sadki", "Noureddine Amrane"],
     summary: "A hybrid-functional study of ferromagnetism in samarium-doped ceria and the " +
              "interplay between the dopant and oxygen vacancies, published in ACS Omega.",
-    tags: ["DFT", "Hybrid Functional", "Ceria", "Ferromagnetism", "Co-authored"],
+    tags: ["DFT", "Hybrid Functional", "Ceria", "Ferromagnetism", "Spintronics",
+           "Oxygen Vacancy", "Co-authored"],
+    abstract: "Sm-doped CeO₂ has attracted considerable attention due to its reported " +
+      "room-temperature ferromagnetism and potential applications in oxide-based spintronic " +
+      "devices. However, the microscopic origin of Sm-induced magnetism and its correlation " +
+      "with oxygen vacancy (Vₒ) remain elusive. In this work, the hybrid functional method is " +
+      "employed to systematically investigate the electronic structure, defect energetics, and " +
+      "magnetic properties of Sm-doped CeO₂. Results show that the Sm dopant cannot introduce " +
+      "spin polarization, instead strongly promotes the Vₒ formation and preferentially forms a " +
+      "stable Sm−Vₒ complex. The formation of such complex stabilizes the singly charged vacancy " +
+      "(Vₒ⁺), which induces a Ce³⁺ center via localization of an unpaired electron on a " +
+      "neighboring Ce ion, resulting in a bound magnetic polaron (BMP). The polaron radius of BMP " +
+      "and the corresponding critical concentration required for BMP overlap and percolation are " +
+      "quantitatively evaluated, providing key insight into the conditions necessary for " +
+      "long-range ferromagnetic ordering. The combined first-principles calculations and " +
+      "percolation analysis support a physically consistent interpretation in which the " +
+      "experimentally observed ferromagnetism can be rationalized by BMP-mediated interactions " +
+      "associated with singly charged oxygen vacancies, arising from the synergistic interplay " +
+      "between Sm dopants and oxygen vacancies. This work offers practical design guidelines for " +
+      "engineering CeO₂-based dilute magnetic oxides for spintronic applications.",
     links: [{ label: "Read the paper (DOI)", url: "https://doi.org/10.1021/acsomega.6c04304" }]
   },
 
