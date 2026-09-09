@@ -145,6 +145,38 @@ window.PROJECTS = [
   },
 
   {
+    slug: "easa-m02-simulations",
+    title: "Module 2 Physics — Interactive Simulations",
+    pillar: "teaching",
+    kind: "demo",
+    year: 2026,
+    status: "live",
+    featured: true,
+    summary: "Eleven interactive physics simulations covering EASA Part-66 Module 2 for " +
+             "Category A — students change a value and watch the result rather than reading " +
+             "about it.",
+    body: [
+      "The pack runs as one page with a simulation picker: states of matter and the " +
+      "latent-heat plateaus, moments and equilibrium, linear and rotational and periodic " +
+      "motion, the three lever classes with mechanical advantage and velocity ratio, " +
+      "Newton's second law, static and kinetic friction, work and energy and power, " +
+      "density and specific gravity and buoyancy, pressure and hydraulics, the temperature " +
+      "scales with ΔL = αLΔT, and all three modes of heat transfer.",
+
+      "Each simulation has its own address, so a specific one can be set as homework or " +
+      "linked from a lesson plan — adding #states-of-matter or #pressure-hydraulics to the " +
+      "page URL opens that simulation directly.",
+
+      "The whole pack is a single self-contained file with no build step, no network " +
+      "dependency and nothing to install, so it runs from a shared classroom PC or a " +
+      "student's own laptop."
+    ],
+    tags: ["Aviation", "Part-66", "Module 2", "Physics", "Interactive", "Classroom"],
+    embed: { type: "folder", src: "projects/easa-m02-simulations/index.html" },
+    links: [{ label: "Open full size", url: "projects/easa-m02-simulations/index.html" }]
+  },
+
+  {
     slug: "flight-instruments",
     title: "SixPack66",
     pillar: "teaching",
