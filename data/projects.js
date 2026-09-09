@@ -171,11 +171,17 @@ window.PROJECTS = [
 
       "The whole pack is a single self-contained file with no build step, no network " +
       "dependency and nothing to install, so it runs from a shared classroom PC or a " +
-      "student's own laptop."
+      "student's own laptop.",
+
+      "A separate Projectile Motion Explorer sits alongside it, covering launch angle, " +
+      "speed and air resistance against the textbook parabola. It is linked below."
     ],
     tags: ["Aviation", "Part-66", "Module 2", "Physics", "Interactive", "Classroom"],
     embed: { type: "folder", src: "projects/easa-m02-simulations/index.html" },
-    links: [{ label: "Open full size", url: "projects/easa-m02-simulations/index.html" }]
+    links: [
+      { label: "Open full size", url: "projects/easa-m02-simulations/index.html" },
+      { label: "Projectile Motion Explorer", url: "projects/projectile-motion/index.html" }
+    ]
   },
 
   {
@@ -214,20 +220,6 @@ window.PROJECTS = [
       { label: "Open the live app", url: "https://flight-instruments.vercel.app/" },
       { label: "View the poster", url: "projects/sixpack66/poster.html" }
     ]
-  },
-
-  {
-    slug: "projectile-motion",
-    title: "Projectile Motion Explorer",
-    pillar: "teaching",
-    kind: "demo",
-    year: 2026,
-    status: "live",
-    featured: true,
-    summary: "An interactive classroom tool for launch angle, speed and drag — " +
-             "students change the parameters and watch range, apex and flight time respond.",
-    tags: ["Mechanics", "Interactive", "Classroom", "Kinematics"],
-    embed: { type: "folder", src: "projects/projectile-motion/index.html" }
   },
 
   {
