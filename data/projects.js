@@ -47,6 +47,7 @@ window.PROJECTS = [
     kind: "paper",
     year: 2026,
     status: "published",
+    featured: true,
     venue: "International Journal of Energy Research",
     published: "31 August 2026",
     authors: ["Xiaoping Han", "Maamar Benkraouda", "Shahida Maqsood",
@@ -64,6 +65,7 @@ window.PROJECTS = [
     kind: "paper",
     year: 2026,
     status: "published",
+    featured: true,
     venue: "ACS Omega",
     published: "21 August 2026",
     authors: ["Xiaoping Han", "Maamar Benkraouda", "Shahida Maqsood",
@@ -265,7 +267,6 @@ window.PROJECTS = [
     kind: "paper",
     year: 2022,
     status: "published",
-    featured: true,
     summary: "Master's dissertation: an ab initio study of how alloying and substitution " +
              "shift the electronic band gap in transition metal dichalcogenide monolayers.",
     tags: ["2D Materials", "Ab initio", "DFT", "Band Structure", "Master's Thesis"],
