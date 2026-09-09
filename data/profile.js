@@ -12,6 +12,11 @@ window.PROFILE = {
 
   location: "United Arab Emirates",
 
+  /* Portrait. Upload a square-ish JPG to this path and it replaces the
+     initials circle on the home page and the CV. Until the file exists the
+     initials stay, so nothing looks broken while the slot is empty. */
+  photo: "assets/img/shahida-maqsood.jpg",
+
   /* Contact e-mail is intentionally not published on the site.
      Fill this in only if you want a public mailto: link. */
   email: "",

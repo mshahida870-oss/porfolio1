@@ -708,6 +708,23 @@
       }
     });
 
+    /* Portrait. The image is loaded first and only swapped in once it
+       actually decodes, so a missing or broken file leaves the initials
+       circle intact rather than showing a broken-image icon. */
+    if (P.photo) {
+      Array.prototype.forEach.call(document.querySelectorAll(".avatar"), function (el) {
+        var img = new Image();
+        img.onload = function () {
+          el.textContent = "";
+          img.alt = "Portrait of " + (P.name || "");
+          el.appendChild(img);
+          el.classList.add("has-photo");
+          el.removeAttribute("aria-hidden");
+        };
+        img.src = u(P.photo);
+      });
+    }
+
     /* simple text slots */
     Array.prototype.forEach.call(document.querySelectorAll("[data-profile]"), function (n) {
       var path = n.getAttribute("data-profile").split(".");
