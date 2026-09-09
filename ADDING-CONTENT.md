@@ -230,6 +230,31 @@ Arabic edition loads Noto Sans Arabic and Noto Kufi Arabic this way.
 
 ---
 
+## Adding your photograph
+
+Upload the image to **`assets/img/shahida-maqsood.jpg`** and it appears
+automatically — on the home page and on the CV — in place of the initials
+circle. Nothing else needs changing.
+
+The quickest way, without any software:
+
+1. Open the repository on GitHub
+2. **Add file → Upload files**
+3. Drag the photo in
+4. In the filename box, type the full path `assets/img/shahida-maqsood.jpg`
+   (typing the folders creates them)
+5. **Commit changes**
+
+**What works best:** a square-ish photo, at least 500 pixels each side, with a
+little space around your head. The frame is circular and crops to the centre,
+biased slightly upward so faces sit correctly.
+
+Until that file exists the initials circle stays, so the page never shows a
+broken image. To change the path or remove the photo, edit `photo` near the
+top of `data/profile.js`; setting it to `""` returns to the initials.
+
+---
+
 ## Changing your CV details
 
 Open `data/profile.js`. Everything is labelled — `experience`, `education`,
