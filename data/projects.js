@@ -49,6 +49,7 @@ window.PROJECTS = [
     status: "published",
     featured: true,
     venue: "International Journal of Energy Research",
+    doi: "10.1155/er/6421833",
     published: "31 August 2026",
     authors: ["Xiaoping Han", "Maamar Benkraouda", "Shahida Maqsood",
               "Deepa Jithin", "El Hadi Sadki", "Noureddine Amrane"],
@@ -67,6 +68,7 @@ window.PROJECTS = [
     status: "published",
     featured: true,
     venue: "ACS Omega",
+    doi: "10.1021/acsomega.6c04304",
     published: "21 August 2026",
     authors: ["Xiaoping Han", "Maamar Benkraouda", "Shahida Maqsood",
               "Deepa Jithin", "El Hadi Sadki", "Noureddine Amrane"],
@@ -264,6 +266,7 @@ window.PROJECTS = [
     tags: ["2D Materials", "Ab initio", "DFT", "Band Structure", "Master's Thesis"],
     archive: false,         /* shown on the Research page, not in the Work archive */
     venue: "United Arab Emirates University",
+    citeType: "mastersthesis",
     published: "2022",
     links: [{ label: "Read the thesis · UAEU ScholarWorks",
               url: "https://scholarworks.uaeu.ac.ae/all_theses/1144/" }]

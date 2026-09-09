@@ -221,5 +221,32 @@ window.PROFILE = {
     { icon: "\u{1F52C}", title: "Research contribution", text: "Advancing knowledge in nanomaterials physics through doctoral research at UAEU." }
   ],
 
-  languages: ["English", "Urdu", "Arabic"]
+  languages: ["English", "Urdu", "Arabic"],
+
+  /* ============================================================
+     NEWS — the short dated list on the home page.
+     Newest first. Add a line whenever something happens; `href`
+     is optional and relative to the site root.
+     ============================================================ */
+  news: [
+    { date: "7 Sep 2026",
+      text: "New issue of the weekly MRO bulletin: Emirates extends its A380 heavy maintenance deal, SWISS brings composite repair in-house, and a watchdog questions who may sit the A&P exam.",
+      href: "project.html?p=newsletter-2026-09-07" },
+
+    { date: "31 Aug 2026",
+      text: "Paper published in the International Journal of Energy Research on Pr-promoted oxygen-ion conduction in CeO₂.",
+      href: "project.html?p=pr-promoted-oxygen-ion-conduction-ceo2" },
+
+    { date: "21 Aug 2026",
+      text: "Paper published in ACS Omega on ferromagnetism in Sm-doped CeO₂ and its interplay with oxygen vacancies.",
+      href: "project.html?p=ferromagnetism-sm-doped-ceo2" },
+
+    { date: "2026",
+      text: "SixPack66 released — the six standard flight instruments, installable and running offline in the browser.",
+      href: "project.html?p=flight-instruments" },
+
+    { date: "2026",
+      text: "Module 2 simulation pack published: eleven interactive physics simulations for Part-66 Category A.",
+      href: "project.html?p=easa-m02-simulations" }
+  ]
 };
